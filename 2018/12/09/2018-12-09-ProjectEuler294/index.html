@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Project Euler 294 Sum of digits-experience #23开启传送门 题目描述For a positive integer $$k$$, define $$d(k)$$ as the sum of the digits of $$k$$ in its usual decimal representation. Thus $$d(42) = 4+2 = 6$$. F">
+<meta name="keywords" content="数学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/12/09/2018-12-09-ProjectEuler294/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Project Euler 294 Sum of digits-experience #23开启传送门 题目描述For a positive integer $$k$$, define $$d(k)$$ as the sum of the digits of $$k$$ in its usual decimal representation. Thus $$d(42) = 4+2 = 6$$. F">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-07T12:08:33.202Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Project Euler 294 Sum of digits-experience #23开启传送门 题目描述For a positive integer $$k$$, define $$d(k)$$ as the sum of the digits of $$k$$ in its usual decimal representation. Thus $$d(42) = 4+2 = 6$$. F">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2018-12-09-ProjectEuler294" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/09/2018-12-09-ProjectEuler294/" class="article-date">
+  <time datetime="2018-12-08T16:00:00.000Z" itemprop="datePublished">2018-12-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Project-Euler-294-Sum-of-digits-experience-23"><a href="#Project-Euler-294-Sum-of-digits-experience-23" class="headerlink" title="Project Euler 294 Sum of digits-experience #23"></a>Project Euler 294 Sum of digits-experience #23</h1><p><a href="https://projecteuler.net/problem=294" target="_blank" rel="noopener">开启传送门</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>For a positive integer $$k$$, define $$d(k)$$ as the sum of the digits of $$k$$ in its usual decimal representation. Thus $$d(42) = 4+2 = 6$$.</p>
+<p>For a positive integer $$n$$, define $$S(n)$$ as the number of positive integers $$k &lt; 10^n$$ with the following properties :</p>
+<ul>
+<li>$$k$$ is divisible by $$23$$ and</li>
+<li>$$d(k) = 23$$. </li>
+</ul>
+<p>You are given that $$S(9) = 263626$$ and $$S(42) = 6377168878570056$$.</p>
+<p>Find $$S(11^{12})$$ and give your answer mod $$10^9$$.</p>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>你要找到一个所有满足一下三个条件的数字数量</p>
+<p>假设这个数是$$k$$</p>
+<ul>
+<li>$$k$$ $$&lt;$$ $$10^{11^{12}}$$  </li>
+<li>$$k\%23$$ = 0</li>
+<li>$$k$$每个十进制位求和为$$23$$</li>
+</ul>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这个题目困扰了我两天,我一度以为自己读错题了,主要是数据范围太大了,大的人一点想法都没有$$\dots$$</p>
+<p>下面说正解</p>
+<p>虽然数据范围很大,但是我们可以从小数据入手</p>
+<p>先看第二个条件$$k%23==0$$,是否感觉出了一丝丝猫腻?</p>
+<p>于是我大胆写了一下,比较好想的就是一定存在一个$$n$$使得$$10^n%23==1$$,也就是说存在膜数存在循环,而且显然有循环节是$$O(23)$$的</p>
+<p>于是大胆暴力,找到了,循环节长度为$$22$$</p>
+<p>这也就是说,在十进制下,位数最多有$$11^{12}$$个,而且这些里面,可以拆分成$$22$$份,每一份里面,你不管把数字安排到哪里,都是同膜的</p>
+<p>于是我们可以简单的把$$11^{12}$$近似的均分成了$$22$$份.而且每一份可以单独统计答案</p>
+<p>然后问题就转化成了以下两个子问题:</p>
+<ul>
+<li>找到$$a_1,a_2\dots a_{22}$$使得$$a_1+a_2+\dots +a_{22} = 23$$</li>
+<li>对于每一份就成了一个$$a_i$$个相同的球放入近似$$11^{12}$$个盒子里,每个盒子最多放$$9$$个球,问你方案数</li>
+</ul>
+<p>对于第一个子问题,我们显然可以动态规划搞一搞</p>
+<p>定义$$dp(i,j,k)$$表示$$a_1+a_2+\dots +a_i == j$$并且当前膜数为$$k$$的方案数</p>
+<p>然后暴力转移就行了</p>
+<p>关键是第二个子问题不好想,因为盒子数量太大了,必须要有一个$$log$$的做法</p>
+<p>然后就枚举算法<del>(毕竟会的算法不多)</del></p>
+<p>然后就想到了分治,但是能不能分治呢,并不知道,写一发就知道了,然后跑的挺快的<del>(然后就过了)</del></p>
+<p>并不会算分治的<del>玄学</del>复杂度</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> (a+b)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> <span class="number">1l</span>l*a*b%mod;&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,m;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	m = <span class="number">23</span>;</span><br><span class="line">	n = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">12</span>;i++) n*=<span class="number">11</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">map</span>&lt;pair&lt;<span class="keyword">long</span> <span class="keyword">long</span>,<span class="keyword">int</span>&gt;,<span class="keyword">int</span>&gt;mp;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="comment">///b ball,a boxes</span></span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">1</span>) <span class="keyword">return</span> b&lt;=<span class="number">9</span>;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> b==<span class="number">0</span>;</span><br><span class="line">	pair&lt;<span class="keyword">long</span> <span class="keyword">long</span>,<span class="keyword">int</span>&gt; now = make_pair(a,b);</span><br><span class="line">	<span class="keyword">if</span>(mp[now]) <span class="keyword">return</span> mp[now];</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> l = a/<span class="number">2</span>,r = a-l;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=b;i++) ret = add(ret,mul(solve(l,i),solve(r,b-i)));</span><br><span class="line">	<span class="keyword">return</span> mp[now] = ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[<span class="number">30</span>][<span class="number">30</span>][<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> w = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> has = n/(m<span class="number">-1</span>) + (i&lt;n%<span class="number">22</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;k&lt;m;k++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">0</span>;j+t&lt;=m;t++)&#123;</span><br><span class="line">					dp[i+<span class="number">1</span>][j+t][(k+w*t)%m] = add(dp[i+<span class="number">1</span>][j+t][(k+w*t)%m],mul(dp[i][j][k],solve(has,t)));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		w = w*<span class="number">10</span>%m;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;dp[m<span class="number">-1</span>][m][<span class="number">0</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/09/2018-12-09-ProjectEuler294/" data-id="cjqma9kza0009yxfb97ij81jb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学/">数学</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/12/2018-12-12-ProjectEuler492/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/08/2018-12-08-ProjectEuler303/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IC/">IC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PE/">PE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/live/">live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/找规律/">找规律</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数学/">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形DP/">树形DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/状压DP/">状压DP</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/IC/" style="font-size: 13.33px;">IC</a> <a href="/tags/PE/" style="font-size: 16.67px;">PE</a> <a href="/tags/live/" style="font-size: 10px;">live</a> <a href="/tags/找规律/" style="font-size: 10px;">找规律</a> <a href="/tags/搜索/" style="font-size: 10px;">搜索</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/树形DP/" style="font-size: 10px;">树形DP</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/04/2019-1-4-ProjectEuler222/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/02/2019-1-02-ProjectEuler122/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/28/2018-12-29-gcd_fibonacci/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/28/2018-12-28-ProjectEuler143/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

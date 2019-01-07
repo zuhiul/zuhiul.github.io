@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="作者自己辛苦原创,转载或其他用途请联系qq:669415029,谢谢 1.利用反证法容易得到,如果$$n$$和$$m$$都是奇数,那么$$n*m$$也是奇数,显然不可覆盖,所以$$n$$和$$m$$至少有一个偶数 2.我们定义行号从上到下为$$1\dots m$$,列号从左到右为$$1\dots n$$,然后我们就可以得到被切掉的那个方块只可能是奇数行奇数列,或者偶数行偶数列,我们考虑对这两种方案">
+<meta name="keywords" content="IC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/12/24/2018-12-24-IC_chepter1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="作者自己辛苦原创,转载或其他用途请联系qq:669415029,谢谢 1.利用反证法容易得到,如果$$n$$和$$m$$都是奇数,那么$$n*m$$也是奇数,显然不可覆盖,所以$$n$$和$$m$$至少有一个偶数 2.我们定义行号从上到下为$$1\dots m$$,列号从左到右为$$1\dots n$$,然后我们就可以得到被切掉的那个方块只可能是奇数行奇数列,或者偶数行偶数列,我们考虑对这两种方案">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-5.jpg">
+<meta property="og:updated_time" content="2019-01-07T12:08:33.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="作者自己辛苦原创,转载或其他用途请联系qq:669415029,谢谢 1.利用反证法容易得到,如果$$n$$和$$m$$都是奇数,那么$$n*m$$也是奇数,显然不可覆盖,所以$$n$$和$$m$$至少有一个偶数 2.我们定义行号从上到下为$$1\dots m$$,列号从左到右为$$1\dots n$$,然后我们就可以得到被切掉的那个方块只可能是奇数行奇数列,或者偶数行偶数列,我们考虑对这两种方案">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2018-12-24-IC_chepter1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/24/2018-12-24-IC_chepter1/" class="article-date">
+  <time datetime="2018-12-23T16:00:00.000Z" itemprop="datePublished">2018-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作者自己辛苦原创,转载或其他用途请联系qq:669415029,谢谢</p>
+<p>1.利用反证法容易得到,如果$$n$$和$$m$$都是奇数,那么$$n*m$$也是奇数,显然不可覆盖,所以$$n$$和$$m$$至少有一个偶数</p>
+<p>2.我们定义行号从上到下为$$1\dots m$$,列号从左到右为$$1\dots n$$,然后我们就可以得到被切掉的那个方块只可能是奇数行奇数列,或者偶数行偶数列,我们考虑对这两种方案分别进行构造来得到我们想要的答案.</p>
+<ul>
+<li>奇数行奇数列:对于和他在同一行同一列的方块来说,因为他去掉了,所以剩下的一定是可以匹配的偶数,也就是说我们可以匹配上这一行一列,对于剩下的一定都是偶数行偶数列的联通块,显然可以构造</li>
+<li>奇数行奇数列:这个稍微麻烦一点,我们可以选择他周围的奇数行奇数列的一个子矩阵,显然可以螺旋式的构造,也就是说我们用完左上角,对于剩下的容易证明也是两个偶数的联通块,同样可以构造,看图<br><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-1.png" alt="avatar"></li>
+</ul>
+<p>3.显然是不能获得自由的,因为我们可以将这个棋盘黑白二染色,然后可以发现对顶角颜色相同,每一步颜色都会反转,一共要走63步,所以最后一步一定会在异色块上,所以不行.</p>
+<p>4.(a)对于每一个$$n$$来说我们直接考虑最后一块的摆放方法,如果是竖着放,那么剩下的就是$$f(n-1)$$的子问题,如果是横着放,那么倒数第二块显然也是横着放的,所以剩下的就是$$f(n-2)$$的子问题,所以显然可以得到的是$$f(n) = f(n-1)+f(n-2)$$,也就是说答案就是fibonacci.$$\therefore f(12) = 233$$</p>
+<p>4.(b)这里我们可以考虑DP来做,具体程序如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> dp[maxm][<span class="number">8</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">0</span>] = dp[<span class="number">0</span>][<span class="number">3</span>] = dp[<span class="number">0</span>][<span class="number">6</span>] = dp[<span class="number">1</span>][<span class="number">1</span>] = dp[<span class="number">1</span>][<span class="number">4</span>] = dp[<span class="number">1</span>][<span class="number">7</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;maxm;i++)&#123;</span><br><span class="line">		dp[i][<span class="number">0</span>] = dp[i<span class="number">-2</span>][<span class="number">3</span>]+dp[i<span class="number">-2</span>][<span class="number">6</span>]+dp[i<span class="number">-2</span>][<span class="number">0</span>];</span><br><span class="line">		dp[i][<span class="number">1</span>] = dp[i<span class="number">-1</span>][<span class="number">0</span>]+dp[i<span class="number">-2</span>][<span class="number">1</span>];</span><br><span class="line">		dp[i][<span class="number">3</span>] = dp[i][<span class="number">0</span>]+dp[i<span class="number">-2</span>][<span class="number">3</span>];</span><br><span class="line">		dp[i][<span class="number">4</span>] = dp[i][<span class="number">1</span>];</span><br><span class="line">		dp[i][<span class="number">6</span>] = dp[i][<span class="number">3</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后可以发现$$g(n) = 4*g(n-2)-g(n-4)$$</p>
+<p>5.用4.(b)的代码容易可得,$$g(4) = 11$$</p>
+<p>6.同样采用反证法容易证得$$n$$是偶数,下面我们考虑$$n$$是奇数扣掉中间一块的情况.不妨假设八个角上的颜色是黑色,可以得到黑块数量是$$4k^3+6k^2+3k+1$$,白块的数量是$$4k^3+6k^2+3k$$,我们可以分两种情况讨论,我们假设$$n = 2k+1$$</p>
+<ul>
+<li>当k是奇数时,也就是$$k = 2t+1$$,即$$n = 4t+3$$,中间块是白色的.然后扣掉白块后,显然黑块和白块不匹配,然后不行鸭.</li>
+<li>当k是偶数时,也就是$$k = 2t$$,即$$n = 4t+1$$,中间块是黑色的,扣掉黑块后,白块和黑块是匹配的,可能可以.下面我们证明$$n = 4t+1$$时是可行的<ul>
+<li>我们按照层数拆分,我们抽掉其中的第$$2t+1$$层,我们可以得到,这一层显然是可行的,类比于二阶的时候,我们扣掉中心块</li>
+<li>对于剩下的两个联通块,我们显然可以得到是他们对称,我们只考虑上面的$$2t$$层的部分,我们每两层考虑一下</li>
+<li>对于相连的两层,也就是$$2<em>n</em>n$$的形状,我们显然可以构造,所以整个三维结构是可以构造的.</li>
+</ul>
+</li>
+</ul>
+<p>7.首先证明$$a$$既是$$n$$的因子,又是&amp;&amp;m&amp;&amp;的因子</p>
+<ul>
+<li>因为$$a$$是$$b$$的因子,所以$$a<em>b$$的可以看成多个$$a</em>a$$的,采用反证法,假设$$a$$不是$$m$$的因子,那么对于剩下的$$(m%a)<em>(n%a)$$的矩阵显然不可以用$$a</em>a$$的矩阵填满,所以$$m%a==0&amp;&amp;n%a==0$$.</li>
+</ul>
+<p>再证$$b$$是$$n$$或者$$m$$的因子</p>
+<ul>
+<li>同样反证法,我们将$$a,b,m,n$$同时缩小$$a$$倍,然后可以转化成,现在有一个$$x<em>y$$的棋盘,我要用一个$$1</em>z$$的棋盘去覆盖他,但是$$gcd(x,z)=gcd(y,z)=1$$,这个可以显然发现是不可能的</li>
+</ul>
+<p>8.先证:存在完美覆盖$$\rightarrow$$存在平凡完美覆盖</p>
+<ul>
+<li>利用习题7,我们得到如果存在完美覆盖,那么$$gcd(n,a)=gcd(m,a)=a$$并且$$gcd(m,b)=b$$,然后我们显然可以让$$b$$的朝向指向$$m$$的方向,也就是存在平凡完美覆盖</li>
+</ul>
+<p>再证:存在平凡完美覆盖$$\rightarrow$$存在完美覆盖</p>
+<ul>
+<li>显然</li>
+</ul>
+<p>9.显然,举个简单例子$$n=5,m=6,a=2,b=3$$存在完美覆盖,但是不存在平凡完美覆盖.</p>
+<p>10.假设存在不妨设四个变量是$$a,b,c,d$$,那么可以得到$$a+b=b+c$$即$$a=c$$显然不能构成幻方</p>
+<p>11.12.13 如图</p>
+<p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-2.png" alt="avatar"></p>
+<p>14.所有可能的构造如图</p>
+<p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-3.png" alt="avatar"></p>
+<p>15.暴力枚举的,确实没有解,并不知道为什么……</p>
+<p>16.$$n$$阶幻方,幻方总和是$$n^2<em>(n^2+1)/2$$,所以每一行每一列求和都是$$n</em>(n^2+1)/2$$,现在替换后每一行每一列的和换成了$$n<em>(n^2+1) - n</em>(n^2+1)/2 = n*(n^2+1)/2$$所以可能是个幻方,然后因为里面的元素都是属于$$[1,n^2]$$之间的,所以$$n^2+1-a$$可以保证换完之后每个元素还是只出现一次,所以新生成的还是幻方.</p>
+<p>17.给出$$n=4$$和$$n=8$$时的图…….</p>
+<p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-4.png" alt="avatar"></p>
+<p>18.这个应该是显然的,因为二阶幻方都没有,显然没有二阶幻方体.</p>
+<p>19.首先我们拆开来看没一个单独的平面,我们可以得到,对于一个四阶幻方来说,如果对角线也满足幻和,那么显然可以得到任意三阶子矩阵的对顶角之和等于幻和的一半,所以我们任取出四阶幻方体的任一三阶子体,可以得到类似于$$a+b=b+c$$的等式,也就是说存在$$a==c$$的情况,这显然和题意不符,所以不可能存在四阶幻方体.</p>
+<p>20.首先,$$10$$和$$5$$一个颜色,$$1,3,7,9$$一个颜色,$$2,4,6,8$$一种颜色,可以得到可以由三种颜色构成,然后,$$1,2,10$$相互接壤,显然需要三种及以上颜色来涂,方案数为$$3<em>2</em>1 = 6$$.</p>
+<p>21.(a) 二阶的显然不存在,书后面给了答案,还有一个比较简单的想法就是如果存在显然可以得到类似于$$a==b$$的结论,所以不存在.</p>
+<p>(b) 暴搜剪枝,emmmmm……如图</p>
+<p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/IC1-5.jpg" alt="avatar"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/24/2018-12-24-IC_chepter1/" data-id="cjqma9kzl000hyxfbabvi6tq1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IC/">IC</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/24/2019-1-5-IC_chepter2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/23/2018-12-24-matlab/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IC/">IC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PE/">PE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/live/">live</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/找规律/">找规律</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数学/">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形DP/">树形DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/状压DP/">状压DP</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/IC/" style="font-size: 13.33px;">IC</a> <a href="/tags/PE/" style="font-size: 16.67px;">PE</a> <a href="/tags/live/" style="font-size: 10px;">live</a> <a href="/tags/找规律/" style="font-size: 10px;">找规律</a> <a href="/tags/搜索/" style="font-size: 10px;">搜索</a> <a href="/tags/数学/" style="font-size: 20px;">数学</a> <a href="/tags/树形DP/" style="font-size: 10px;">树形DP</a> <a href="/tags/状压DP/" style="font-size: 10px;">状压DP</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/04/2019-1-4-ProjectEuler222/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/02/2019-1-02-ProjectEuler122/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/28/2018-12-29-gcd_fibonacci/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/28/2018-12-28-ProjectEuler143/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
