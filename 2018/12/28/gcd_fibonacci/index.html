@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$$$\begin{split}gcd(f_i,f_{i-1}) &amp;amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\&amp;amp;= gcd(f_{i-2},f_{i-1})\&amp;amp;= gcd(f_">
+<meta name="description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$$$\begin{align}gcd(f_i,f_{i-1}) &amp;amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\&amp;amp;= gcd(f_{i-2},f_{i-1})\&amp;amp;= gcd(f_">
 <meta name="keywords" content="数学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="睡到二三更时凡荣华皆成幻境">
 <meta property="og:url" content="http://zuhiul.github.io/2018/12/28/gcd_fibonacci/index.html">
 <meta property="og:site_name" content="睡到二三更时凡荣华皆成幻境">
-<meta property="og:description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$$$\begin{split}gcd(f_i,f_{i-1}) &amp;amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\&amp;amp;= gcd(f_{i-2},f_{i-1})\&amp;amp;= gcd(f_">
+<meta property="og:description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$$$\begin{align}gcd(f_i,f_{i-1}) &amp;amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\&amp;amp;= gcd(f_{i-2},f_{i-1})\&amp;amp;= gcd(f_">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T13:48:58.755Z">
+<meta property="og:updated_time" content="2019-01-07T13:53:00.344Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="睡到二三更时凡荣华皆成幻境">
-<meta name="twitter:description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$$$\begin{split}gcd(f_i,f_{i-1}) &amp;amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\&amp;amp;= gcd(f_{i-2},f_{i-1})\&amp;amp;= gcd(f_">
+<meta name="twitter:description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$$$\begin{align}gcd(f_i,f_{i-1}) &amp;amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\&amp;amp;= gcd(f_{i-2},f_{i-1})\&amp;amp;= gcd(f_">
 
 
 
@@ -305,8 +305,8 @@
         <p>前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下</p>
 <p>$$<br>gcd(f_i,f_j) = f_{gcd(i,j)}<br>$$</p>
 <p>下面给出证明</p>
-<h3 id="gcd-f-i-f-i-1-1"><a href="#gcd-f-i-f-i-1-1" class="headerlink" title="$gcd(f_i,f_{i-1}) = 1$"></a>$gcd(f_i,f_{i-1}) = 1$</h3><p>$$<br>\begin{split}<br>gcd(f_i,f_{i-1}) &amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\<br>&amp;= gcd(f_{i-2},f_{i-1})\<br>&amp;= gcd(f_{i-3},f_{i-2})\<br>&amp;= \dots\<br>&amp;= gcd(f_1,f_2)\<br>&amp;= 1<br>\end{split}<br>$$</p>
-<h3 id="f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1"><a href="#f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1" class="headerlink" title="$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$"></a>$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$</h3><p>首先,$j = 1$时有</p>
+<h1 id="gcd-f-i-f-i-1-1"><a href="#gcd-f-i-f-i-1-1" class="headerlink" title="$gcd(f_i,f_{i-1}) = 1$"></a>$gcd(f_i,f_{i-1}) = 1$</h1><p>$$<br>\begin{align}<br>gcd(f_i,f_{i-1}) &amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\<br>&amp;= gcd(f_{i-2},f_{i-1})\<br>&amp;= gcd(f_{i-3},f_{i-2})\<br>&amp;= \dots\<br>&amp;= gcd(f_1,f_2)\<br>&amp;= 1<br>\end{align}<br>$$</p>
+<h1 id="f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1"><a href="#f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1" class="headerlink" title="$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$"></a>$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$</h1><p>首先,$j = 1$时有</p>
 <p>$f_{i+1} = f_{i-1}+f_i$</p>
 <p>显然成立,</p>
 <p>当$j = 2$时有</p>
@@ -317,10 +317,10 @@
 <p>然后我们累加上面两式,可以得到</p>
 <p>$f_{i+k-1}+f_{i+k-2} = f{i-1}\cdot f_{k-1} + f_{i}\cdot f_k + f{i-1}\cdot f_{k-2} + f_{i}\cdot f_{k-1}$</p>
 <p>$$<br>\therefore<br>\begin{split}<br>f_{i+k} &amp;= f_{i-1}\cdot (f_{k-1}+f{k-2}) + f_{i}\cdot (f_{k}+f_{k-1})\<br>        &amp;= f_{i-1}\cdot f_{k} + f_{i}\cdot f_{k+1}\<br>\end{split}<br>$$</p>
-<h3 id="gcd-f-i-j-f-i-gcd-f-i-f-j"><a href="#gcd-f-i-j-f-i-gcd-f-i-f-j" class="headerlink" title="$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $"></a>$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $</h3><p>$$<br>\begin{split}<br>gcd(f_{i+j},f_{i}) &amp;= gcd(f_{i-1}\cdot f_j + f_i\cdot f_{j+1},f_{i})\<br>&amp;= gcd(f_{i-1}\cdot f_{j},f_{i})\<br>&amp;= gcd(f_{j},f_{i})\dots \dots \dots gcd(f_{i},f_{i-1}) = 1\<br>\end{split}<br>$$</p>
+<h1 id="gcd-f-i-j-f-i-gcd-f-i-f-j"><a href="#gcd-f-i-j-f-i-gcd-f-i-f-j" class="headerlink" title="$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $"></a>$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $</h1><p>$$<br>\begin{split}<br>gcd(f_{i+j},f_{i}) &amp;= gcd(f_{i-1}\cdot f_j + f_i\cdot f_{j+1},f_{i})\<br>&amp;= gcd(f_{i-1}\cdot f_{j},f_{i})\<br>&amp;= gcd(f_{j},f_{i})\dots \dots \dots gcd(f_{i},f_{i-1}) = 1\<br>\end{split}<br>$$</p>
 <p>所以上面的结论可以继续推广,容易得到</p>
 <p>$$<br>gcd(f_{i},f_{j}) = gcd(f_{i\%j},f_{j})<br>$$</p>
-<h3 id="gcd-f-i-f-j-f-gcd-i-j"><a href="#gcd-f-i-f-j-f-gcd-i-j" class="headerlink" title="$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $"></a>$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</h3><p>由上面的结论,我们容易得到,我们不断调用上面的结论,直到$i==1|j==1$,然后可以得到,如果$k=gcd(i,j)$,那么有$gcd(f_{i},f_{j}) = gcd(f_{k},f_{1}) = f_{k} = f_{gcd(i,j)}$</p>
+<h1 id="gcd-f-i-f-j-f-gcd-i-j"><a href="#gcd-f-i-f-j-f-gcd-i-j" class="headerlink" title="$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $"></a>$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</h1><p>由上面的结论,我们容易得到,我们不断调用上面的结论,直到$i==1|j==1$,然后可以得到,如果$k=gcd(i,j)$,那么有$gcd(f_{i},f_{j}) = gcd(f_{k},f_{1}) = f_{k} = f_{gcd(i,j)}$</p>
 <p>命题得证</p>
 
       
@@ -494,7 +494,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#gcd-f-i-f-i-1-1"><span class="nav-number">1.</span> <span class="nav-text">$gcd(f_i,f_{i-1}) = 1$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1"><span class="nav-number">2.</span> <span class="nav-text">$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gcd-f-i-j-f-i-gcd-f-i-f-j"><span class="nav-number">3.</span> <span class="nav-text">$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gcd-f-i-f-j-f-gcd-i-j"><span class="nav-number">4.</span> <span class="nav-text">$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gcd-f-i-f-i-1-1"><span class="nav-number">1.</span> <span class="nav-text">$gcd(f_i,f_{i-1}) = 1$</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1"><span class="nav-number">2.</span> <span class="nav-text">$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gcd-f-i-j-f-i-gcd-f-i-f-j"><span class="nav-number">3.</span> <span class="nav-text">$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gcd-f-i-f-j-f-gcd-i-j"><span class="nav-number">4.</span> <span class="nav-text">$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</span></a></li></ol></div>
             
 
           </div>
