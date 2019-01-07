@@ -1125,6 +1125,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/UPCOJ9999/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/03/UPCOJ9999/" itemprop="url">UPCOJ 9999 Cube</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-03T00:00:00+08:00">
+                2018-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个 $$ n<em>m $$ 的棋盘，有一个 $$ 1</em>1*2 $$ 的长方体竖直放在 (1,1)上，你可以将其在棋盘上滚动，你的目标是让其竖直放在 ( n , m ) 上，问至少需要多少次操作。(放倒、竖直、翻滚)</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>一行，两个整数n，m (n&lt;=m)</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>需要最少时间能从(1,1)到达(n,m)，如果无解输出 $$ impossible $$ .</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>1 1</p>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>0</p>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/UPCOJ9999.png" alt="avatar"></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这个题目我的做法其实比较暴力，因为和队友赌能不能1Y ，我甚至怂到写暴力对拍了．．．．</p>
+<p>闲话少说，下面看分析．</p>
+<p>其实还是比较好想的．</p>
+<p>首先我们考虑哪种情况是 impossible ．比较好观察的是，当ｎ和ｍ足够大的时候就一定可达</p>
+<p>所以我们只用找到一个ｎ和ｍ可达的下界就行了</p>
+<p>然后就可以发现只有当ｎ和ｍ都小于３的时候会有impossible的情况(因为转不动．．．．</p>
+<p>接下来分析其他情况，首先比较好分析的是，如果n%3==1&amp;&amp;m%3==1的话，答案可以显然得到是 (n/3+m/3)*2</p>
+<p>剩下的同理搞搞就行了，大体情况见下表．</p>
+<p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/UPCOJ9999res.png" alt="avatar"></p>
+<p>比较显然的是，加的那一项和n,m％3为2的数量一致，然后就是代码啦．．．</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">'\n'</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m)!=EOF)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(m%<span class="number">3</span>==<span class="number">1</span>) <span class="built_in">cout</span>&lt;&lt;m/<span class="number">3</span>*<span class="number">2</span>+n<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"impossible"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">3</span>&amp;&amp;m==<span class="number">3</span>) <span class="built_in">cout</span>&lt;&lt;<span class="number">8</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(m%<span class="number">3</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;m/<span class="number">3</span>*<span class="number">2</span>+<span class="number">4</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(m%<span class="number">3</span>==<span class="number">1</span>) <span class="built_in">cout</span>&lt;&lt;(m+<span class="number">2</span>)/<span class="number">3</span>*<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;m/<span class="number">3</span>*<span class="number">2</span>+<span class="number">5</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> ans = (n/<span class="number">3</span>+m/<span class="number">3</span>)*<span class="number">2</span>;</span><br><span class="line">            ans+=(m%<span class="number">3</span>==<span class="number">2</span>)+(n%<span class="number">3</span>==<span class="number">2</span>);</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/UPCOJ9805/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1222,142 +1358,6 @@
 <p>​    最后说一下复杂度．</p>
 <p>​    应该是 $$O(\sum_{i = 1}^{n} C_n^i * 2^i) = O(3^n)$$</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">double</span> p;</span><br><span class="line"><span class="keyword">double</span> pow_p[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> pow_2[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> mat[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%lf"</span>,&amp;n,&amp;m,&amp;p);</span><br><span class="line">    p/=<span class="number">100</span>;</span><br><span class="line">    pow_2[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    pow_p[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;<span class="number">100</span>;i++) pow_p[i] = pow_p[i<span class="number">-1</span>]*p,pow_2[i] = pow_2[i<span class="number">-1</span>]&lt;&lt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>,from,to;i&lt;=m;i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;from,&amp;to);</span><br><span class="line">        mat[--from][--to]++;</span><br><span class="line">        mat[to][from]++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1</span>&lt;&lt;<span class="number">15</span>;</span><br><span class="line"><span class="keyword">double</span> dp[maxm];</span><br><span class="line"><span class="keyword">int</span> has[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">int</span> sub[<span class="number">100</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> state)</span></span>&#123;</span><br><span class="line">    dp[state] = <span class="number">1</span>;</span><br><span class="line">    has[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++) <span class="keyword">if</span>(state&amp;(<span class="number">1</span>&lt;&lt;i)) has[++has[<span class="number">0</span>]] = i;</span><br><span class="line">    <span class="keyword">if</span>(has[<span class="number">0</span>]==<span class="number">1</span>) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> now = state&amp;(state<span class="number">-1</span>);now;now = (now<span class="number">-1</span>)&amp;state)&#123;</span><br><span class="line">        <span class="keyword">if</span>((now&amp;(<span class="number">1</span>&lt;&lt;has[<span class="number">1</span>]))==<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">        sub[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=has[<span class="number">0</span>];i++) <span class="keyword">if</span>(now&amp;(<span class="number">1</span>&lt;&lt;has[i])) sub[++sub[<span class="number">0</span>]] = has[i];</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=has[<span class="number">0</span>];i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=sub[<span class="number">0</span>];j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(now&amp;(<span class="number">1</span>&lt;&lt;has[i])) <span class="keyword">continue</span>;</span><br><span class="line">                cnt+=mat[has[i]][sub[j]];</span><br><span class="line">            &#125;</span><br><span class="line">        dp[state]-=dp[now]*pow_p[cnt];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> nouse = pow_2[n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;nouse;i++)&#123;</span><br><span class="line">        get(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.10f\n"</span>,dp[nouse<span class="number">-1</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/UPCOJ9999/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/03/UPCOJ9999/" itemprop="url">UPCOJ 9999 Cube</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-03T00:00:00+08:00">
-                2018-12-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个 $$ n<em>m $$ 的棋盘，有一个 $$ 1</em>1*2 $$ 的长方体竖直放在 (1,1)上，你可以将其在棋盘上滚动，你的目标是让其竖直放在 ( n , m ) 上，问至少需要多少次操作。(放倒、竖直、翻滚)</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>一行，两个整数n，m (n&lt;=m)</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>需要最少时间能从(1,1)到达(n,m)，如果无解输出 $$ impossible $$ .</p>
-<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p>1 1</p>
-<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p>0</p>
-<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/UPCOJ9999.png" alt="avatar"></p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这个题目我的做法其实比较暴力，因为和队友赌能不能1Y ，我甚至怂到写暴力对拍了．．．．</p>
-<p>闲话少说，下面看分析．</p>
-<p>其实还是比较好想的．</p>
-<p>首先我们考虑哪种情况是 impossible ．比较好观察的是，当ｎ和ｍ足够大的时候就一定可达</p>
-<p>所以我们只用找到一个ｎ和ｍ可达的下界就行了</p>
-<p>然后就可以发现只有当ｎ和ｍ都小于３的时候会有impossible的情况(因为转不动．．．．</p>
-<p>接下来分析其他情况，首先比较好分析的是，如果n%3==1&amp;&amp;m%3==1的话，答案可以显然得到是 (n/3+m/3)*2</p>
-<p>剩下的同理搞搞就行了，大体情况见下表．</p>
-<p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/UPCOJ9999res.png" alt="avatar"></p>
-<p>比较显然的是，加的那一项和n,m％3为2的数量一致，然后就是代码啦．．．</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> endl <span class="meta-string">'\n'</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m)!=EOF)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(m%<span class="number">3</span>==<span class="number">1</span>) <span class="built_in">cout</span>&lt;&lt;m/<span class="number">3</span>*<span class="number">2</span>+n<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"impossible"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">3</span>&amp;&amp;m==<span class="number">3</span>) <span class="built_in">cout</span>&lt;&lt;<span class="number">8</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(n==<span class="number">3</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(m%<span class="number">3</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;m/<span class="number">3</span>*<span class="number">2</span>+<span class="number">4</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(m%<span class="number">3</span>==<span class="number">1</span>) <span class="built_in">cout</span>&lt;&lt;(m+<span class="number">2</span>)/<span class="number">3</span>*<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;m/<span class="number">3</span>*<span class="number">2</span>+<span class="number">5</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> ans = (n/<span class="number">3</span>+m/<span class="number">3</span>)*<span class="number">2</span>;</span><br><span class="line">            ans+=(m%<span class="number">3</span>==<span class="number">2</span>)+(n%<span class="number">3</span>==<span class="number">2</span>);</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
