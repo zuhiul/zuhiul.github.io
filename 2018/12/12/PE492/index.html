@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="开启传送门 题目描述Define the sequence $$a_1, a_2, a_3,\dots$$ as:  $$a_1 $$=$$ 1$$ $$a_{n+1} = 6a_n^2 + 10a_n + 3$$ for $$n \geq 1$$.  Examples: $$a_3 $$=$$ 2359$$ $$a_6 $$=$$ 26922128098132021675048904457631">
+<meta name="description" content="开启传送门 题目描述Define the sequence $a_1, a_2, a_3,\dots$ as:  $a_1 $=$ 1$ $a_{n+1} = 6a_n^2 + 10a_n + 3$ for $n \geq 1$.  Examples: $a_3 $=$ 2359$ $a_6 $=$ 269221280981320216750489044576319$ $a_6 mod 10000">
 <meta name="keywords" content="数学,PE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Project Euler 492 Exploding sequence">
 <meta property="og:url" content="http://zuhiul.github.io/2018/12/12/PE492/index.html">
 <meta property="og:site_name" content="睡到二三更时凡荣华皆成幻境">
-<meta property="og:description" content="开启传送门 题目描述Define the sequence $$a_1, a_2, a_3,\dots$$ as:  $$a_1 $$=$$ 1$$ $$a_{n+1} = 6a_n^2 + 10a_n + 3$$ for $$n \geq 1$$.  Examples: $$a_3 $$=$$ 2359$$ $$a_6 $$=$$ 26922128098132021675048904457631">
+<meta property="og:description" content="开启传送门 题目描述Define the sequence $a_1, a_2, a_3,\dots$ as:  $a_1 $=$ 1$ $a_{n+1} = 6a_n^2 + 10a_n + 3$ for $n \geq 1$.  Examples: $a_3 $=$ 2359$ $a_6 $=$ 269221280981320216750489044576319$ $a_6 mod 10000">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T12:32:19.382Z">
+<meta property="og:updated_time" content="2019-01-07T13:46:47.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler 492 Exploding sequence">
-<meta name="twitter:description" content="开启传送门 题目描述Define the sequence $$a_1, a_2, a_3,\dots$$ as:  $$a_1 $$=$$ 1$$ $$a_{n+1} = 6a_n^2 + 10a_n + 3$$ for $$n \geq 1$$.  Examples: $$a_3 $$=$$ 2359$$ $$a_6 $$=$$ 26922128098132021675048904457631">
+<meta name="twitter:description" content="开启传送门 题目描述Define the sequence $a_1, a_2, a_3,\dots$ as:  $a_1 $=$ 1$ $a_{n+1} = 6a_n^2 + 10a_n + 3$ for $n \geq 1$.  Examples: $a_3 $=$ 2359$ $a_6 $=$ 269221280981320216750489044576319$ $a_6 mod 10000">
 
 
 
@@ -303,60 +303,60 @@
 
       
         <p><a href="https://projecteuler.net/problem=492" target="_blank" rel="noopener">开启传送门</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Define the sequence $$a_1, a_2, a_3,\dots$$ as:</p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Define the sequence $a_1, a_2, a_3,\dots$ as:</p>
 <ul>
-<li>$$a_1 $$=$$ 1$$</li>
-<li>$$a_{n+1} = 6a_n^2 + 10a_n + 3$$ for $$n \geq 1$$.</li>
+<li>$a_1 $=$ 1$</li>
+<li>$a_{n+1} = 6a_n^2 + 10a_n + 3$ for $n \geq 1$.</li>
 </ul>
 <p>Examples:</p>
-<p>$$a_3 $$=$$ 2359$$</p>
-<p>$$a_6 $$=$$ 269221280981320216750489044576319$$</p>
-<p>$$a_6 mod 1000000007 $$=$$ 203064689$$</p>
-<p>$$a_{100} mod 1000000007 $$=$$ 456482974$$</p>
-<p>Define $$B(x,y,n)$$ as $$\sum (a_n mod $$ $$p)$$ for every prime $$p$$ such that $$x \leq p \leq x+y$$.</p>
+<p>$a_3 $=$ 2359$</p>
+<p>$a_6 $=$ 269221280981320216750489044576319$</p>
+<p>$a_6 mod 1000000007 $=$ 203064689$</p>
+<p>$a_{100} mod 1000000007 $=$ 456482974$</p>
+<p>Define $B(x,y,n)$ as $\sum (a_n mod $ $p)$ for every prime $p$ such that $x \leq p \leq x+y$.</p>
 <p>Examples:</p>
-<p>$$B(10^9, 10^3, 10^3)$$ = $$23674718882$$</p>
-<p>$$B(10^9, 10^3, 10^{15})$$ = $$20731563854$$</p>
-<p>Find $$B(10^9, 10^7, 10^{15})$$.</p>
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给你一个二次递推序列,问你这个数列的第$$10^{15}$$项膜上一堆质数之后求和是多少.</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>看了<a href="https://blog.csdn.net/ACdreamers/article/details/44997467" target="_blank" rel="noopener">大佬</a>的题解之后才做出来的,还是太菜了$$\dots$$</p>
+<p>$B(10^9, 10^3, 10^3)$ = $23674718882$</p>
+<p>$B(10^9, 10^3, 10^{15})$ = $20731563854$</p>
+<p>Find $B(10^9, 10^7, 10^{15})$.</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给你一个二次递推序列,问你这个数列的第$10^{15}$项膜上一堆质数之后求和是多少.</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>看了<a href="https://blog.csdn.net/ACdreamers/article/details/44997467" target="_blank" rel="noopener">大佬</a>的题解之后才做出来的,还是太菜了$\dots$</p>
 <p>下面是分析.</p>
-<p>首先我们令$$b_n = 6a_n+5$$</p>
+<p>首先我们令$b_n = 6a_n+5$</p>
 <p>于是有</p>
-<p>$$b_1$$ = $$11$$</p>
-<p>$$b_{n+1} $$=$$ b_n^2-2$$</p>
-<p>然后我们令　$$ x + \frac{1}{x}$$ = $$11$$</p>
-<p>可以显然发现　$$b_n$$ = $$x^{2^{n-1}} + \frac{1}{x^{2^{n-1}}}$$</p>
-<p>于是不妨设　$$x$$ = $$\frac{11+\sqrt{117}}{2}$$</p>
-<p>$$\therefore b_n$$ = $$(\frac{11+\sqrt{117}}{2})^{2^{n-1}} + (\frac{11-\sqrt{117}}{2})^{2^{n-1}}$$</p>
+<p>$b_1$ = $11$</p>
+<p>$b_{n+1} $=$ b_n^2-2$</p>
+<p>然后我们令　$ x + \frac{1}{x}$ = $11$</p>
+<p>可以显然发现　$b_n$ = $x^{2^{n-1}} + \frac{1}{x^{2^{n-1}}}$</p>
+<p>于是不妨设　$x$ = $\frac{11+\sqrt{117}}{2}$</p>
+<p>$\therefore b_n$ = $(\frac{11+\sqrt{117}}{2})^{2^{n-1}} + (\frac{11-\sqrt{117}}{2})^{2^{n-1}}$</p>
 <p>然后我们可以直接算就行了</p>
 <p>我们搞出递推式，然后用矩阵乘法的做法来做</p>
 <p>我们考虑一个更一般的问题，</p>
-<p>令$$f_n = (\frac{11+\sqrt{117}}{2})^n + (\frac{11-\sqrt{117}}{2})^n$$</p>
-<p>然后我们考虑$$f_n$$如何求解</p>
-<p>首先我们假设$$f_n = x<em>f_{n-1}+y</em>f_{n-2}$$</p>
-<p>$$令 (\frac{11+\sqrt{117}}{2})^{n-2}$$ = $$a$$</p>
-<p>$$令 (\frac{11-\sqrt{117}}{2})^{n-2}$$ = $$b$$</p>
-<p>$$ \therefore f_n$$ =$$ a<em>(\frac{11+\sqrt{117}}{2})^2+b</em>(\frac{11-\sqrt{117}}{2})^2 $$</p>
-<p> = $$a<em>(\frac{238+22\sqrt{117}}{4})+b</em>(\frac{238-22\sqrt{117}}{4}) $$</p>
-<p>$$\therefore f_{n-1}$$=$$a<em>(\frac{11+\sqrt{117}}{2})+b</em>(\frac{11-\sqrt{117}}{2}) $$</p>
-<p>$$\therefore f_{n-2}$$=$$a+b $$</p>
-<p>$$\therefore a<em>(\frac{238+22\sqrt{117}}{4})$$+$$b</em>(\frac{238-22\sqrt{117}}{4})$$</p>
-<p>=$$x<em>a</em>(\frac{11+\sqrt{117}}{2})+x<em>b</em>(\frac{11-\sqrt{117}}{2}) + y*(a+b)$$</p>
+<p>令$f_n = (\frac{11+\sqrt{117}}{2})^n + (\frac{11-\sqrt{117}}{2})^n$</p>
+<p>然后我们考虑$f_n$如何求解</p>
+<p>首先我们假设$f_n = x<em>f_{n-1}+y</em>f_{n-2}$</p>
+<p>$令 (\frac{11+\sqrt{117}}{2})^{n-2}$ = $a$</p>
+<p>$令 (\frac{11-\sqrt{117}}{2})^{n-2}$ = $b$</p>
+<p>$ \therefore f_n$ =$ a<em>(\frac{11+\sqrt{117}}{2})^2+b</em>(\frac{11-\sqrt{117}}{2})^2 $</p>
+<p> = $a<em>(\frac{238+22\sqrt{117}}{4})+b</em>(\frac{238-22\sqrt{117}}{4}) $</p>
+<p>$\therefore f_{n-1}$=$a<em>(\frac{11+\sqrt{117}}{2})+b</em>(\frac{11-\sqrt{117}}{2}) $</p>
+<p>$\therefore f_{n-2}$=$a+b $</p>
+<p>$\therefore a<em>(\frac{238+22\sqrt{117}}{4})$+$b</em>(\frac{238-22\sqrt{117}}{4})$</p>
+<p>=$x<em>a</em>(\frac{11+\sqrt{117}}{2})+x<em>b</em>(\frac{11-\sqrt{117}}{2}) + y*(a+b)$</p>
 <p>将非根号项提出来，可以得到</p>
-<p>$$\therefore a<em>\frac{119}{2}+b</em>\frac{119}{2}$$=$$xa<em>\frac{11}{2}+xb</em>\frac{11}{2}+y(a+b) $$</p>
+<p>$\therefore a<em>\frac{119}{2}+b</em>\frac{119}{2}$=$xa<em>\frac{11}{2}+xb</em>\frac{11}{2}+y(a+b) $</p>
 <p>同理将根号项提出可以得到</p>
-<p>$$a<em>\frac{11}{2}+b</em>\frac{-11}{2}$$=$$xa<em>\frac{1}{2}+xb</em>\frac{-1}{2} $$</p>
+<p>$a<em>\frac{11}{2}+b</em>\frac{-11}{2}$=$xa<em>\frac{1}{2}+xb</em>\frac{-1}{2} $</p>
 <p>然后可以解得</p>
-<p>$$\begin{cases}<br>x = 11\<br>y = -1<br>\end{cases}$$</p>
-<p>也就是说$$f_n$$ = $$11*f_{n-1} - f_{n-2}$$</p>
-<p>好了，我们得到了$$f_n$$的递推式，然后考虑原问题，也就是说</p>
+<p>$\begin{cases}<br>x = 11\<br>y = -1<br>\end{cases}$</p>
+<p>也就是说$f_n$ = $11*f_{n-1} - f_{n-2}$</p>
+<p>好了，我们得到了$f_n$的递推式，然后考虑原问题，也就是说</p>
 <p>$$<br>\left(<br>    \begin{matrix}<br>        b_{n+1}\<br>        b_n<br>    \end{matrix}<br>\right)<br>=\left(<br>    \begin{matrix}<br>        11 &amp; -1\<br>        1 &amp; 0<br>    \end{matrix}<br>\right)^{2^{n-1}-1}<br>\left(<br>    \begin{matrix}<br>        b_2\<br>        b_1<br>    \end{matrix}<br>\right)<br>=\left(<br>    \begin{matrix}<br>        11 &amp; -1\<br>        1 &amp; 0<br>    \end{matrix}<br>\right)^{2^{n-1}-1}<br>\left(<br>    \begin{matrix}<br>        119\<br>        11<br>    \end{matrix}<br>\right)<br>$$</p>
-<p>$$\because n$$ 很大($$10^{15}$$)</p>
-<p>$$\therefore 2^{n-1}-1$$很大,以至于我们不能方便的计算</p>
+<p>$\because n$ 很大($10^{15}$)</p>
+<p>$\therefore 2^{n-1}-1$很大,以至于我们不能方便的计算</p>
 <p>然后我们考虑降低指数</p>
-<p>具体分析看<a href="https://blog.csdn.net/ACdreamers/article/details/44997467" target="_blank" rel="noopener">大佬</a>的分析,可以得到循环节可以是$$(p+1)(p-1)$$</p>
-<p>这个值我们可以接受,然后直接裸的矩阵ksm就行了$$\dots$$</p>
+<p>具体分析看<a href="https://blog.csdn.net/ACdreamers/article/details/44997467" target="_blank" rel="noopener">大佬</a>的分析,可以得到循环节可以是$(p+1)(p-1)$</p>
+<p>这个值我们可以接受,然后直接裸的矩阵ksm就行了$\dots$</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> n = <span class="number">1e15</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> l = <span class="number">1e9</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> r = l+<span class="number">1e7</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">add</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123; <span class="keyword">return</span> (a+b)%mod; &#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	a = add(a,mod,mod);</span><br><span class="line">	b = add(b,mod,mod);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret = add(ret,a,mod);</span><br><span class="line">		a = add(a,a,mod);</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">qpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret = mul(ret,a,mod);</span><br><span class="line">		a = mul(a,a,mod);</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&amp;<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>;i*i&lt;=a;i++) <span class="keyword">if</span>(a%i==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">p</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mat[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;<span class="number">2</span>;j++) <span class="built_in">cout</span>&lt;&lt;mat[i][j]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">p <span class="title">mul</span><span class="params">(p a,p b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	p ret;</span><br><span class="line">	<span class="built_in">memset</span>(ret.mat,<span class="number">0</span>,<span class="keyword">sizeof</span> ret.mat);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j  =<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;k&lt;<span class="number">2</span>;k++)&#123;</span><br><span class="line">				ret.mat[i][j] = add(ret.mat[i][j],mul(a.mat[i][k],b.mat[k][j],mod),mod);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">p <span class="title">qpow</span><span class="params">(p a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	p ret;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">2</span>;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;<span class="number">2</span>;j++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(i==j) ret.mat[i][j]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> ret.mat[i][j]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret = mul(ret,a,mod);</span><br><span class="line">		a = mul(a,a,mod);</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">solve</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> prime)</span></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD = prime*prime<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> zhi = qpow(<span class="number">2</span>,n<span class="number">-1</span>,MOD);</span><br><span class="line">	zhi = add(zhi,MOD<span class="number">-1</span>,MOD);</span><br><span class="line"></span><br><span class="line">	p base;</span><br><span class="line">	base.mat[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">11</span>,base.mat[<span class="number">0</span>][<span class="number">1</span>]=<span class="number">-1</span>;</span><br><span class="line">	base.mat[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span> ,base.mat[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	base = qpow(base,zhi,prime);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret1 = mul(base.mat[<span class="number">1</span>][<span class="number">0</span>],<span class="number">119</span>,prime);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret2 = mul(base.mat[<span class="number">1</span>][<span class="number">1</span>],<span class="number">11</span>,prime);</span><br><span class="line">	<span class="keyword">return</span> add(ret1,ret2,prime);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">inv</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> mul(mod-mod/a,inv(mod%a,mod),mod);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = l;i&lt;=r;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(is_prime(i))&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> bn = solve(i);</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> now1 = add(bn,i<span class="number">-5</span>,i);</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> an = mul(now1,inv(<span class="number">6</span>,i),i);</span><br><span class="line">			ans+=an;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i%<span class="number">100000</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="开启传送门 题目描述For a positive integer $$k$$, define $$d(k)$$ as the sum of the digits of $$k$$ in its usual decimal representation. Thus $$d(42) = 4+2 = 6$$. For a positive integer $$n$$, define $$S(n)$$ a">
+<meta name="description" content="开启传送门 题目描述For a positive integer $k$, define $d(k)$ as the sum of the digits of $k$ in its usual decimal representation. Thus $d(42) = 4+2 = 6$. For a positive integer $n$, define $S(n)$ as the number">
 <meta name="keywords" content="数学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Project Euler 294 Sum of digits-experience">
 <meta property="og:url" content="http://zuhiul.github.io/2018/12/09/PE294/index.html">
 <meta property="og:site_name" content="睡到二三更时凡荣华皆成幻境">
-<meta property="og:description" content="开启传送门 题目描述For a positive integer $$k$$, define $$d(k)$$ as the sum of the digits of $$k$$ in its usual decimal representation. Thus $$d(42) = 4+2 = 6$$. For a positive integer $$n$$, define $$S(n)$$ a">
+<meta property="og:description" content="开启传送门 题目描述For a positive integer $k$, define $d(k)$ as the sum of the digits of $k$ in its usual decimal representation. Thus $d(42) = 4+2 = 6$. For a positive integer $n$, define $S(n)$ as the number">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T12:32:01.278Z">
+<meta property="og:updated_time" content="2019-01-07T13:43:14.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler 294 Sum of digits-experience">
-<meta name="twitter:description" content="开启传送门 题目描述For a positive integer $$k$$, define $$d(k)$$ as the sum of the digits of $$k$$ in its usual decimal representation. Thus $$d(42) = 4+2 = 6$$. For a positive integer $$n$$, define $$S(n)$$ a">
+<meta name="twitter:description" content="开启传送门 题目描述For a positive integer $k$, define $d(k)$ as the sum of the digits of $k$ in its usual decimal representation. Thus $d(42) = 4+2 = 6$. For a positive integer $n$, define $S(n)$ as the number">
 
 
 
@@ -303,38 +303,38 @@
 
       
         <p><a href="https://projecteuler.net/problem=294" target="_blank" rel="noopener">开启传送门</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>For a positive integer $$k$$, define $$d(k)$$ as the sum of the digits of $$k$$ in its usual decimal representation. Thus $$d(42) = 4+2 = 6$$.</p>
-<p>For a positive integer $$n$$, define $$S(n)$$ as the number of positive integers $$k &lt; 10^n$$ with the following properties :</p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>For a positive integer $k$, define $d(k)$ as the sum of the digits of $k$ in its usual decimal representation. Thus $d(42) = 4+2 = 6$.</p>
+<p>For a positive integer $n$, define $S(n)$ as the number of positive integers $k &lt; 10^n$ with the following properties :</p>
 <ul>
-<li>$$k$$ is divisible by $$23$$ and</li>
-<li>$$d(k) = 23$$. </li>
+<li>$k$ is divisible by $23$ and</li>
+<li>$d(k) = 23$. </li>
 </ul>
-<p>You are given that $$S(9) = 263626$$ and $$S(42) = 6377168878570056$$.</p>
-<p>Find $$S(11^{12})$$ and give your answer mod $$10^9$$.</p>
+<p>You are given that $S(9) = 263626$ and $S(42) = 6377168878570056$.</p>
+<p>Find $S(11^{12})$ and give your answer mod $10^9$.</p>
 <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>你要找到一个所有满足一下三个条件的数字数量</p>
-<p>假设这个数是$$k$$</p>
+<p>假设这个数是$k$</p>
 <ul>
-<li>$$k$$ $$&lt;$$ $$10^{11^{12}}$$  </li>
-<li>$$k\%23$$ = 0</li>
-<li>$$k$$每个十进制位求和为$$23$$</li>
+<li>$k$ $&lt;$ $10^{11^{12}}$  </li>
+<li>$k\%23$ = 0</li>
+<li>$k$每个十进制位求和为$23$</li>
 </ul>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这个题目困扰了我两天,我一度以为自己读错题了,主要是数据范围太大了,大的人一点想法都没有$$\dots$$</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这个题目困扰了我两天,我一度以为自己读错题了,主要是数据范围太大了,大的人一点想法都没有$\dots$</p>
 <p>下面说正解</p>
 <p>虽然数据范围很大,但是我们可以从小数据入手</p>
-<p>先看第二个条件$$k%23==0$$,是否感觉出了一丝丝猫腻?</p>
-<p>于是我大胆写了一下,比较好想的就是一定存在一个$$n$$使得$$10^n%23==1$$,也就是说存在膜数存在循环,而且显然有循环节是$$O(23)$$的</p>
-<p>于是大胆暴力,找到了,循环节长度为$$22$$</p>
-<p>这也就是说,在十进制下,位数最多有$$11^{12}$$个,而且这些里面,可以拆分成$$22$$份,每一份里面,你不管把数字安排到哪里,都是同膜的</p>
-<p>于是我们可以简单的把$$11^{12}$$近似的均分成了$$22$$份.而且每一份可以单独统计答案</p>
+<p>先看第二个条件$k%23==0$,是否感觉出了一丝丝猫腻?</p>
+<p>于是我大胆写了一下,比较好想的就是一定存在一个$n$使得$10^n%23==1$,也就是说存在膜数存在循环,而且显然有循环节是$O(23)$的</p>
+<p>于是大胆暴力,找到了,循环节长度为$22$</p>
+<p>这也就是说,在十进制下,位数最多有$11^{12}$个,而且这些里面,可以拆分成$22$份,每一份里面,你不管把数字安排到哪里,都是同膜的</p>
+<p>于是我们可以简单的把$11^{12}$近似的均分成了$22$份.而且每一份可以单独统计答案</p>
 <p>然后问题就转化成了以下两个子问题:</p>
 <ul>
-<li>找到$$a_1,a_2\dots a_{22}$$使得$$a_1+a_2+\dots +a_{22} = 23$$</li>
-<li>对于每一份就成了一个$$a_i$$个相同的球放入近似$$11^{12}$$个盒子里,每个盒子最多放$$9$$个球,问你方案数</li>
+<li>找到$a_1,a_2\dots a_{22}$使得$a_1+a_2+\dots +a_{22} = 23$</li>
+<li>对于每一份就成了一个$a_i$个相同的球放入近似$11^{12}$个盒子里,每个盒子最多放$9$个球,问你方案数</li>
 </ul>
 <p>对于第一个子问题,我们显然可以动态规划搞一搞</p>
-<p>定义$$dp(i,j,k)$$表示$$a_1+a_2+\dots +a_i == j$$并且当前膜数为$$k$$的方案数</p>
+<p>定义$dp(i,j,k)$表示$a_1+a_2+\dots +a_i == j$并且当前膜数为$k$的方案数</p>
 <p>然后暴力转移就行了</p>
-<p>关键是第二个子问题不好想,因为盒子数量太大了,必须要有一个$$log$$的做法</p>
+<p>关键是第二个子问题不好想,因为盒子数量太大了,必须要有一个$log$的做法</p>
 <p>然后就枚举算法<del>(毕竟会的算法不多)</del></p>
 <p>然后就想到了分治,但是能不能分治呢,并不知道,写一发就知道了,然后跑的挺快的<del>(然后就过了)</del></p>
 <p>并不会算分治的<del>玄学</del>复杂度</p>
