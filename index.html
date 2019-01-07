@@ -494,6 +494,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/28/gcd_fibonacci/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/28/gcd_fibonacci/" itemprop="url">gcd and fibonacii</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T00:00:00+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下</p>
+<p>$$<br>gcd(f_i,f_j) = f_{gcd(i,j)}<br>$$</p>
+<p>下面给出证明</p>
+<h1 id="gcd-f-i-f-i-1-1"><a href="#gcd-f-i-f-i-1-1" class="headerlink" title="$gcd(f_i,f_{i-1}) = 1$"></a>$gcd(f_i,f_{i-1}) = 1$</h1><p>$$<br>\begin{enumerate}<br>    \item Using Lagrange interpolation formula<br>    \begin{displaymath}<br>    \begin{aligned}<br>        f[x_0] &amp; = x-1\<br>        f[x_0,x_1] &amp; = (x-1)^2\<br>        f[x_0,x_1,x_2] &amp; = \frac{(x-1)(8-x)}{6}\<br>        f[x_0,x_1,x_2,x_3] &amp; = -\frac{(x-1)(x-4)(2x-1)}{6}-\frac{(x-1)(x-2)(6x-31)}{21}<br>     \end{aligned}<br>    \end{displaymath}<br>\end{enumerate}<br>$$</p>
+<p>\begin{eqnarray}<br>gcd(f_i,f_{i-1}) &amp;=&amp; gcd(f_{i-1}+f_{i-2},f_{i-1})\<br>&amp;=&amp; gcd(f_{i-2},f_{i-1})\<br>&amp;=&amp; gcd(f_{i-3},f_{i-2})\<br>&amp;=&amp; \dots\<br>&amp;=&amp; gcd(f_1,f_2)\<br>&amp;=&amp; 1<br>\end{eqnarray}</p>
+<h1 id="f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1"><a href="#f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1" class="headerlink" title="$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$"></a>$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$</h1><p>首先,$j = 1$时有</p>
+<p>$f_{i+1} = f_{i-1}+f_i$</p>
+<p>显然成立,</p>
+<p>当$j = 2$时有</p>
+<p>$$<br>\begin{split}<br>f_{i+2} &amp;= f_{i+1} + f_{i}\<br>&amp;= (f_{i}+f_{i-1}) + f_{i}\<br>&amp;= f_{i-1} \cdot 1 + f_{i} \cdot 2\<br>&amp;= f_{i-1} \cdot f_j + f_i \cdot f_{j+1}\<br>\end{split}<br>$$</p>
+<p>然后我们证明,当$j = k-1$和$j = k-2$成立时,$j = k$也成立</p>
+<p>也就是说已知</p>
+<p>$$<br>\begin{cases}<br>f_{i+k-1} = f{i-1}\cdot f_{k-1} + f_{i}\cdot f_k\<br>f_{i+k-2} = f{i-1}\cdot f_{k-2} + f_{i}\cdot f_{k-1}\<br>\end{cases}<br>$$</p>
+<p>然后我们累加上面两式,可以得到</p>
+<p>$f_{i+k-1}+f_{i+k-2} = f{i-1}\cdot f_{k-1} + f_{i}\cdot f_k + f{i-1}\cdot f_{k-2} + f_{i}\cdot f_{k-1}$</p>
+<p>$$<br>\therefore<br>\begin{split}<br>f_{i+k} &amp;= f_{i-1}\cdot (f_{k-1}+f{k-2}) + f_{i}\cdot (f_{k}+f_{k-1})\<br>        &amp;= f_{i-1}\cdot f_{k} + f_{i}\cdot f_{k+1}\<br>\end{split}<br>$$</p>
+<h1 id="gcd-f-i-j-f-i-gcd-f-i-f-j"><a href="#gcd-f-i-j-f-i-gcd-f-i-f-j" class="headerlink" title="$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $"></a>$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $</h1><p>$$<br>\begin{split}<br>gcd(f_{i+j},f_{i}) &amp;= gcd(f_{i-1}\cdot f_j + f_i\cdot f_{j+1},f_{i})\<br>&amp;= gcd(f_{i-1}\cdot f_{j},f_{i})\<br>&amp;= gcd(f_{j},f_{i})\dots \dots \dots gcd(f_{i},f_{i-1}) = 1\<br>\end{split}<br>$$</p>
+<p>所以上面的结论可以继续推广,容易得到</p>
+<p>$$<br>gcd(f_{i},f_{j}) = gcd(f_{i\%j},f_{j})<br>$$</p>
+<h1 id="gcd-f-i-f-j-f-gcd-i-j"><a href="#gcd-f-i-f-j-f-gcd-i-j" class="headerlink" title="$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $"></a>$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</h1><p>由上面的结论,我们容易得到,我们不断调用上面的结论,直到$i==1|j==1$,然后可以得到,如果$k=gcd(i,j)$,那么有$gcd(f_{i},f_{j}) = gcd(f_{k},f_{1}) = f_{k} = f_{gcd(i,j)}$</p>
+<p>命题得证</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/28/PE143/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -578,145 +718,6 @@
 <p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$\dots$</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line">			<span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line">				<span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">					ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/28/gcd_fibonacci/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/28/gcd_fibonacci/" itemprop="url">gcd and fibonacii</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T00:00:00+08:00">
-                2018-12-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下</p>
-<p>$$<br>gcd(f_i,f_j) = f_{gcd(i,j)}<br>$$</p>
-<p>下面给出证明</p>
-<h1 id="gcd-f-i-f-i-1-1"><a href="#gcd-f-i-f-i-1-1" class="headerlink" title="$gcd(f_i,f_{i-1}) = 1$"></a>$gcd(f_i,f_{i-1}) = 1$</h1><p>$$<br>\begin{eqnarray}<br>gcd(f_i,f_{i-1}) &amp;=&amp; gcd(f_{i-1}+f_{i-2},f_{i-1})\<br>&amp;=&amp; gcd(f_{i-2},f_{i-1})\<br>&amp;=&amp; gcd(f_{i-3},f_{i-2})\<br>&amp;=&amp; \dots\<br>&amp;=&amp; gcd(f_1,f_2)\<br>&amp;=&amp; 1<br>\end{eqnarray}<br>$$</p>
-<h1 id="f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1"><a href="#f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1" class="headerlink" title="$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$"></a>$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$</h1><p>首先,$j = 1$时有</p>
-<p>$f_{i+1} = f_{i-1}+f_i$</p>
-<p>显然成立,</p>
-<p>当$j = 2$时有</p>
-<p>$$<br>\begin{split}<br>f_{i+2} &amp;= f_{i+1} + f_{i}\<br>&amp;= (f_{i}+f_{i-1}) + f_{i}\<br>&amp;= f_{i-1} \cdot 1 + f_{i} \cdot 2\<br>&amp;= f_{i-1} \cdot f_j + f_i \cdot f_{j+1}\<br>\end{split}<br>$$</p>
-<p>然后我们证明,当$j = k-1$和$j = k-2$成立时,$j = k$也成立</p>
-<p>也就是说已知</p>
-<p>$$<br>\begin{cases}<br>f_{i+k-1} = f{i-1}\cdot f_{k-1} + f_{i}\cdot f_k\<br>f_{i+k-2} = f{i-1}\cdot f_{k-2} + f_{i}\cdot f_{k-1}\<br>\end{cases}<br>$$</p>
-<p>然后我们累加上面两式,可以得到</p>
-<p>$f_{i+k-1}+f_{i+k-2} = f{i-1}\cdot f_{k-1} + f_{i}\cdot f_k + f{i-1}\cdot f_{k-2} + f_{i}\cdot f_{k-1}$</p>
-<p>$$<br>\therefore<br>\begin{split}<br>f_{i+k} &amp;= f_{i-1}\cdot (f_{k-1}+f{k-2}) + f_{i}\cdot (f_{k}+f_{k-1})\<br>        &amp;= f_{i-1}\cdot f_{k} + f_{i}\cdot f_{k+1}\<br>\end{split}<br>$$</p>
-<h1 id="gcd-f-i-j-f-i-gcd-f-i-f-j"><a href="#gcd-f-i-j-f-i-gcd-f-i-f-j" class="headerlink" title="$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $"></a>$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $</h1><p>$$<br>\begin{split}<br>gcd(f_{i+j},f_{i}) &amp;= gcd(f_{i-1}\cdot f_j + f_i\cdot f_{j+1},f_{i})\<br>&amp;= gcd(f_{i-1}\cdot f_{j},f_{i})\<br>&amp;= gcd(f_{j},f_{i})\dots \dots \dots gcd(f_{i},f_{i-1}) = 1\<br>\end{split}<br>$$</p>
-<p>所以上面的结论可以继续推广,容易得到</p>
-<p>$$<br>gcd(f_{i},f_{j}) = gcd(f_{i\%j},f_{j})<br>$$</p>
-<h1 id="gcd-f-i-f-j-f-gcd-i-j"><a href="#gcd-f-i-f-j-f-gcd-i-j" class="headerlink" title="$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $"></a>$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</h1><p>由上面的结论,我们容易得到,我们不断调用上面的结论,直到$i==1|j==1$,然后可以得到,如果$k=gcd(i,j)$,那么有$gcd(f_{i},f_{j}) = gcd(f_{k},f_{1}) = f_{k} = f_{gcd(i,j)}$</p>
-<p>命题得证</p>
 
           
         
