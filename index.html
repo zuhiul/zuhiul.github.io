@@ -376,7 +376,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/04/2019-1-4-ProjectEuler222/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/01/04/2019-1-4-ProjectEuler222/" itemprop="url">Project Euler 222 Sphere Packing</a></h1>
         
 
         <div class="post-meta">
@@ -428,7 +428,7 @@
       
         
           
-            <h1 id="Project-Euler-222-Sphere-Packing"><a href="#Project-Euler-222-Sphere-Packing" class="headerlink" title="Project Euler 222 Sphere Packing"></a>Project Euler 222 Sphere Packing</h1><p><a href="https://projecteuler.net/problem=222" target="_blank" rel="noopener">开启传送门</a></p>
+            <p><a href="https://projecteuler.net/problem=222" target="_blank" rel="noopener">开启传送门</a></p>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>What is the length of the shortest pipe, of internal radius $$50$$mm, that can fully contain $$21$$ balls of radii $$30$$mm, $$31$$mm, …, $$50$$mm?</p>
 <p>Give your answer in micrometres ($$10^{-6}$$ m) rounded to the nearest integer.</p>
 <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>让你在一个内径$$50$$的圆管里塞$$21$$个内径分别为$$31-50$$的小球,问你圆管最短是多少</p>
@@ -503,7 +503,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/02/2019-1-02-ProjectEuler122/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2019/01/02/2019-1-02-ProjectEuler122/" itemprop="url">Project Euler 122 Efficient exponentiation</a></h1>
         
 
         <div class="post-meta">
@@ -555,7 +555,7 @@
       
         
           
-            <h1 id="Project-Euler-122-Efficient-exponentiation"><a href="#Project-Euler-122-Efficient-exponentiation" class="headerlink" title="Project Euler 122 Efficient exponentiation"></a>Project Euler 122 Efficient exponentiation</h1><p><a href="https://projecteuler.net/problem=122" target="_blank" rel="noopener">开启传送门</a></p>
+            <p><a href="https://projecteuler.net/problem=122" target="_blank" rel="noopener">开启传送门</a></p>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The most naive way of computing $$n^{15}$$ requires fourteen multiplications:</p>
 <p>$$n \times n \times \dots \times n = n^{15}$$</p>
 <p>But using a “binary” method you can compute it in six multiplications:</p>
@@ -569,6 +569,138 @@
 <p>我们可以发现,对于所有幂次来说,我们按照最后一步操作的数来构成他的前驱,然后我们会发现他是一棵树,然后我们直接构造出这颗树出来,就是最优答案…..</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s[<span class="number">222</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> now = <span class="number">1e8</span>,ind = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=a;i++)&#123;<span class="comment">//枚举每一个比他小的数,看是否可以作为他的前驱</span></span><br><span class="line">		<span class="keyword">if</span>(s[i].size()+<span class="number">1</span>&gt;=now) <span class="keyword">continue</span>;<span class="comment">//如果不能优化解就不继续搜索</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> x:s[i])<span class="comment">//枚举每一个前驱的子元素</span></span><br><span class="line">			<span class="keyword">if</span>(s[i].find(a-x)!=s[i].end())&#123;<span class="comment">//如果能构成a</span></span><br><span class="line">				now = s[i].size()+<span class="number">1</span>;<span class="comment">//更新解</span></span><br><span class="line">				ind = i;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i:s[ind]) s[a].insert(i);<span class="comment">//保存路径</span></span><br><span class="line">	s[a].insert(a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	s[<span class="number">1</span>].insert(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;=<span class="number">200</span>;i++) cal(i);</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">200</span>;i++) ans+=s[i].size()<span class="number">-1</span>;<span class="comment">//要把里面的1剪掉,因为合成1不要代价</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/2018-12-28-ProjectEuler143/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/28/2018-12-28-ProjectEuler143/" itemprop="url">Project Euler 143 Investigating the Torricelli point of a triangle</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T00:00:00+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://projecteuler.net/problem=143" target="_blank" rel="noopener">开启传送门</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Let ABC be a triangle with all interior angles being less than $$120$$ degrees. Let $$X$$ be any point inside the triangle and let $$XA = p, XC = q$$, and $$XB = r$$.</p>
+<p>Fermat challenged Torricelli to find the position of X such that $$p + q + r$$ was minimised.</p>
+<p>Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $$p + q + r$$. Even more remarkable, it can be shown that when the sum is minimised, $$AN = BM = CO = p + q + r$$ and that AN, BM and CO also intersect at T.</p>
+<p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/PE143.gif" alt="avatar"></p>
+<p>If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $$a = 399, b = 455, c = 511$$ is an example of a Torricelli triangle, with $$p + q + r = 784$$.</p>
+<p>Find the sum of all distinct values of $$p + q + r ≤ 120000$$ for Torricelli triangles.</p>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$$T$$就是费马点.然后你要找到所有$$p+q+r$$不同的所有三角形,然后把$$p+q+r$$求和.</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$$T$$在园上,于是有$$T$$对应的角大小一定是$$180-60 = 120$$度,然后同理可得,三个角都是$$120$$度,然后我们运用余弦定理可以得到$$p^2+q^2+pq=b^2$$,因为我们只要$$p+q+r$$不同的解,所以我们不妨设$$p&gt;=q&gt;=r$$,因为三个角都是$$120$$度,所以余弦定理都成立,所以我们可以得到</p>
+<p>$$<br>\begin{split}<br>q^2+r^2+qr &amp;= a^2\<br>p^2+q^2+pq &amp;= b^2\<br>p^2+r^2+pr &amp;= c^2\<br>p&gt;=q&gt;=r\<br>\end{split}<br>$$</p>
+<p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$$\dots$$</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line">			<span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line">				<span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">					ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -688,7 +820,7 @@
       
         
           
-            <h1 id="gcd-amp-amp-fibonacii"><a href="#gcd-amp-amp-fibonacii" class="headerlink" title="gcd &amp;&amp; fibonacii"></a>gcd &amp;&amp; fibonacii</h1><p>前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下</p>
+            <p>前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下</p>
 <p>$$<br>gcd(f_i,f_j) = f_{gcd(i,j)}<br>$$</p>
 <p>下面给出证明</p>
 <h3 id="gcd-f-i-f-i-1-1"><a href="#gcd-f-i-f-i-1-1" class="headerlink" title="$$gcd(f_i,f_{i-1}) = 1$$"></a>$$gcd(f_i,f_{i-1}) = 1$$</h3><p>$$<br>\begin{split}<br>gcd(f_i,f_{i-1}) &amp;= gcd(f_{i-1}+f_{i-2},f_{i-1})\<br>&amp;= gcd(f_{i-2},f_{i-1})\<br>&amp;= gcd(f_{i-3},f_{i-2})\<br>&amp;= \dots\<br>&amp;= gcd(f_1,f_2)\<br>&amp;= 1<br>\end{split}<br>$$</p>
@@ -756,138 +888,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/2018-12-28-ProjectEuler143/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/28/2018-12-28-ProjectEuler143/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T00:00:00+08:00">
-                2018-12-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Project-Euler-143-Investigating-the-Torricelli-point-of-a-triangle"><a href="#Project-Euler-143-Investigating-the-Torricelli-point-of-a-triangle" class="headerlink" title="Project Euler 143 Investigating the Torricelli point of a triangle"></a>Project Euler 143 Investigating the Torricelli point of a triangle</h1><p><a href="https://projecteuler.net/problem=143" target="_blank" rel="noopener">开启传送门</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Let ABC be a triangle with all interior angles being less than $$120$$ degrees. Let $$X$$ be any point inside the triangle and let $$XA = p, XC = q$$, and $$XB = r$$.</p>
-<p>Fermat challenged Torricelli to find the position of X such that $$p + q + r$$ was minimised.</p>
-<p>Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $$p + q + r$$. Even more remarkable, it can be shown that when the sum is minimised, $$AN = BM = CO = p + q + r$$ and that AN, BM and CO also intersect at T.</p>
-<p><img src="https://raw.githubusercontent.com/zuhiul/zuhiul.github.io/master/OJ_img/PE143.gif" alt="avatar"></p>
-<p>If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $$a = 399, b = 455, c = 511$$ is an example of a Torricelli triangle, with $$p + q + r = 784$$.</p>
-<p>Find the sum of all distinct values of $$p + q + r ≤ 120000$$ for Torricelli triangles.</p>
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$$T$$就是费马点.然后你要找到所有$$p+q+r$$不同的所有三角形,然后把$$p+q+r$$求和.</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$$T$$在园上,于是有$$T$$对应的角大小一定是$$180-60 = 120$$度,然后同理可得,三个角都是$$120$$度,然后我们运用余弦定理可以得到$$p^2+q^2+pq=b^2$$,因为我们只要$$p+q+r$$不同的解,所以我们不妨设$$p&gt;=q&gt;=r$$,因为三个角都是$$120$$度,所以余弦定理都成立,所以我们可以得到</p>
-<p>$$<br>\begin{split}<br>q^2+r^2+qr &amp;= a^2\<br>p^2+q^2+pq &amp;= b^2\<br>p^2+r^2+pr &amp;= c^2\<br>p&gt;=q&gt;=r\<br>\end{split}<br>$$</p>
-<p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$$\dots$$</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line">			<span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line">				<span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">					ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/24/2019-1-5-IC_chepter2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -907,7 +907,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/24/2019-1-5-IC_chepter2/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/12/24/2019-1-5-IC_chepter2/" itemprop="url">IC(answer.chepter2)</a></h1>
         
 
         <div class="post-meta">
@@ -1034,7 +1034,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/24/2018-12-24-IC_chepter1/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/12/24/2018-12-24-IC_chepter1/" itemprop="url">IC(answer.chepter1)</a></h1>
         
 
         <div class="post-meta">
@@ -1208,7 +1208,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/23/2018-12-24-matlab/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/12/23/2018-12-24-matlab/" itemprop="url">matlab</a></h1>
         
 
         <div class="post-meta">
@@ -1881,7 +1881,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/23/2018-12-23-ProjectEuler463/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/12/23/2018-12-23-ProjectEuler463/" itemprop="url">Project Euler 463 A weird recurrence relation</a></h1>
         
 
         <div class="post-meta">
@@ -1933,7 +1933,7 @@
       
         
           
-            <h1 id="Project-Euler-463-A-weird-recurrence-relation"><a href="#Project-Euler-463-A-weird-recurrence-relation" class="headerlink" title="Project Euler 463 A weird recurrence relation"></a>Project Euler 463 A weird recurrence relation</h1><p><a href="https://projecteuler.net/problem=463" target="_blank" rel="noopener">开启传送门</a></p>
+            <p><a href="https://projecteuler.net/problem=463" target="_blank" rel="noopener">开启传送门</a></p>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The function $$f$$ is defined for all positive integers as follows:</p>
 <p>$$f(1)$$ = $$1$$</p>
 <p>$$f(3)$$ = $$3$$</p>
@@ -2018,7 +2018,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/21/2018-12-21-ProjectEuler368/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/12/21/2018-12-21-ProjectEuler368/" itemprop="url">Project Euler 368 A Kempner-like series</a></h1>
         
 
         <div class="post-meta">
@@ -2070,7 +2070,7 @@
       
         
           
-            <h1 id="Project-Euler-368-A-Kempner-like-series"><a href="#Project-Euler-368-A-Kempner-like-series" class="headerlink" title="Project Euler 368 A Kempner-like series"></a>Project Euler 368 A Kempner-like series</h1><p><a href="https://projecteuler.net/problem=368" target="_blank" rel="noopener">开启传送门</a></p>
+            <p><a href="https://projecteuler.net/problem=368" target="_blank" rel="noopener">开启传送门</a></p>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The <strong>harmonic</strong> series $$1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\dots$$ is well known to be divergent.</p>
 <p>If we however omit from this series every term where the denominator has a $$9$$ in it, the series remarkably enough converges to approximately $$22.9206766193$$.</p>
 <p>This modified harmonic series is called the <strong>Kempner</strong> series.</p>
