@@ -125,16 +125,16 @@
     <link href="http://zuhiul.github.io/2018/12/24/IC_chepter2/"/>
     <id>http://zuhiul.github.io/2018/12/24/IC_chepter2/</id>
     <published>2018-12-23T16:00:00.000Z</published>
-    <updated>2019-01-08T05:12:27.787Z</updated>
+    <updated>2019-01-08T05:29:16.536Z</updated>
     
-    <content type="html"><![CDATA[<p>作者自己辛苦原创,如有错误or转载or其他用途请联系qq:669415029,谢谢</p><p>1.$\emptyset$ : $4^5 = 1024$.${a}$ : $5\times 4\times 4\times 4 = 320$.${b}$ : $5\times 5\times 5\times 2 = 250$.${a,b}$ : $4\times 4\times 4\times 2 = 128$</p><p>2.$(13!)^4 = 1503561738404723998944447273369600000000$.</p><p>3.<br>$$<br>\left(<br>    \begin{matrix}<br>        52\\<br>        5<br>    \end{matrix}<br>\right)<br>=2598960<br>$$</p><p>4.(a) $5\times 3\times 7\times 2 = 210$<br>(b) $620 = 2^2+3^1+5^1+7^1$,$3\times 2\times 2\times 2 = 24$<br>(c) $10^{10} = 2^{10} 5^{10}$,$11\times 11 = 121$</p><p>5.因为$10 = 2\times 5$,所以我们只用统计$2,5$的数量就行了,然后我们可以发现,$2$的数量显然多于$5$的数量,所以我们只用统计$5$的个数就是答案.下面给出一个通用的代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(a) ret+=a/=<span class="number">5</span>;</span><br><span class="line"><span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>6.小数据暴力,大数据模拟</p>]]></content>
+    <content type="html"><![CDATA[<p>作者自己辛苦原创,如有错误or转载or其他用途请联系qq:669415029,谢谢</p><p>1.$\emptyset$ : $4^5 = 1024$.$\lbrace a\rbrace$ : $5\times 4\times 4\times 4 = 320$.$\lbrace b\rbrace$ : $5\times 5\times 5\times 2 = 250$.$\lbrace a,b\rbrace$ : $4\times 4\times 4\times 2 = 128$</p><p>2.$(13!)^4 = 1503561738404723998944447273369600000000$.</p><p>3.<br>$$<br>\left(<br>    \begin{matrix}<br>        52\\<br>        5<br>    \end{matrix}<br>\right)<br>=2598960<br>$$</p><p>4.(a) $5\times 3\times 7\times 2 = 210$<br>(b) $620 = 2^2+3^1+5^1+7^1$,$3\times 2\times 2\times 2 = 24$<br>(c) $10^{10} = 2^{10} 5^{10}$,$11\times 11 = 121$</p><p>5.因为$10 = 2\times 5$,所以我们只用统计$2,5$的数量就行了,然后我们可以发现,$2$的数量显然多于$5$的数量,所以我们只用统计$5$的个数就是答案.下面给出一个通用的代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(a) ret+=a/=<span class="number">5</span>;</span><br><span class="line"><span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>6.小数据暴力,大数据模拟</p>]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;作者自己辛苦原创,如有错误or转载or其他用途请联系qq:669415029,谢谢&lt;/p&gt;
-&lt;p&gt;1.$\emptyset$ : $4^5 = 1024$.${a}$ : $5\times 4\times 4\times 4 = 320$.${b}$ : $5\times 
+&lt;p&gt;1.$\emptyset$ : $4^5 = 1024$.$\lbrace a\rbrace$ : $5\times 4\times 4\times 4 = 320$.$\lb
       
     
     </summary>
