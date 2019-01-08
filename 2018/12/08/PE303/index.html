@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="睡到二三更时      凡荣华皆成幻境">
 <meta property="og:description" content="开启传送门 题目描述For a positive integer $n$, define $f(n)$ as the least positive multiple of $n$ that, written in base $10$, uses only digits $≤ 2$. Thus $f(2)=2, f(3)=12, f(7)=21, f(42)=210, f(89)=1121222$.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T13:45:42.434Z">
+<meta property="og:updated_time" content="2019-01-08T06:52:23.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler 303 Multiples with small digits">
 <meta name="twitter:description" content="开启传送门 题目描述For a positive integer $n$, define $f(n)$ as the least positive multiple of $n$ that, written in base $10$, uses only digits $≤ 2$. Thus $f(2)=2, f(3)=12, f(7)=21, f(42)=210, f(89)=1121222$.">
@@ -321,7 +321,7 @@
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>很显然，考的是搜索，如何高效搜索．</p>
 <p>最简单的想法就是枚举倍数，然后逐个判断是否合法，然后你会发现所有$999$的倍数都Ｔ飞了</p>
 <p>然后考虑剪枝，因为可以显然得到，有些倍数一定无效，比如：</p>
-<p>$5来说，5<em>1 = 5,5</em>11 = 55,5*21 = 105 \dots$</p>
+<p>$5来说，5\ast 1 = 5,5\ast 11 = 55,5\ast 21 = 105 \dots$</p>
 <p>可以显然发现，对于$5$来说，以$1$结尾的倍数显然都不合理，因为他们的最后一位一定是$5$，可以直接判断掉．</p>
 <p>然后你就就基本可以过掉大部分数据，但是还是有一个比较头疼，那就是$9999$.</p>
 <p>因为他对应的答案贼大，暴力搜索基本都GG．然后我们换一个思路．</p>
