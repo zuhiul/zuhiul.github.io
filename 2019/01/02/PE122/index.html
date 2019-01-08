@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="睡到二三更时      凡荣华皆成幻境">
 <meta property="og:description" content="开启传送门 题目描述The most naive way of computing $n^{15}$ requires fourteen multiplications: $n \times n \times \dots \times n = n^{15}$ But using a “binary” method you can compute it in six multiplications:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T13:48:15.515Z">
+<meta property="og:updated_time" content="2019-01-08T04:59:57.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler 122 Efficient exponentiation">
 <meta name="twitter:description" content="开启传送门 题目描述The most naive way of computing $n^{15}$ requires fourteen multiplications: $n \times n \times \dots \times n = n^{15}$ But using a “binary” method you can compute it in six multiplications:">
@@ -316,9 +316,9 @@
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The most naive way of computing $n^{15}$ requires fourteen multiplications:</p>
 <p>$n \times n \times \dots \times n = n^{15}$</p>
 <p>But using a “binary” method you can compute it in six multiplications:</p>
-<p>$$<br>\begin{split}<br>n \times n &amp;= n^2\<br>n^2 \times n^2 &amp;= n^4\<br>n^4 \times n^4 &amp;= n^8\<br>n^8 \times n^4 &amp;= n^{12}\<br>n^{12} \times n^2 &amp;= n^{14}\<br>n^{14} \times n &amp;= n^{15}\<br>\end{split}<br>$$</p>
+<p>\begin{eqnarray}<br>n \times n &amp;= n^2\\<br>n^2 \times n^2 &amp;= n^4\\<br>n^4 \times n^4 &amp;= n^8\\<br>n^8 \times n^4 &amp;= n^{12}\\<br>n^{12} \times n^2 &amp;= n^{14}\\<br>n^{14} \times n &amp;= n^{15}\\<br>\end{eqnarray}</p>
 <p>However it is yet possible to compute it in only five multiplications:</p>
-<p>$$<br>\begin{split}<br>n \times n &amp;= n^2\<br>n^2 \times n &amp;= n^3\<br>n^3 \times n^3 &amp;= n^6\<br>n^6 \times n^6 &amp;= n^{12}\<br>n^{12} \times n^3 &amp;= n^{15}\<br>\end{split}<br>$$</p>
+<p>\begin{eqnarray}<br>n \times n &amp;= n^2\\<br>n^2 \times n &amp;= n^3\\<br>n^3 \times n^3 &amp;= n^6\\<br>n^6 \times n^6 &amp;= n^{12}\\<br>n^{12} \times n^3 &amp;= n^{15}\\<br>\end{eqnarray}</p>
 <p>We shall define $m(k)$ to be the minimum number of multiplications to compute $n^k$; for example $m(15) = 5$.</p>
 <p>For $1 \leq k \leq 200$, find $\sum m(k)$.</p>
 <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>我们知道快速计算一个数的幂次有各种不同的方法,快速幂只是其中一种而且不是最快的,然后问你对于1~200的幂次来说,最少需要几次乘法操作.</p>
