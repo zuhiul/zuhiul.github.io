@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数学,">
+  <meta name="keywords" content="数学,PE,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$\begin{eqnarray}gcd(f_i,f_{i-1}) &amp;amp;=&amp;amp; gcd(f_{i-1}+f_{i-2},f_{i-1})\\&amp;amp;=&amp;amp; gcd(f_{i-2},f_{i-1})\\">
-<meta name="keywords" content="数学">
+<meta name="description" content="开启传送门 题目描述Two positive integers $a$ and $b$ are 2-friendly when $gcd(a,b)=2^t,t&amp;gt;0$. For example, $24$ and $40$ are 2-friendly because $gcd(24,40)=8=2^3$ while $24$ and $36$ are not because $gcd(24,">
+<meta name="keywords" content="数学,PE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gcd and fibonacii">
-<meta property="og:url" content="http://zuhiul.github.io/2018/12/28/gcd_fibonacci/index.html">
+<meta property="og:title" content="Project Euler 643 2-Friendly">
+<meta property="og:url" content="http://zuhiul.github.io/2019/01/09/PE643/index.html">
 <meta property="og:site_name" content="睡到二三更时      凡荣华皆成幻境">
-<meta property="og:description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$\begin{eqnarray}gcd(f_i,f_{i-1}) &amp;amp;=&amp;amp; gcd(f_{i-1}+f_{i-2},f_{i-1})\\&amp;amp;=&amp;amp; gcd(f_{i-2},f_{i-1})\\">
+<meta property="og:description" content="开启传送门 题目描述Two positive integers $a$ and $b$ are 2-friendly when $gcd(a,b)=2^t,t&amp;gt;0$. For example, $24$ and $40$ are 2-friendly because $gcd(24,40)=8=2^3$ while $24$ and $36$ are not because $gcd(24,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-07T14:24:13.684Z">
+<meta property="og:updated_time" content="2019-01-09T07:16:37.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gcd and fibonacii">
-<meta name="twitter:description" content="前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下 $$gcd(f_i,f_j) = f_{gcd(i,j)}$$ 下面给出证明 $gcd(f_i,f_{i-1}) = 1$\begin{eqnarray}gcd(f_i,f_{i-1}) &amp;amp;=&amp;amp; gcd(f_{i-1}+f_{i-2},f_{i-1})\\&amp;amp;=&amp;amp; gcd(f_{i-2},f_{i-1})\\">
+<meta name="twitter:title" content="Project Euler 643 2-Friendly">
+<meta name="twitter:description" content="开启传送门 题目描述Two positive integers $a$ and $b$ are 2-friendly when $gcd(a,b)=2^t,t&amp;gt;0$. For example, $24$ and $40$ are 2-friendly because $gcd(24,40)=8=2^3$ while $24$ and $36$ are not because $gcd(24,">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://zuhiul.github.io/2018/12/28/gcd_fibonacci/">
+  <link rel="canonical" href="http://zuhiul.github.io/2019/01/09/PE643/">
 
 
 
 
 
-  <title>gcd and fibonacii | 睡到二三更时      凡荣华皆成幻境</title>
+  <title>Project Euler 643 2-Friendly | 睡到二三更时      凡荣华皆成幻境</title>
   
 
 
@@ -245,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/28/gcd_fibonacci/">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/01/09/PE643/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zuhiul">
@@ -262,7 +262,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">gcd and fibonacii</h1>
+          <h1 class="post-title" itemprop="name headline">Project Euler 643 2-Friendly</h1>
         
 
         <div class="post-meta">
@@ -274,8 +274,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T00:00:00+08:00">
-                2018-12-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T00:00:00+08:00">
+                2019-01-09
               </time>
             
 
@@ -312,24 +312,18 @@
       
 
       
-        <p>前两天看到一个比较奇怪的公式,然后队友让证明一下,公式如下</p>
-<p>$$<br>gcd(f_i,f_j) = f_{gcd(i,j)}<br>$$</p>
-<p>下面给出证明</p>
-<h1 id="gcd-f-i-f-i-1-1"><a href="#gcd-f-i-f-i-1-1" class="headerlink" title="$gcd(f_i,f_{i-1}) = 1$"></a>$gcd(f_i,f_{i-1}) = 1$</h1><p>\begin{eqnarray}<br>gcd(f_i,f_{i-1}) &amp;=&amp; gcd(f_{i-1}+f_{i-2},f_{i-1})\\<br>&amp;=&amp; gcd(f_{i-2},f_{i-1})\\<br>&amp;=&amp; gcd(f_{i-3},f_{i-2})\\<br>&amp;=&amp; \dots\\<br>&amp;=&amp; gcd(f_1,f_2)\\<br>&amp;=&amp; 1\\<br>\end{eqnarray}</p>
-<h1 id="f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1"><a href="#f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1" class="headerlink" title="$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$"></a>$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$</h1><p>首先,$j = 1$时有 $f_{i+1} = f_{i-1}+f_i$ 显然成立,</p>
-<p>当$j = 2$时有</p>
-<p>\begin{eqnarray}<br>f_{i+2} &amp;=&amp; f_{i+1} + f_{i}\\<br>&amp;=&amp; (f_{i}+f_{i-1}) + f_{i}\\<br>&amp;=&amp; f_{i-1} \cdot 1 + f_{i} \cdot 2\\<br>&amp;=&amp; f_{i-1} \cdot f_j + f_i \cdot f_{j+1}\\<br>\end{eqnarray}</p>
-<p>然后我们证明,当$j = k-1$和$j = k-2$成立时,$j = k$也成立</p>
-<p>也就是说已知</p>
-<p>$$<br>\begin{cases}<br>f_{i+k-1} &amp;=&amp; f_{i-1}\cdot f_{k-1} + f_{i}\cdot f_k\\<br>f_{i+k-2} &amp;=&amp; f_{i-1}\cdot f_{k-2} + f_{i}\cdot f_{k-1}\\<br>\end{cases}<br>$$</p>
-<p>然后我们累加上面两式,可以得到</p>
-<p>$$<br>f_{i+k-1}+f_{i+k-2} = f{i-1}\cdot f_{k-1} + f_{i}\cdot f_k + f{i-1}\cdot f_{k-2} + f_{i}\cdot f_{k-1}<br>$$</p>
-<p>$$<br>\therefore<br>\begin{eqnarray}<br>f_{i+k} &amp;=&amp; f_{i-1}\cdot (f_{k-1}+f{k-2}) + f_{i}\cdot (f_{k}+f_{k-1})\\<br>        &amp;=&amp; f_{i-1}\cdot f_{k} + f_{i}\cdot f_{k+1}\\<br>\end{eqnarray}<br>$$</p>
-<h1 id="gcd-f-i-j-f-i-gcd-f-i-f-j"><a href="#gcd-f-i-j-f-i-gcd-f-i-f-j" class="headerlink" title="$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $"></a>$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $</h1><p>$$<br>\begin{eqnarray}<br>gcd(f_{i+j},f_{i}) &amp;=&amp; gcd(f_{i-1}\cdot f_j + f_i\cdot f_{j+1},f_{i})\\<br>&amp;=&amp; gcd(f_{i-1}\cdot f_{j},f_{i})\\<br>&amp;=&amp; gcd(f_{j},f_{i})  (\because gcd(f_{i},f_{i-1}) = 1)\\<br>\end{eqnarray}<br>$$</p>
-<p>所以上面的结论可以继续推广,容易得到</p>
-<p>$$<br>gcd(f_{i},f_{j}) = gcd(f_{i\%j},f_{j})<br>$$</p>
-<h1 id="gcd-f-i-f-j-f-gcd-i-j"><a href="#gcd-f-i-f-j-f-gcd-i-j" class="headerlink" title="$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $"></a>$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</h1><p>由上面的结论,我们容易得到,我们不断调用上面的结论,直到$i==1||j==1$,然后可以得到,如果$k=gcd(i,j)$,那么有$gcd(f_{i},f_{j}) = gcd(f_{k},f_{1}) = f_{k} = f_{gcd(i,j)}$</p>
-<p>命题得证</p>
+        <p><a href="https://projecteuler.net/problem=643" target="_blank" rel="noopener">开启传送门</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Two positive integers $a$ and $b$ are <em>2-friendly</em> when $gcd(a,b)=2^t,t&gt;0$. For example, $24$ and $40$ are <em>2-friendly</em> because $gcd(24,40)=8=2^3$ while $24$ and $36$ are not because $gcd(24,36)=12=2^2\cdot 3$ not a power of $2$.</p>
+<p>Let $f(n)$ be the number of pairs, $(p,q)$, of positive integers with $1\leq p&lt;q\leq n$ such that $p$ and $q$ are <em>2-friendly</em>. You are given $f(10^2)=1031$ and $f(10^6)=321418433$ modulo $1000000007$ .</p>
+<p>Find $f(10^{11})$ modulo $1000000007$.</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>问你所有满足$1\leq p&lt;q\leq 1e11$,并且$gcd(p,q)==2^t$的对数</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>显然可以对于每个$2^t$单独考虑,不妨设$2^t = x$,可以得到</p>
+<p>$$<br>ans = \sum_{i=1}^{upper/x} \varphi(i)<br>$$</p>
+<p>然后显然是各种筛法搞一下,我这里用的杜教筛,然后稍微推一推就可以得到</p>
+<p>$$<br>s(m) = \frac{m\ast (m+1)}{2} - \sum_{d=2}^{m} s(\lfloor \frac{m}{d} \rfloor)<br>$$</p>
+<p>然后分块一下,递归搞下去就行了$\dots$</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> upper = <span class="number">1e11</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2e7</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> (a+b)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;<span class="keyword">return</span> (a%mod)*(b%mod)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inv</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123; <span class="keyword">return</span> a==<span class="number">1</span>?<span class="number">1</span>:mul(mod-mod/a,inv(mod%a)); &#125;</span><br><span class="line"><span class="keyword">int</span> inv2 = inv(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">bool</span> p[maxm];</span><br><span class="line"><span class="keyword">int</span> pri[maxm];<span class="comment">//质数</span></span><br><span class="line"><span class="keyword">int</span> phi[maxm];<span class="comment">//欧拉函数前缀和</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">2</span>;i&lt;maxm;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!p[i])&#123;</span><br><span class="line">			pri[++pri[<span class="number">0</span>]] = i;</span><br><span class="line">			phi[i] = i<span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=pri[<span class="number">0</span>]&amp;&amp;i*pri[j]&lt;maxm;j++)&#123;</span><br><span class="line">			p[i*pri[j]] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%pri[j]) phi[i*pri[j]] = phi[i]*(pri[j]<span class="number">-1</span>);</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				phi[i*pri[j]] = phi[i]*pri[j];</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;maxm;i++) phi[i] = add(phi[i],phi[i<span class="number">-1</span>]);<span class="comment">//因为只会用到前缀和,所以我们直接预处理成前缀和</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>,<span class="keyword">int</span>&gt; mp;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> m)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(m&lt;maxm) <span class="keyword">return</span> phi[m];<span class="comment">//查表</span></span><br><span class="line">	<span class="keyword">if</span>(mp[m]) <span class="keyword">return</span> mp[m];<span class="comment">//记忆化</span></span><br><span class="line">	<span class="keyword">int</span> ret = mul(m,mul(m+<span class="number">1</span>,inv2));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> l = <span class="number">2</span>,r;l&lt;=m;l = r+<span class="number">1</span>) &#123;<span class="comment">//分块</span></span><br><span class="line">		r = m/(m/l);</span><br><span class="line">		ret = add(ret,mod-mul(solve(m/l),r-l+<span class="number">1</span>));</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> mp[m] = ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> x = <span class="number">2</span>;x&lt;=upper;x&lt;&lt;=<span class="number">1</span>) &#123;<span class="comment">//单独统计每一个2的幂</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		ans = add(ans,solve(upper/x));</span><br><span class="line">		ans = add(ans,mod<span class="number">-1</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -349,6 +343,8 @@
           
             <a href="/tags/数学/" rel="tag"># 数学</a>
           
+            <a href="/tags/PE/" rel="tag"># PE</a>
+          
         </div>
       
 
@@ -360,8 +356,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/28/PE143/" rel="next" title="Project Euler 143 Investigating the Torricelli point of a triangle">
-                <i class="fa fa-chevron-left"></i> Project Euler 143 Investigating the Torricelli point of a triangle
+              <a href="/2019/01/04/PE222/" rel="next" title="Project Euler 222 Sphere Packing">
+                <i class="fa fa-chevron-left"></i> Project Euler 222 Sphere Packing
               </a>
             
           </div>
@@ -369,10 +365,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/02/PE122/" rel="prev" title="Project Euler 122 Efficient exponentiation">
-                Project Euler 122 Efficient exponentiation <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -532,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gcd-f-i-f-i-1-1"><span class="nav-number">1.</span> <span class="nav-text">$gcd(f_i,f_{i-1}) = 1$</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#f-i-j-f-i-1-cdot-f-j-f-i-cdot-f-j-1"><span class="nav-number">2.</span> <span class="nav-text">$f_{i+j} = f_{i-1}\cdot f_j + f_i\cdot f_{j+1}$</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gcd-f-i-j-f-i-gcd-f-i-f-j"><span class="nav-number">3.</span> <span class="nav-text">$ gcd(f_{i+j},f_{i}) = gcd(f_{i},f_{j}) $</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gcd-f-i-f-j-f-gcd-i-j"><span class="nav-number">4.</span> <span class="nav-text">$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">2.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>

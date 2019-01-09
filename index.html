@@ -244,6 +244,137 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/01/09/PE643/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/09/PE643/" itemprop="url">Project Euler 643 2-Friendly</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-09T00:00:00+08:00">
+                2019-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://projecteuler.net/problem=643" target="_blank" rel="noopener">开启传送门</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Two positive integers $a$ and $b$ are <em>2-friendly</em> when $gcd(a,b)=2^t,t&gt;0$. For example, $24$ and $40$ are <em>2-friendly</em> because $gcd(24,40)=8=2^3$ while $24$ and $36$ are not because $gcd(24,36)=12=2^2\cdot 3$ not a power of $2$.</p>
+<p>Let $f(n)$ be the number of pairs, $(p,q)$, of positive integers with $1\leq p&lt;q\leq n$ such that $p$ and $q$ are <em>2-friendly</em>. You are given $f(10^2)=1031$ and $f(10^6)=321418433$ modulo $1000000007$ .</p>
+<p>Find $f(10^{11})$ modulo $1000000007$.</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>问你所有满足$1\leq p&lt;q\leq 1e11$,并且$gcd(p,q)==2^t$的对数</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>显然可以对于每个$2^t$单独考虑,不妨设$2^t = x$,可以得到</p>
+<p>$$<br>ans = \sum_{i=1}^{upper/x} \varphi(i)<br>$$</p>
+<p>然后显然是各种筛法搞一下,我这里用的杜教筛,然后稍微推一推就可以得到</p>
+<p>$$<br>s(m) = \frac{m\ast (m+1)}{2} - \sum_{d=2}^{m} s(\lfloor \frac{m}{d} \rfloor)<br>$$</p>
+<p>然后分块一下,递归搞下去就行了$\dots$</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> upper = <span class="number">1e11</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2e7</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> (a+b)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;<span class="keyword">return</span> (a%mod)*(b%mod)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inv</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123; <span class="keyword">return</span> a==<span class="number">1</span>?<span class="number">1</span>:mul(mod-mod/a,inv(mod%a)); &#125;</span><br><span class="line"><span class="keyword">int</span> inv2 = inv(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">bool</span> p[maxm];</span><br><span class="line"><span class="keyword">int</span> pri[maxm];<span class="comment">//质数</span></span><br><span class="line"><span class="keyword">int</span> phi[maxm];<span class="comment">//欧拉函数前缀和</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">2</span>;i&lt;maxm;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!p[i])&#123;</span><br><span class="line">			pri[++pri[<span class="number">0</span>]] = i;</span><br><span class="line">			phi[i] = i<span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=pri[<span class="number">0</span>]&amp;&amp;i*pri[j]&lt;maxm;j++)&#123;</span><br><span class="line">			p[i*pri[j]] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%pri[j]) phi[i*pri[j]] = phi[i]*(pri[j]<span class="number">-1</span>);</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				phi[i*pri[j]] = phi[i]*pri[j];</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;maxm;i++) phi[i] = add(phi[i],phi[i<span class="number">-1</span>]);<span class="comment">//因为只会用到前缀和,所以我们直接预处理成前缀和</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>,<span class="keyword">int</span>&gt; mp;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> m)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(m&lt;maxm) <span class="keyword">return</span> phi[m];<span class="comment">//查表</span></span><br><span class="line">	<span class="keyword">if</span>(mp[m]) <span class="keyword">return</span> mp[m];<span class="comment">//记忆化</span></span><br><span class="line">	<span class="keyword">int</span> ret = mul(m,mul(m+<span class="number">1</span>,inv2));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> l = <span class="number">2</span>,r;l&lt;=m;l = r+<span class="number">1</span>) &#123;<span class="comment">//分块</span></span><br><span class="line">		r = m/(m/l);</span><br><span class="line">		ret = add(ret,mod-mul(solve(m/l),r-l+<span class="number">1</span>));</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> mp[m] = ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> x = <span class="number">2</span>;x&lt;=upper;x&lt;&lt;=<span class="number">1</span>) &#123;<span class="comment">//单独统计每一个2的幂</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		ans = add(ans,solve(upper/x));</span><br><span class="line">		ans = add(ans,mod<span class="number">-1</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/01/04/PE222/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -773,133 +904,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/24/IC_chepter2/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/24/IC_chepter2/" itemprop="url">IC(answer.chepter2)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T00:00:00+08:00">
-                2018-12-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>作者自己辛苦原创,如有错误or转载or其他用途请联系qq:669415029,谢谢</p>
-<p>1.$\emptyset$ : $4^5 = 1024$.$\lbrace a\rbrace$ : $5\times 4\times 4\times 4 = 320$.$\lbrace b\rbrace$ : $5\times 5\times 5\times 2 = 250$.$\lbrace a,b\rbrace$ : $4\times 4\times 4\times 2 = 128$</p>
-<p>2.$(13!)^4 = 1503561738404723998944447273369600000000$.</p>
-<p>3.<br>$$<br>\left(<br>    \begin{matrix}<br>        52\\<br>        5<br>    \end{matrix}<br>\right)<br>=2598960<br>$$</p>
-<p>4.(a) $5\times 3\times 7\times 2 = 210$<br>(b) $620 = 2^2+3^1+5^1+7^1$,$3\times 2\times 2\times 2 = 24$<br>(c) $10^{10} = 2^{10} 5^{10}$,$11\times 11 = 121$</p>
-<p>5.因为$10 = 2\times 5$,所以我们只用统计$2,5$的数量就行了,然后我们可以发现,$2$的数量显然多于$5$的数量,所以我们只用统计$5$的个数就是答案.下面给出一个通用的代码</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(a) ret+=a/=<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>6.小数据暴力,大数据模拟</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/24/IC_chepter1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1026,6 +1030,133 @@
 <p>21.(a) 二阶的显然不存在,书后面给了答案,还有一个比较简单的想法就是如果存在显然可以得到类似于$a==b$的结论,所以不存在.</p>
 <p>(b) 暴搜剪枝,emmmmm……如图</p>
 <p><img src="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/IC1-5.jpg" alt="avatar"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/24/IC_chepter2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/24/IC_chepter2/" itemprop="url">IC(answer.chepter2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T00:00:00+08:00">
+                2018-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>作者自己辛苦原创,如有错误or转载or其他用途请联系qq:669415029,谢谢</p>
+<p>1.$\emptyset$ : $4^5 = 1024$.$\lbrace a\rbrace$ : $5\times 4\times 4\times 4 = 320$.$\lbrace b\rbrace$ : $5\times 5\times 5\times 2 = 250$.$\lbrace a,b\rbrace$ : $4\times 4\times 4\times 2 = 128$</p>
+<p>2.$(13!)^4 = 1503561738404723998944447273369600000000$.</p>
+<p>3.<br>$$<br>\left(<br>    \begin{matrix}<br>        52\\<br>        5<br>    \end{matrix}<br>\right)<br>=2598960<br>$$</p>
+<p>4.(a) $5\times 3\times 7\times 2 = 210$<br>(b) $620 = 2^2+3^1+5^1+7^1$,$3\times 2\times 2\times 2 = 24$<br>(c) $10^{10} = 2^{10} 5^{10}$,$11\times 11 = 121$</p>
+<p>5.因为$10 = 2\times 5$,所以我们只用统计$2,5$的数量就行了,然后我们可以发现,$2$的数量显然多于$5$的数量,所以我们只用统计$5$的个数就是答案.下面给出一个通用的代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(a) ret+=a/=<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>6.小数据暴力,大数据模拟</p>
 
           
         
@@ -2026,178 +2157,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/12/PE492/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/12/PE492/" itemprop="url">Project Euler 492 Exploding sequence</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-12T00:00:00+08:00">
-                2018-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://projecteuler.net/problem=492" target="_blank" rel="noopener">开启传送门</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Define the sequence $a_1, a_2, a_3,\dots$ as:</p>
-<ul>
-<li>$a_1 $=$ 1$</li>
-<li>$a_{n+1} = 6a_n^2 + 10a_n + 3$ for $n \geq 1$.</li>
-</ul>
-<p>Examples:</p>
-<p>$a_3 $=$ 2359$</p>
-<p>$a_6 $=$ 269221280981320216750489044576319$</p>
-<p>$a_6 mod 1000000007 $=$ 203064689$</p>
-<p>$a_{100} mod 1000000007 $=$ 456482974$</p>
-<p>Define $B(x,y,n)$ as $\sum (a_n mod $ $p)$ for every prime $p$ such that $x \leq p \leq x+y$.</p>
-<p>Examples:</p>
-<p>$B(10^9, 10^3, 10^3)$ = $23674718882$</p>
-<p>$B(10^9, 10^3, 10^{15})$ = $20731563854$</p>
-<p>Find $B(10^9, 10^7, 10^{15})$.</p>
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给你一个二次递推序列,问你这个数列的第$10^{15}$项膜上一堆质数之后求和是多少.</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>看了<a href="https://blog.csdn.net/ACdreamers/article/details/44997467" target="_blank" rel="noopener">大佬</a>的题解之后才做出来的,还是太菜了$\dots$</p>
-<p>下面是分析.</p>
-<p>首先我们令$b_n = 6a_n+5$</p>
-<p>于是有</p>
-<p>$b_1$ = $11$</p>
-<p>$b_{n+1} $=$ b_n^2-2$</p>
-<p>然后我们令　$ x + \frac{1}{x}$ = $11$</p>
-<p>可以显然发现　$b_n$ = $x^{2^{n-1}} + \frac{1}{x^{2^{n-1}}}$</p>
-<p>于是不妨设　$x$ = $\frac{11+\sqrt{117}}{2}$</p>
-<p>$\therefore b_n$ = $(\frac{11+\sqrt{117}}{2})^{2^{n-1}} + (\frac{11-\sqrt{117}}{2})^{2^{n-1}}$</p>
-<p>然后我们可以直接算就行了</p>
-<p>我们搞出递推式，然后用矩阵乘法的做法来做</p>
-<p>我们考虑一个更一般的问题，</p>
-<p>令$f_n = (\frac{11+\sqrt{117}}{2})^n + (\frac{11-\sqrt{117}}{2})^n$</p>
-<p>然后我们考虑$f_n$如何求解</p>
-<p>首先我们假设$f_n = x\ast f_{n-1}+y\ast f_{n-2}$</p>
-<p>$$令 (\frac{11+\sqrt{117}}{2})^{n-2} = a$$</p>
-<p>$$令 (\frac{11-\sqrt{117}}{2})^{n-2} = b$$</p>
-<p>则有<br>\begin{cases}<br>\begin{eqnarray}<br>f_n &amp;=&amp; a\ast (\frac{11+\sqrt{117}}{2})^2+b\ast (\frac{11-\sqrt{117}}{2})^2\\<br>&amp;=&amp; a\ast (\frac{238+22\sqrt{117}}{4})+b\ast (\frac{238-22\sqrt{117}}{4})\\<br>f_{n-1}&amp;=&amp;a\ast (\frac{11+\sqrt{117}}{2})+b\ast (\frac{11-\sqrt{117}}{2})\\<br>f_{n-2}&amp;=&amp;a+b \\<br>\end{eqnarray}<br>\end{cases}</p>
-<p>\begin{eqnarray}<br>&amp;\therefore&amp; a\ast (\frac{238+22\sqrt{117}}{4})+b\ast (\frac{238-22\sqrt{117}}{4})\\<br>&amp;=&amp; x\ast a\ast (\frac{11+\sqrt{117}}{2})+x\ast b\ast (\frac{11-\sqrt{117}}{2}) + y\ast (a+b)\\<br>\end{eqnarray}</p>
-<p>将非根号项提出来，可以得到</p>
-<p>$\therefore a\ast \frac{119}{2}+b\ast \frac{119}{2}$=$xa\ast \frac{11}{2}+xb\ast \frac{11}{2}+y(a+b) $</p>
-<p>同理将根号项提出可以得到</p>
-<p>$a\ast \frac{11}{2}+b\ast \frac{-11}{2}$=$xa\ast \frac{1}{2}+xb\ast \frac{-1}{2} $</p>
-<p>然后可以解得</p>
-<p>\begin{cases}<br>x = 11\\<br>y = -1<br>\end{cases}</p>
-<p>也就是说$f_n$ = $11\ast f_{n-1} - f_{n-2}$</p>
-<p>好了，我们得到了$f_n$的递推式，然后考虑原问题，也就是说</p>
-<p>$$<br>\left(<br>    \begin{matrix}<br>        b_{n+1}\\<br>        b_n<br>    \end{matrix}<br>\right)<br>=\left(<br>    \begin{matrix}<br>        11 &amp; -1\\<br>        1 &amp; 0<br>    \end{matrix}<br>\right)^{2^{n-1}-1}<br>\left(<br>    \begin{matrix}<br>        b_2\\<br>        b_1<br>    \end{matrix}<br>\right)<br>=\left(<br>    \begin{matrix}<br>        11 &amp; -1\\<br>        1 &amp; 0<br>    \end{matrix}<br>\right)^{2^{n-1}-1}<br>\left(<br>    \begin{matrix}<br>        119\\<br>        11<br>    \end{matrix}<br>\right)<br>$$</p>
-<p>$\because n$ 很大($10^{15}$)</p>
-<p>$\therefore 2^{n-1}-1$很大,以至于我们不能方便的计算</p>
-<p>然后我们考虑降低指数</p>
-<p>具体分析看<a href="https://blog.csdn.net/ACdreamers/article/details/44997467" target="_blank" rel="noopener">大佬</a>的分析,可以得到循环节可以是$(p+1)(p-1)$</p>
-<p>这个值我们可以接受,然后直接裸的矩阵ksm就行了$\dots$</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> n = <span class="number">1e15</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> l = <span class="number">1e9</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> r = l+<span class="number">1e7</span>;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">add</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123; <span class="keyword">return</span> (a+b)%mod; &#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	a = add(a,mod,mod);</span><br><span class="line">	b = add(b,mod,mod);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret = add(ret,a,mod);</span><br><span class="line">		a = add(a,a,mod);</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">qpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret = mul(ret,a,mod);</span><br><span class="line">		a = mul(a,a,mod);</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">is_prime</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&amp;<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>;i*i&lt;=a;i++) <span class="keyword">if</span>(a%i==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">p</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mat[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;<span class="number">2</span>;j++) <span class="built_in">cout</span>&lt;&lt;mat[i][j]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">p <span class="title">mul</span><span class="params">(p a,p b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	p ret;</span><br><span class="line">	<span class="built_in">memset</span>(ret.mat,<span class="number">0</span>,<span class="keyword">sizeof</span> ret.mat);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j  =<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;k&lt;<span class="number">2</span>;k++)&#123;</span><br><span class="line">				ret.mat[i][j] = add(ret.mat[i][j],mul(a.mat[i][k],b.mat[k][j],mod),mod);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">p <span class="title">qpow</span><span class="params">(p a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	p ret;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">2</span>;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;<span class="number">2</span>;j++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(i==j) ret.mat[i][j]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> ret.mat[i][j]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b&amp;<span class="number">1</span>) ret = mul(ret,a,mod);</span><br><span class="line">		a = mul(a,a,mod);</span><br><span class="line">		b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">solve</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> prime)</span></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD = prime*prime<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> zhi = qpow(<span class="number">2</span>,n<span class="number">-1</span>,MOD);</span><br><span class="line">	zhi = add(zhi,MOD<span class="number">-1</span>,MOD);</span><br><span class="line"></span><br><span class="line">	p base;</span><br><span class="line">	base.mat[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">11</span>,base.mat[<span class="number">0</span>][<span class="number">1</span>]=<span class="number">-1</span>;</span><br><span class="line">	base.mat[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span> ,base.mat[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	base = qpow(base,zhi,prime);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret1 = mul(base.mat[<span class="number">1</span>][<span class="number">0</span>],<span class="number">119</span>,prime);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret2 = mul(base.mat[<span class="number">1</span>][<span class="number">1</span>],<span class="number">11</span>,prime);</span><br><span class="line">	<span class="keyword">return</span> add(ret1,ret2,prime);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">inv</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> mod)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> mul(mod-mod/a,inv(mod%a,mod),mod);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = l;i&lt;=r;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(is_prime(i))&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> bn = solve(i);</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> now1 = add(bn,i<span class="number">-5</span>,i);</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> an = mul(now1,inv(<span class="number">6</span>,i),i);</span><br><span class="line">			ans+=an;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i%<span class="number">100000</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2248,7 +2207,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
