@@ -244,6 +244,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/21/PE368/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/21/PE368/" itemprop="url">Project Euler 368 A Kempner-like series</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T00:00:00+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://projecteuler.net/problem=368" target="_blank" rel="noopener">开启传送门</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The <strong>harmonic</strong> series $1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\dots$ is well known to be divergent.</p>
+<p>If we however omit from this series every term where the denominator has a $9$ in it, the series remarkably enough converges to approximately $22.9206766193$.</p>
+<p>This modified harmonic series is called the <strong>Kempner</strong> series.</p>
+<p>Let us now consider another modified harmonic series by omitting from the harmonic series every term where the denominator has $3$ or more equal consecutive digits. One can verify that out of the first $1200$ terms of the harmonic series, only $20$ terms will be omitted.<br>These $20$ omitted terms are:</p>
+<p>$$\frac{1}{111},\frac{1}{222},\frac{1}{333},\frac{1}{444},\frac{1}{555},\frac{1}{666},\frac{1}{777},\frac{1}{888},\frac{1}{999},\frac{1}{1000},\frac{1}{1110}, \frac{1}{1111},\frac{1}{1112},\frac{1}{1113},\frac{1}{1114},\frac{1}{1115},\frac{1}{1116},\frac{1}{1117},\frac{1}{1118},\frac{1}{1119}$$</p>
+<p>This series converges as well.</p>
+<p>Find the value the series converges to.<br>Give your answer rounded to $10$ digits behind the decimal point.</p>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是,调和级数不是发散的嘛,然后让你删掉那些分母含有连续三个相同数字的,然后可以证明剩下的级数是收敛的,然后问你收敛于多少.</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>做法比较巧妙,下面一点点分析.</p>
+<p>首先我们令$S_1(n,d)$表示一个包含所有这样的$n$位数的集合,集合中所有的$n$位数最后一位是$n$,并且倒数第二位不是$n$.</p>
+<p>$S_2(n,d)$表示一个包含所有这样的$n$位数的集合,集合中所有的$n$位数最后两位是$n$,并且倒数第三位不是$n$.</p>
+<p>然后我们令</p>
+<p>$f_1(n,d,j)$ = $\sum_{x\in S_1(n,d)} \frac{1}{x^j}$</p>
+<p>$f_2(n,d,j)$ = $\sum_{x\in S_2(n,d)} \frac{1}{x^j}$</p>
+<p>然后答案显然就是</p>
+<p>$\sum_{i=1}^{99} \frac{1}{i}+\sum_{n=3}^{\infty } \sum_{d=0}^{9} [f_1(n,d,1)+f_2(n,d,1)]$</p>
+<p>关键是我们怎么算$f_1(n,d,j)$和$f_2(n,d,j)$</p>
+<p>二者分析方法一样,这里给出$f_2(n,d,j)$怎么推出来的.</p>
+<p>首先根据定义我们有</p>
+<p>$f_2(n,d,j)$ = $\sum_{x\in S_2(n,d)} \frac{1}{x^j}$</p>
+<p>我们不妨枚举每一个$x$,然后累加就是答案,所以子问题就是如何快速计算$\frac{1}{x^j} where x \in S_2(n,d)$</p>
+<p>因为最后一位是$d$,所以我们不妨设$x$ = $y\ast 100+d\ast 10+d$</p>
+<p>然后可以得到</p>
+<p>$$<br>(\frac{1}{x\ast 100+d\ast 10+d})^j=\frac{1}{10^j} \cdot \frac{1}{(x\ast 10+d)^j} \cdot (\frac{1}{1+\frac{d}{x\ast 100+d\ast 10}})^j<br>$$</p>
+<p>然后我们将第三个分式化简.</p>
+<p>考虑到</p>
+<p>$(1+a)^{-b} = \sum_{i=0}^{\infty } C_{b+i-1}^i \cdot (-a)^b$</p>
+<p>所以上式可以化简为</p>
+<p>\begin{eqnarray}<br>(\frac{1}{x\ast 100+d\ast 10+d})^j<br>&amp;=&amp; \frac{1}{10^j} \cdot \frac{1}{(x\ast 10+d)^j} \cdot \sum_{i=0}^{\infty } C_{j+i-1}^{i}(\frac{-d}{x\ast 100+d\ast 10})^i\\<br>&amp;=&amp; \frac{1}{10^j} \cdot \frac{1}{(x\ast 10+d)^j} \cdot \sum_{i=0}^{\infty } C_{j+i-1}^{i}(\frac{-d}{10})^i\cdot(\frac{1}{x\ast 10+d})^i\\<br>&amp;=&amp; \frac{1}{10^j} \sum_{i=0}^{\infty } C_{j+i-1}^{i} \cdot (\frac{-d}{10})^i \cdot (\frac{1}{x\ast 10+d})^{i+j}\\<br>\end{eqnarray}</p>
+<p>然后我们考虑累加所有的$x$也就是原来的$f_2(n,d,j)$</p>
+<p>可以得到</p>
+<p>$$f_2(n,d,j) = \frac{1}{10^j} \sum_{i=0}^{\infty } (\frac{-d}{10})^i \cdot C_{j+i-1}^{i} \cdot f_1(n-1,d,i+j)$$</p>
+<p>同理可以推得 $f_1(n,d,j)$</p>
+<p>然后就是代码如下啦啦啦$\dots$</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">40</span>;</span><br><span class="line"><span class="keyword">double</span> C[maxm*<span class="number">3</span>][maxm*<span class="number">3</span>];</span><br><span class="line"><span class="keyword">double</span> f1[<span class="number">2</span>][<span class="number">10</span>][maxm+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">double</span> f2[<span class="number">2</span>][<span class="number">10</span>][maxm+<span class="number">1</span>];</span><br><span class="line"><span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//预处理出组合数和前99项的答案</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;maxm*<span class="number">3</span>;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;=i;j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(j==<span class="number">0</span>) C[i][j] = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> C[i][j] = C[i<span class="number">-1</span>][j<span class="number">-1</span>]+C[i<span class="number">-1</span>][j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;<span class="number">100</span>;i++) ans+=<span class="number">1.0</span>/i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> d = <span class="number">0</span>;d&lt;=<span class="number">9</span>;d++)&#123;<span class="comment">//预处理出n = 3的情况</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=maxm;j++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> pre = <span class="number">10</span>;pre&lt;<span class="number">100</span>;pre++)&#123;</span><br><span class="line">				<span class="keyword">int</span> fir = pre/<span class="number">10</span>;</span><br><span class="line">				<span class="keyword">int</span> sec = pre%<span class="number">10</span>;</span><br><span class="line">				<span class="keyword">if</span>(fir==sec&amp;&amp;sec==d) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(sec==d) f2[<span class="number">1</span>][d][j]+=<span class="number">1.0</span>/<span class="built_in">pow</span>(pre*<span class="number">10</span>+d,j);</span><br><span class="line">				<span class="keyword">else</span> f1[<span class="number">1</span>][d][j]+=<span class="number">1.0</span>/<span class="built_in">pow</span>(pre*<span class="number">10</span>+d,j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ans+=f1[<span class="number">1</span>][d][<span class="number">1</span>]+f2[<span class="number">1</span>][d][<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> nouse = <span class="number">4</span>;nouse&lt;=<span class="number">10000</span>;nouse++)&#123;<span class="comment">//滚动的算n&gt;=4的时候</span></span><br><span class="line">		<span class="keyword">int</span> now = nouse&amp;<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> las = now^<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> d = <span class="number">0</span>;d&lt;=<span class="number">9</span>;d++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=maxm;j++)&#123;</span><br><span class="line">				f1[now][d][j] = f2[now][d][j] = <span class="number">0</span>;<span class="comment">//别忘了初始化</span></span><br><span class="line">				<span class="keyword">double</span> pre = <span class="number">1.0</span>/<span class="built_in">pow</span>(<span class="number">10.0</span>,j);</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;=maxm;i++)&#123;</span><br><span class="line">					<span class="keyword">if</span>(i+j&lt;=maxm) f2[now][d][j]+=pre*C[j+i<span class="number">-1</span>][i]*f1[las][d][i+j];</span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">int</span> x = <span class="number">0</span>;x&lt;<span class="number">10</span>;x++)&#123;</span><br><span class="line">						<span class="keyword">if</span>(x==d) <span class="keyword">continue</span>;</span><br><span class="line">						<span class="keyword">if</span>(i+j&lt;=maxm) f1[now][d][j]+=pre*C[j+i<span class="number">-1</span>][i]*(f1[las][x][i+j]+f2[las][x][i+j]);</span><br><span class="line">					&#125;</span><br><span class="line">					pre*=-d/<span class="number">10.0</span>;</span><br><span class="line">				&#125;			</span><br><span class="line">			&#125;</span><br><span class="line">			ans+=f1[now][d][<span class="number">1</span>]+f2[now][d][<span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.10f\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/12/PE492/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -572,137 +727,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/08/PE288/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/08/PE288/" itemprop="url">Project Euler 288 An enormous factorial</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-08T00:00:00+08:00">
-                2018-12-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://projecteuler.net/problem=288" target="_blank" rel="noopener">开启传送门</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>For any prime $p$ the number $N(p,q)$ is defined by $N(p,q) = \sum_{n=0}^q T_n*p^n$<br>with $T_n$ generated by the following random number generator:</p>
-<p>\begin{eqnarray}<br>&amp;&amp;S_0 = 290797\\<br>&amp;&amp;S_{n+1} = S_n^2 mod 50515093\\<br>&amp;&amp;T_n = S_n mod p\\<br>\end{eqnarray}</p>
-<p>Let $Nfac(p,q)$ be the factorial of $N(p,q)$.<br>Let $NF(p,q)$ be the number of factors $p$ in $Nfac(p,q)$.</p>
-<p>You are given that $NF(3,10000) mod 3^{20}=624955285$.</p>
-<p>Find $NF(61,10^7)$ mod $61^{10}$</p>
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>题意说的有点麻烦，我简化一下</p>
-<p>$T_i$是随机生成的数据，$N(p,q)=\sum_{n=0}^q T_n*p^n$</p>
-<p>问你$N(p,q)$的阶乘里面，质因数分解以后$p$的指数膜$p^{10}$答案是多少．</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先可以观察到的是，$T_i$很小，而且他是随机的，我们显然要把他存起来．</p>
-<p>然后一个比较显然的结论是<br>$$<br>n!质因数分解后素因子p的数量为\lfloor \frac{n}{p} \rfloor + \lfloor \frac{n}{p^2} \rfloor + \cdots<br>$$<br>$$<br>\because 最后的答案要膜 p^{10} \therefore 我们统计的时候，对于第一项，我们统计指数为 [1,10]的，第二项[2,11],然后枚举项统计答案即可<br>$$</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1e7</span>+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pow_num = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> T[maxm+<span class="number">100</span>];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p = <span class="number">61</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> powp[<span class="number">1000</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	powp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=pow_num;i++) powp[i] = powp[i<span class="number">-1</span>]*p;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> s0 = <span class="number">290797</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) T[i] = (s0=s0*s0%<span class="number">50515093</span>)%p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod = powp[pow_num];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = i;j&lt;=i+pow_num<span class="number">-1</span>;j++) ans = (ans+(T[j]*powp[j-i]%mod))%mod;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/08/PE303/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -797,6 +821,137 @@
 <p>然后答案显然就是mod[0]啦…….</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll unsigned long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">ll vis[<span class="number">10000</span>+<span class="number">100</span>];</span><br><span class="line"><span class="function">ll <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="built_in">queue</span>&lt;ll&gt; que;</span><br><span class="line">	que.push(<span class="number">1</span>),que.push(<span class="number">2</span>);</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span> vis);</span><br><span class="line">	vis[<span class="number">1</span>] = <span class="number">1</span>; vis[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">		ll now = que.front(); que.pop();</span><br><span class="line">		<span class="keyword">if</span>(now%a==<span class="number">0</span>) <span class="keyword">return</span> now/a;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">			ll buf = now*<span class="number">10</span>+i;</span><br><span class="line">			ll buff = buf%a;</span><br><span class="line">			<span class="keyword">if</span>(vis[buff]) <span class="keyword">continue</span>;</span><br><span class="line">			vis[buff] = buf;</span><br><span class="line">			que.push(buf);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ll ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">10000</span>;i++) ans+=cal(i);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/08/PE288/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/08/PE288/" itemprop="url">Project Euler 288 An enormous factorial</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-08T00:00:00+08:00">
+                2018-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://projecteuler.net/problem=288" target="_blank" rel="noopener">开启传送门</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>For any prime $p$ the number $N(p,q)$ is defined by $N(p,q) = \sum_{n=0}^q T_n*p^n$<br>with $T_n$ generated by the following random number generator:</p>
+<p>\begin{eqnarray}<br>&amp;&amp;S_0 = 290797\\<br>&amp;&amp;S_{n+1} = S_n^2 mod 50515093\\<br>&amp;&amp;T_n = S_n mod p\\<br>\end{eqnarray}</p>
+<p>Let $Nfac(p,q)$ be the factorial of $N(p,q)$.<br>Let $NF(p,q)$ be the number of factors $p$ in $Nfac(p,q)$.</p>
+<p>You are given that $NF(3,10000) mod 3^{20}=624955285$.</p>
+<p>Find $NF(61,10^7)$ mod $61^{10}$</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>题意说的有点麻烦，我简化一下</p>
+<p>$T_i$是随机生成的数据，$N(p,q)=\sum_{n=0}^q T_n*p^n$</p>
+<p>问你$N(p,q)$的阶乘里面，质因数分解以后$p$的指数膜$p^{10}$答案是多少．</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先可以观察到的是，$T_i$很小，而且他是随机的，我们显然要把他存起来．</p>
+<p>然后一个比较显然的结论是<br>$$<br>n!质因数分解后素因子p的数量为\lfloor \frac{n}{p} \rfloor + \lfloor \frac{n}{p^2} \rfloor + \cdots<br>$$<br>$$<br>\because 最后的答案要膜 p^{10} \therefore 我们统计的时候，对于第一项，我们统计指数为 [1,10]的，第二项[2,11],然后枚举项统计答案即可<br>$$</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1e7</span>+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pow_num = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> T[maxm+<span class="number">100</span>];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p = <span class="number">61</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> powp[<span class="number">1000</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	powp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=pow_num;i++) powp[i] = powp[i<span class="number">-1</span>]*p;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> s0 = <span class="number">290797</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) T[i] = (s0=s0*s0%<span class="number">50515093</span>)%p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod = powp[pow_num];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = i;j&lt;=i+pow_num<span class="number">-1</span>;j++) ans = (ans+(T[j]*powp[j-i]%mod))%mod;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1752,7 +1907,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

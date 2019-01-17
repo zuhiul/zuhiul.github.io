@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zuhiul.github.io/"/>
-  <updated>2019-01-09T07:16:37.732Z</updated>
+  <updated>2019-01-17T04:04:17.371Z</updated>
   <id>http://zuhiul.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Project Euler 276 Primitive Triangles</title>
+    <link href="http://zuhiul.github.io/2019/01/17/PE276/"/>
+    <id>http://zuhiul.github.io/2019/01/17/PE276/</id>
+    <published>2019-01-16T16:00:00.000Z</published>
+    <updated>2019-01-17T04:04:17.371Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=276" target="_blank" rel="noopener">开启传送门</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Consider the triangles with integer sides $a, b$ and $c$ with $a \leq b \leq c$.<br>An integer sided triangle $(a,b,c)$ is called primitive if $gcd(a,b,c)=1$.<br>How many primitive integer sided triangles exist with a perimeter not exceeding $10,000,000$?</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=276&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+    
+      <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
+    
+  </entry>
   
   <entry>
     <title>Project Euler 643 2-Friendly</title>
@@ -62,9 +88,9 @@
     </summary>
     
     
-      <category term="DP" scheme="http://zuhiul.github.io/tags/DP/"/>
-    
       <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
+    
+      <category term="DP" scheme="http://zuhiul.github.io/tags/DP/"/>
     
   </entry>
   
@@ -82,6 +108,32 @@
       
       
         &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=122&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+    
+      <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Project Euler 143 Investigating the Torricelli point of a triangle</title>
+    <link href="http://zuhiul.github.io/2018/12/28/PE143/"/>
+    <id>http://zuhiul.github.io/2018/12/28/PE143/</id>
+    <published>2018-12-27T16:00:00.000Z</published>
+    <updated>2019-01-08T05:06:27.599Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=143" target="_blank" rel="noopener">开启传送门</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Let ABC be a triangle with all interior angles being less than $120$ degrees. Let $X$ be any point inside the triangle and let $XA = p, XC = q$, and $XB = r$.</p><p>Fermat challenged Torricelli to find the position of X such that $p + q + r$ was minimised.</p><p>Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $p + q + r$. Even more remarkable, it can be shown that when the sum is minimised, $AN = BM = CO = p + q + r$ and that AN, BM and CO also intersect at T.</p><p><img src="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/PE143.gif" alt="avatar"></p><p>If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $a = 399, b = 455, c = 511$ is an example of a Torricelli triangle, with $p + q + r = 784$.</p><p>Find the sum of all distinct values of $p + q + r ≤ 120000$ for Torricelli triangles.</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$T$就是费马点.然后你要找到所有$p+q+r$不同的所有三角形,然后把$p+q+r$求和.</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$T$在园上,于是有$T$对应的角大小一定是$180-60 = 120$度,然后同理可得,三个角都是$120$度,然后我们运用余弦定理可以得到$p^2+q^2+pq=b^2$,因为我们只要$p+q+r$不同的解,所以我们不妨设$p&gt;=q&gt;=r$,因为三个角都是$120$度,所以余弦定理都成立,所以我们可以得到</p><p>\begin{eqnarray}<br>q^2+r^2+qr &amp;= a^2\\<br>p^2+q^2+pq &amp;= b^2\\<br>p^2+r^2+pr &amp;= c^2\\<br>p&gt;=q&gt;=r\\<br>\end{eqnarray}</p><p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$\dots$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line"><span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line"><span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=143&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerli
       
     
@@ -117,32 +169,6 @@
     
     
       <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Project Euler 143 Investigating the Torricelli point of a triangle</title>
-    <link href="http://zuhiul.github.io/2018/12/28/PE143/"/>
-    <id>http://zuhiul.github.io/2018/12/28/PE143/</id>
-    <published>2018-12-27T16:00:00.000Z</published>
-    <updated>2019-01-08T05:06:27.599Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=143" target="_blank" rel="noopener">开启传送门</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Let ABC be a triangle with all interior angles being less than $120$ degrees. Let $X$ be any point inside the triangle and let $XA = p, XC = q$, and $XB = r$.</p><p>Fermat challenged Torricelli to find the position of X such that $p + q + r$ was minimised.</p><p>Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $p + q + r$. Even more remarkable, it can be shown that when the sum is minimised, $AN = BM = CO = p + q + r$ and that AN, BM and CO also intersect at T.</p><p><img src="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/PE143.gif" alt="avatar"></p><p>If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $a = 399, b = 455, c = 511$ is an example of a Torricelli triangle, with $p + q + r = 784$.</p><p>Find the sum of all distinct values of $p + q + r ≤ 120000$ for Torricelli triangles.</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$T$就是费马点.然后你要找到所有$p+q+r$不同的所有三角形,然后把$p+q+r$求和.</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$T$在园上,于是有$T$对应的角大小一定是$180-60 = 120$度,然后同理可得,三个角都是$120$度,然后我们运用余弦定理可以得到$p^2+q^2+pq=b^2$,因为我们只要$p+q+r$不同的解,所以我们不妨设$p&gt;=q&gt;=r$,因为三个角都是$120$度,所以余弦定理都成立,所以我们可以得到</p><p>\begin{eqnarray}<br>q^2+r^2+qr &amp;= a^2\\<br>p^2+q^2+pq &amp;= b^2\\<br>p^2+r^2+pr &amp;= c^2\\<br>p&gt;=q&gt;=r\\<br>\end{eqnarray}</p><p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$\dots$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line"><span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line"><span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=143&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerli
-      
-    
-    </summary>
-    
-    
-      <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-      <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
     
   </entry>
   
@@ -325,32 +351,6 @@
   </entry>
   
   <entry>
-    <title>Project Euler 288 An enormous factorial</title>
-    <link href="http://zuhiul.github.io/2018/12/08/PE288/"/>
-    <id>http://zuhiul.github.io/2018/12/08/PE288/</id>
-    <published>2018-12-07T16:00:00.000Z</published>
-    <updated>2019-01-08T06:54:00.078Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=288" target="_blank" rel="noopener">开启传送门</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>For any prime $p$ the number $N(p,q)$ is defined by $N(p,q) = \sum_{n=0}^q T_n*p^n$<br>with $T_n$ generated by the following random number generator:</p><p>\begin{eqnarray}<br>&amp;&amp;S_0 = 290797\\<br>&amp;&amp;S_{n+1} = S_n^2 mod 50515093\\<br>&amp;&amp;T_n = S_n mod p\\<br>\end{eqnarray}</p><p>Let $Nfac(p,q)$ be the factorial of $N(p,q)$.<br>Let $NF(p,q)$ be the number of factors $p$ in $Nfac(p,q)$.</p><p>You are given that $NF(3,10000) mod 3^{20}=624955285$.</p><p>Find $NF(61,10^7)$ mod $61^{10}$</p><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>题意说的有点麻烦，我简化一下</p><p>$T_i$是随机生成的数据，$N(p,q)=\sum_{n=0}^q T_n*p^n$</p><p>问你$N(p,q)$的阶乘里面，质因数分解以后$p$的指数膜$p^{10}$答案是多少．</p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先可以观察到的是，$T_i$很小，而且他是随机的，我们显然要把他存起来．</p><p>然后一个比较显然的结论是<br>$$<br>n!质因数分解后素因子p的数量为\lfloor \frac{n}{p} \rfloor + \lfloor \frac{n}{p^2} \rfloor + \cdots<br>$$<br>$$<br>\because 最后的答案要膜 p^{10} \therefore 我们统计的时候，对于第一项，我们统计指数为 [1,10]的，第二项[2,11],然后枚举项统计答案即可<br>$$</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1e7</span>+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pow_num = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> T[maxm+<span class="number">100</span>];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p = <span class="number">61</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> powp[<span class="number">1000</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">powp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=pow_num;i++) powp[i] = powp[i<span class="number">-1</span>]*p;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> s0 = <span class="number">290797</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) T[i] = (s0=s0*s0%<span class="number">50515093</span>)%p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">init();</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod = powp[pow_num];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = i;j&lt;=i+pow_num<span class="number">-1</span>;j++) ans = (ans+(T[j]*powp[j-i]%mod))%mod;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=288&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerli
-      
-    
-    </summary>
-    
-    
-      <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-      <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Project Euler 303 Multiples with small digits</title>
     <link href="http://zuhiul.github.io/2018/12/08/PE303/"/>
     <id>http://zuhiul.github.io/2018/12/08/PE303/</id>
@@ -373,6 +373,32 @@
       <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
     
       <category term="搜索" scheme="http://zuhiul.github.io/tags/%E6%90%9C%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Project Euler 288 An enormous factorial</title>
+    <link href="http://zuhiul.github.io/2018/12/08/PE288/"/>
+    <id>http://zuhiul.github.io/2018/12/08/PE288/</id>
+    <published>2018-12-07T16:00:00.000Z</published>
+    <updated>2019-01-08T06:54:00.078Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=288" target="_blank" rel="noopener">开启传送门</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>For any prime $p$ the number $N(p,q)$ is defined by $N(p,q) = \sum_{n=0}^q T_n*p^n$<br>with $T_n$ generated by the following random number generator:</p><p>\begin{eqnarray}<br>&amp;&amp;S_0 = 290797\\<br>&amp;&amp;S_{n+1} = S_n^2 mod 50515093\\<br>&amp;&amp;T_n = S_n mod p\\<br>\end{eqnarray}</p><p>Let $Nfac(p,q)$ be the factorial of $N(p,q)$.<br>Let $NF(p,q)$ be the number of factors $p$ in $Nfac(p,q)$.</p><p>You are given that $NF(3,10000) mod 3^{20}=624955285$.</p><p>Find $NF(61,10^7)$ mod $61^{10}$</p><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>题意说的有点麻烦，我简化一下</p><p>$T_i$是随机生成的数据，$N(p,q)=\sum_{n=0}^q T_n*p^n$</p><p>问你$N(p,q)$的阶乘里面，质因数分解以后$p$的指数膜$p^{10}$答案是多少．</p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先可以观察到的是，$T_i$很小，而且他是随机的，我们显然要把他存起来．</p><p>然后一个比较显然的结论是<br>$$<br>n!质因数分解后素因子p的数量为\lfloor \frac{n}{p} \rfloor + \lfloor \frac{n}{p^2} \rfloor + \cdots<br>$$<br>$$<br>\because 最后的答案要膜 p^{10} \therefore 我们统计的时候，对于第一项，我们统计指数为 [1,10]的，第二项[2,11],然后枚举项统计答案即可<br>$$</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1e7</span>+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> pow_num = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> T[maxm+<span class="number">100</span>];</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> p = <span class="number">61</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> powp[<span class="number">1000</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">powp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=pow_num;i++) powp[i] = powp[i<span class="number">-1</span>]*p;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> s0 = <span class="number">290797</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) T[i] = (s0=s0*s0%<span class="number">50515093</span>)%p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">init();</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod = powp[pow_num];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = i;j&lt;=i+pow_num<span class="number">-1</span>;j++) ans = (ans+(T[j]*powp[j-i]%mod))%mod;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=288&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+    
+      <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
     
   </entry>
   
