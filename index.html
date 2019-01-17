@@ -213,9 +213,41 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -317,8 +349,13 @@
           
             <p><a href="https://projecteuler.net/problem=276" target="_blank" rel="noopener">开启传送门</a></p>
 <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Consider the triangles with integer sides $a, b$ and $c$ with $a \leq b \leq c$.<br>An integer sided triangle $(a,b,c)$ is called primitive if $gcd(a,b,c)=1$.<br>How many primitive integer sided triangles exist with a perimeter not exceeding $10,000,000$?</p>
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>问你存在多少个边长是整数的三角形,并且满足三边长的gcd为1,周长不超过$1e7$.</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有一个比较奇奇怪怪的<a href="http://mathworld.wolfram.com/IntegerTriangle.html" target="_blank" rel="noopener">结论</a></p>
+<p>我直接把结论搬过来$\dots$</p>
+<p>\begin{eqnarray}<br>    F(n) =<br>    \begin{cases}<br>    \lfloor\frac{(n+3)^2+24}{48}\rfloor\ \ \ \ &amp;n\ \ is\ \ odd\\<br>    \lfloor\frac{n^2+24}{48}\rfloor\ \ \ \ &amp;n\ \ is\ \ even\<br>    \end{cases}<br>\end{eqnarray}</p>
+<p>这个结论说的是,周长为$n$的边长都是整数的三角形的数量.然后我们可以预处理出所有的周长为$n$的数量出来,然后我们怎么保证gcd呢,比较好想的就是容斥,我们容斥掉所有gcd不是1的就行了,也就是说我们用周长为$2\cdot n,3\cdot n,\dots$的减去周长为$n$的就行啦啦啦</p>
+<p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1e7</span>+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> num[maxm];</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">get</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&amp;<span class="number">1</span>) <span class="keyword">return</span> ((a+<span class="number">3</span>)*(a+<span class="number">3</span>)+<span class="number">24</span>)/<span class="number">48</span>;</span><br><span class="line">	<span class="keyword">return</span> (a*a+<span class="number">24</span>)/<span class="number">48</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;<span class="comment">//预处理出每个周长对应的三角形数量,容斥得到正确的数量</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) num[i] = get(i);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) <span class="keyword">for</span>(<span class="keyword">int</span> j = i&lt;&lt;<span class="number">1</span>;j&lt;maxm;j+=i) num[j]-=num[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) ans+=num[i];</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -758,138 +795,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/28/PE143/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/28/PE143/" itemprop="url">Project Euler 143 Investigating the Torricelli point of a triangle</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T00:00:00+08:00">
-                2018-12-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://projecteuler.net/problem=143" target="_blank" rel="noopener">开启传送门</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Let ABC be a triangle with all interior angles being less than $120$ degrees. Let $X$ be any point inside the triangle and let $XA = p, XC = q$, and $XB = r$.</p>
-<p>Fermat challenged Torricelli to find the position of X such that $p + q + r$ was minimised.</p>
-<p>Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $p + q + r$. Even more remarkable, it can be shown that when the sum is minimised, $AN = BM = CO = p + q + r$ and that AN, BM and CO also intersect at T.</p>
-<p><img src="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/PE143.gif" alt="avatar"></p>
-<p>If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $a = 399, b = 455, c = 511$ is an example of a Torricelli triangle, with $p + q + r = 784$.</p>
-<p>Find the sum of all distinct values of $p + q + r ≤ 120000$ for Torricelli triangles.</p>
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$T$就是费马点.然后你要找到所有$p+q+r$不同的所有三角形,然后把$p+q+r$求和.</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$T$在园上,于是有$T$对应的角大小一定是$180-60 = 120$度,然后同理可得,三个角都是$120$度,然后我们运用余弦定理可以得到$p^2+q^2+pq=b^2$,因为我们只要$p+q+r$不同的解,所以我们不妨设$p&gt;=q&gt;=r$,因为三个角都是$120$度,所以余弦定理都成立,所以我们可以得到</p>
-<p>\begin{eqnarray}<br>q^2+r^2+qr &amp;= a^2\\<br>p^2+q^2+pq &amp;= b^2\\<br>p^2+r^2+pr &amp;= c^2\\<br>p&gt;=q&gt;=r\\<br>\end{eqnarray}</p>
-<p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$\dots$</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line">			<span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line">				<span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">					ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/28/gcd_fibonacci/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -979,6 +884,138 @@
 <p>$$<br>gcd(f_{i},f_{j}) = gcd(f_{i\%j},f_{j})<br>$$</p>
 <h1 id="gcd-f-i-f-j-f-gcd-i-j"><a href="#gcd-f-i-f-j-f-gcd-i-j" class="headerlink" title="$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $"></a>$gcd(f_{i},f_{j}) = f_{gcd(i,j)} $</h1><p>由上面的结论,我们容易得到,我们不断调用上面的结论,直到$i==1||j==1$,然后可以得到,如果$k=gcd(i,j)$,那么有$gcd(f_{i},f_{j}) = gcd(f_{k},f_{1}) = f_{k} = f_{gcd(i,j)}$</p>
 <p>命题得证</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/28/PE143/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/28/PE143/" itemprop="url">Project Euler 143 Investigating the Torricelli point of a triangle</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-28T00:00:00+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://projecteuler.net/problem=143" target="_blank" rel="noopener">开启传送门</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Let ABC be a triangle with all interior angles being less than $120$ degrees. Let $X$ be any point inside the triangle and let $XA = p, XC = q$, and $XB = r$.</p>
+<p>Fermat challenged Torricelli to find the position of X such that $p + q + r$ was minimised.</p>
+<p>Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $p + q + r$. Even more remarkable, it can be shown that when the sum is minimised, $AN = BM = CO = p + q + r$ and that AN, BM and CO also intersect at T.</p>
+<p><img src="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/PE143.gif" alt="avatar"></p>
+<p>If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $a = 399, b = 455, c = 511$ is an example of a Torricelli triangle, with $p + q + r = 784$.</p>
+<p>Find the sum of all distinct values of $p + q + r ≤ 120000$ for Torricelli triangles.</p>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$T$就是费马点.然后你要找到所有$p+q+r$不同的所有三角形,然后把$p+q+r$求和.</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$T$在园上,于是有$T$对应的角大小一定是$180-60 = 120$度,然后同理可得,三个角都是$120$度,然后我们运用余弦定理可以得到$p^2+q^2+pq=b^2$,因为我们只要$p+q+r$不同的解,所以我们不妨设$p&gt;=q&gt;=r$,因为三个角都是$120$度,所以余弦定理都成立,所以我们可以得到</p>
+<p>\begin{eqnarray}<br>q^2+r^2+qr &amp;= a^2\\<br>p^2+q^2+pq &amp;= b^2\\<br>p^2+r^2+pr &amp;= c^2\\<br>p&gt;=q&gt;=r\\<br>\end{eqnarray}</p>
+<p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$\dots$</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line">			<span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line">			<span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line">				<span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">					ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1280,6 +1317,143 @@
 <p>5.因为$10 = 2\times 5$,所以我们只用统计$2,5$的数量就行了,然后我们可以发现,$2$的数量显然多于$5$的数量,所以我们只用统计$5$的个数就是答案.下面给出一个通用的代码</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(a) ret+=a/=<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>6.小数据暴力,大数据模拟</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/23/PE463/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/23/PE463/" itemprop="url">Project Euler 463 A weird recurrence relation</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-23T00:00:00+08:00">
+                2018-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://projecteuler.net/problem=463" target="_blank" rel="noopener">开启传送门</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The function $f$ is defined for all positive integers as follows:</p>
+<p>$f(1)$ = $1$</p>
+<p>$f(3)$ = $3$</p>
+<p>$f(2n)$ = $f(n)$</p>
+<p>$f(4n+1)$ = $2\cdot f(2n+1)-f(n)$</p>
+<p>$f(4n+3)$ = $3\cdot f(2n+1)-2\cdot f(n)$</p>
+<p>The function $S(n)$ is defined as $\sum_{i=1}^{n} f(i)$.</p>
+<p>$S(8)=22$ and $S(100)=3604$.</p>
+<p>Find $S(3^{37})$. Give the last $9$ digits of your answer.</p>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是给你一个序列,问你这个序列的前缀和是多少</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>显然是推公式嘛.</p>
+<p>根据题意我们显然可以得到</p>
+<p>$f(4n)+f(4n+1)+f(4n+2)+f(4n+3) = 6\cdot f(2n+1) - 2\cdot f(n)$ for $n\geq 1$</p>
+<p>然后我们每四项加一下就可以得到下面这个公式</p>
+<p>\begin{eqnarray}<br>S(4n+3) &amp;=&amp; \sum_{i=1}^{4i+3} f(i)\\<br>        &amp;=&amp; 5 + \sum_{i=4}^{4i+3} f(i)\\<br>        &amp;=&amp; 5 + \sum_{i=1}^{n} (6\cdot f(2i+1) - 2\cdot f(i))\\<br>        &amp;=&amp; 5 + 6\sum_{i=1}^{n} (f(2i+1)+f(2i)) - 8\sum_{i=1}^{n} f(i)\\<br>        &amp;=&amp; 5 + 6\sum_{i=2}^{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\<br>        &amp;=&amp; 5 - 6 + 6\sum{i=1}{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\<br>        &amp;=&amp; -1 + 6\sum{i=1}{2n+1} f(i) -8\sum_{i=1}^{n} f(i)\\<br>\end{eqnarray}</p>
+<p>然后瞎搞就行了$\dots$</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1e7</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;<span class="keyword">return</span> (a+b)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;<span class="keyword">return</span> a*b%mod;&#125;</span><br><span class="line"><span class="keyword">int</span> num[maxm];</span><br><span class="line"><span class="keyword">int</span> sum[maxm];</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&lt;maxm&amp;&amp;num[a]) <span class="keyword">return</span> num[a];</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">3</span>) <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">if</span>((a&amp;<span class="number">1</span>)^<span class="number">1</span>) <span class="keyword">return</span> f(a&gt;&gt;<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>((a&amp;<span class="number">3</span>)==<span class="number">3</span>) <span class="keyword">return</span> add(mul(<span class="number">3</span>,f(a&gt;&gt;<span class="number">1</span>)),mod-(f(a&gt;&gt;<span class="number">2</span>)&lt;&lt;<span class="number">1</span>));</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> add((f(a&gt;&gt;<span class="number">1</span>|<span class="number">1</span>)&lt;&lt;<span class="number">1</span>),mod-f(a&gt;&gt;<span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">S</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a&lt;maxm) <span class="keyword">return</span> sum[a];</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(a%<span class="number">4</span>==<span class="number">3</span>)&#123;</span><br><span class="line">		ret = add(ret,mul(<span class="number">6</span>,S(a&gt;&gt;<span class="number">1</span>)));</span><br><span class="line">		ret = add(ret,mod-mul(<span class="number">8</span>,S(a&gt;&gt;<span class="number">2</span>)));</span><br><span class="line">		ret = add(ret,mod<span class="number">-1</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(a%<span class="number">4</span>!=<span class="number">3</span>) ret = add(ret,mod-f(++a));</span><br><span class="line">		ret = add(ret,S(a));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) num[i] = f(i),sum[i] = add(sum[i<span class="number">-1</span>],num[i]);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> nouse = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">37</span>;i++)&#123;</span><br><span class="line">		nouse = (nouse&lt;&lt;<span class="number">2</span>)-nouse;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;S(nouse)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1988,143 +2162,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2018/12/23/PE463/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/23/PE463/" itemprop="url">Project Euler 463 A weird recurrence relation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-23T00:00:00+08:00">
-                2018-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://projecteuler.net/problem=463" target="_blank" rel="noopener">开启传送门</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The function $f$ is defined for all positive integers as follows:</p>
-<p>$f(1)$ = $1$</p>
-<p>$f(3)$ = $3$</p>
-<p>$f(2n)$ = $f(n)$</p>
-<p>$f(4n+1)$ = $2\cdot f(2n+1)-f(n)$</p>
-<p>$f(4n+3)$ = $3\cdot f(2n+1)-2\cdot f(n)$</p>
-<p>The function $S(n)$ is defined as $\sum_{i=1}^{n} f(i)$.</p>
-<p>$S(8)=22$ and $S(100)=3604$.</p>
-<p>Find $S(3^{37})$. Give the last $9$ digits of your answer.</p>
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是给你一个序列,问你这个序列的前缀和是多少</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>显然是推公式嘛.</p>
-<p>根据题意我们显然可以得到</p>
-<p>$f(4n)+f(4n+1)+f(4n+2)+f(4n+3) = 6\cdot f(2n+1) - 2\cdot f(n)$ for $n\geq 1$</p>
-<p>然后我们每四项加一下就可以得到下面这个公式</p>
-<p>\begin{eqnarray}<br>S(4n+3) &amp;=&amp; \sum_{i=1}^{4i+3} f(i)\\<br>        &amp;=&amp; 5 + \sum_{i=4}^{4i+3} f(i)\\<br>        &amp;=&amp; 5 + \sum_{i=1}^{n} (6\cdot f(2i+1) - 2\cdot f(i))\\<br>        &amp;=&amp; 5 + 6\sum_{i=1}^{n} (f(2i+1)+f(2i)) - 8\sum_{i=1}^{n} f(i)\\<br>        &amp;=&amp; 5 + 6\sum_{i=2}^{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\<br>        &amp;=&amp; 5 - 6 + 6\sum{i=1}{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\<br>        &amp;=&amp; -1 + 6\sum{i=1}{2n+1} f(i) -8\sum_{i=1}^{n} f(i)\\<br>\end{eqnarray}</p>
-<p>然后瞎搞就行了$\dots$</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1e7</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;<span class="keyword">return</span> (a+b)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;<span class="keyword">return</span> a*b%mod;&#125;</span><br><span class="line"><span class="keyword">int</span> num[maxm];</span><br><span class="line"><span class="keyword">int</span> sum[maxm];</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&lt;maxm&amp;&amp;num[a]) <span class="keyword">return</span> num[a];</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">3</span>) <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">	<span class="keyword">if</span>((a&amp;<span class="number">1</span>)^<span class="number">1</span>) <span class="keyword">return</span> f(a&gt;&gt;<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>((a&amp;<span class="number">3</span>)==<span class="number">3</span>) <span class="keyword">return</span> add(mul(<span class="number">3</span>,f(a&gt;&gt;<span class="number">1</span>)),mod-(f(a&gt;&gt;<span class="number">2</span>)&lt;&lt;<span class="number">1</span>));</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> add((f(a&gt;&gt;<span class="number">1</span>|<span class="number">1</span>)&lt;&lt;<span class="number">1</span>),mod-f(a&gt;&gt;<span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">S</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(a&lt;maxm) <span class="keyword">return</span> sum[a];</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(a%<span class="number">4</span>==<span class="number">3</span>)&#123;</span><br><span class="line">		ret = add(ret,mul(<span class="number">6</span>,S(a&gt;&gt;<span class="number">1</span>)));</span><br><span class="line">		ret = add(ret,mod-mul(<span class="number">8</span>,S(a&gt;&gt;<span class="number">2</span>)));</span><br><span class="line">		ret = add(ret,mod<span class="number">-1</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(a%<span class="number">4</span>!=<span class="number">3</span>) ret = add(ret,mod-f(++a));</span><br><span class="line">		ret = add(ret,S(a));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;maxm;i++) num[i] = f(i),sum[i] = add(sum[i<span class="number">-1</span>],num[i]);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> nouse = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">37</span>;i++)&#123;</span><br><span class="line">		nouse = (nouse&lt;&lt;<span class="number">2</span>)-nouse;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;S(nouse)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2430,6 +2467,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
