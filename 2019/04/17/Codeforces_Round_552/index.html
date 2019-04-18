@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="睡到二三更时      凡荣华皆成幻境">
 <meta property="og:description" content="F. Shovels Shop开启传送门">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-18T04:09:39.160Z">
+<meta property="og:updated_time" content="2019-04-18T04:11:19.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Round 552">
 <meta name="twitter:description" content="F. Shovels Shop开启传送门">
@@ -410,7 +410,7 @@
 <p>In the second example Misha can buy shovels on positions 1, 2, 3, 4 and 8 (costs are 6, 8, 5, 1 and 2) and get three cheapest (with costs 5, 1 and 2) for free. And then he can buy shovels on positions 6, 7 and 9 (all with costs 1) without using any special offers. So the total cost is 6+8+1+1+1=17.</p>
 <p>In the third example Misha can buy four cheapest shovels without using any special offers and get the total cost 17.</p>
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>zuhiul 都20了，还没有对象，然后家里人给安排了n个菇凉和他相亲，他需要挑出k个来相亲。相亲当然是男方请客，和每个妹子相亲的成本是不一样的，每个妹子都有一个固定成本，为了促进zuhiul相亲，家里人说，如果一次邀约了$x_i$个菇凉，家里就给报销这次相亲的所有菇凉中，成本最低的$y_i$个菇凉的花费，现在zuhiul想花最少的钱相完所有的亲，他最少要花多少钱呢？</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先可以确定的是，我们一定找n各种最便宜的k个来相亲，因为如果不是这k个，我们一定可以合理的交换，得到一个不劣的解。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先可以确定的是，我们一定找n个中最便宜的k个来相亲，因为如果不是这k个，我们一定可以合理的交换，得到一个不劣的解。</p>
 <p>然后排序，干掉贵的那一部分。</p>
 <p>那么如果不考虑报销的话，成本是固定的，所以剩下的问题就是怎么得到尽可能多的报销。</p>
 <p>然后，显然是一个$n^2$的dp了。</p>
