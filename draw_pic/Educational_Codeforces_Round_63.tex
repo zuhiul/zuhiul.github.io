@@ -22,11 +22,11 @@
 \node [fill=pink,circle] (F) at (\ax,\dy) {F};
 \node [fill=pink,circle] (G) at (\cx,\dy) {G};
 
-\draw (A) -- (B) -- (C) -- (A);
-\draw (C) -- (D) -- (E) -- (C);
-\draw (D) -- (F) -- (G) -- (E);
+\draw [line width=1mm] (A) -- (B) -- (C) -- (A);
+\draw [line width=1mm] (C) -- (D) -- (E) -- (C);
+\draw [line width=1mm] (D) -- (F) -- (G) -- (E);
 
-\draw [->] (\cx+2,\liney) -- (\dx-2,\liney);
+\draw [->,line width=1mm] (\cx+2,\liney) -- (\dx-2,\liney);
 
 \node [fill=pink,circle] (2_A) at (\dx,\ay) {A};
 \node [fill=pink,circle] (2_B) at (\fx,\ay) {B};
@@ -39,41 +39,31 @@
 \node [fill=pink,circle] (2_F) at (\dx,\dy) {F};
 \node [fill=pink,circle] (2_G) at (\fx,\dy) {G};
 
-\draw [color=yellow] (2_A) -- (2_B) -- (2_C) -- (2_A);
-\draw (2_C) -- (2_D) -- (2_E) -- (2_C);
-\draw [color=green] (2_D) -- (2_F) -- (2_G) -- (2_E);
+\draw [color=yellow,line width=1mm] (2_A) -- (2_B) -- (2_C) -- (2_A);
+\draw [line width=1mm] (2_C) -- (2_D) -- (2_E) -- (2_C);
+\draw [color=green,line width=1mm] (2_D) -- (2_F) -- (2_G) -- (2_E);
 
-\draw [->] (\fx+2,\liney) -- (\gx-2,\liney);
+\draw [->,line width=1mm] (\fx+2,\liney) -- (\gx-2,\liney);
 
 \node [fill=pink,circle] (3_L_D) at (\gx-3*\rootTwo,\dy-3*\rootTwo) {D};
 \node [fill=pink,circle] (3_F) at (\gx,\dy) {F};
 \node [fill=pink,circle] (3_G) at (\ix,\dy) {G};
 \node [fill=pink,circle] (3_R_E) at (\ix+3*\rootTwo,\dy-3*\rootTwo) {E};
 
-\draw [color=green] (3_L_D) -- (3_F) -- (3_G) -- (3_R_E);
+\draw [color=green,line width=1mm] (3_L_D) -- (3_F) -- (3_G) -- (3_R_E);
 
 \node [fill=pink,circle] (3_R_D) at (\gx,\cy) {D};
 \node [fill=pink,circle] (3_L_E) at (\ix,\cy) {E};
 \node [fill=pink,circle] (3_U_C) at (\hx,\by) {C};
 
-\draw (3_R_D) -- (3_L_E) -- (3_U_C) -- (3_R_D);
+\draw [line width=1mm] (3_R_D) -- (3_L_E) -- (3_U_C) -- (3_R_D);
 
 \node [fill=pink,circle] (3_L_C) at (\gx-3*\rootTwo,\ay+3*\rootTwo) {C};
 \node [fill=pink,circle] (3_A) at (\gx,\ay) {A};
 \node [fill=pink,circle] (3_B) at (\ix,\ay) {B};
 \node [fill=pink,circle] (3_R_C) at (\ix+3*\rootTwo,\ay+3*\rootTwo) {C};
 
-\draw [color=yellow] (3_L_C) -- (3_A) -- (3_B) -- (3_R_C);
+\draw [color=yellow,line width=1mm] (3_L_C) -- (3_A) -- (3_B) -- (3_R_C);
 \end{tikzpicture}
 \end{document}
-
-
-
-
-
-
-
-
-
-
 
