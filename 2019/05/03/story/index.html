@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="CF,">
+  <meta name="keywords" content="story,">
 
 
 
@@ -81,23 +81,18 @@
 
 
 
-<meta name="description" content="F. Delivery Oligopoly开启传送门">
-<meta name="keywords" content="CF">
+<meta name="description" content="2019">
+<meta name="keywords" content="story">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Educational Codeforces Round 63">
-<meta property="og:url" content="http://zuhiul.github.io/2019/04/28/Educational Codeforces Round 63/index.html">
+<meta property="og:title" content="我可以等，但你别跑">
+<meta property="og:url" content="http://zuhiul.github.io/2019/05/03/story/index.html">
 <meta property="og:site_name" content="睡到二三更时      凡荣华皆成幻境">
-<meta property="og:description" content="F. Delivery Oligopoly开启传送门">
+<meta property="og:description" content="2019">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://zuhiul.github.io/img/cf_1155_f_1.png">
-<meta property="og:image" content="http://zuhiul.github.io/img/cf_1155_f_2.png">
-<meta property="og:image" content="http://zuhiul.github.io/img/cf_1155_f_3.png">
-<meta property="og:image" content="http://zuhiul.github.io/img/edu_cf_63_f_1.png">
-<meta property="og:updated_time" content="2019-04-29T06:37:03.889Z">
+<meta property="og:updated_time" content="2019-05-03T02:10:44.071Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Educational Codeforces Round 63">
-<meta name="twitter:description" content="F. Delivery Oligopoly开启传送门">
-<meta name="twitter:image" content="http://zuhiul.github.io/img/cf_1155_f_1.png">
+<meta name="twitter:title" content="我可以等，但你别跑">
+<meta name="twitter:description" content="2019">
 
 
 
@@ -127,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://zuhiul.github.io/2019/04/28/Educational Codeforces Round 63/">
+  <link rel="canonical" href="http://zuhiul.github.io/2019/05/03/story/">
 
 
 
 
 
-  <title>Educational Codeforces Round 63 | 睡到二三更时      凡荣华皆成幻境</title>
+  <title>我可以等，但你别跑 | 睡到二三更时      凡荣华皆成幻境</title>
   
 
 
@@ -282,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/04/28/Educational Codeforces Round 63/">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/05/03/story/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zuhiul">
@@ -299,11 +294,15 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Educational Codeforces Round 63</h1>
+          <h1 class="post-title" itemprop="name headline">我可以等，但你别跑</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+			
+				<i class="fa fa-thumb-tack"></i>
+			    <font color="green">置顶</font>
+			    <span class="post-meta-divider">|</span>
 			
 
             
@@ -313,8 +312,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-28T00:00:00+08:00">
-                2019-04-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-03T10:10:44+08:00">
+                2019-05-03
               </time>
             
 
@@ -350,7 +349,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2k
+                  349
                 </span>
               
 
@@ -366,7 +365,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  10
+                  1
                 </span>
               
             </div>
@@ -387,53 +386,13 @@
       
 
       
-        <h2 id="F-Delivery-Oligopoly"><a href="#F-Delivery-Oligopoly" class="headerlink" title="F. Delivery Oligopoly"></a>F. Delivery Oligopoly</h2><p><a href="https://codeforces.com/contest/1155/problem/F" target="_blank" rel="noopener">开启传送门</a></p>
-<a id="more"></a>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The whole delivery market of Berland is controlled by two rival companies: BerEx and BerPS. They both provide fast and reliable delivery services across all the cities of Berland.</p>
-<p>The map of Berland can be represented as an <strong>undirected</strong> graph. The cities are vertices and the roads are edges between them. Each pair of cities has no more than one road between them. Each road connects different cities.</p>
-<p>BerEx and BerPS are so competitive that for each pair of cities $(v,u)$ they have set up their paths from $v$ to $u$ in such a way that <strong>these two paths don’t share a single road.</strong> It is guaranteed that it was possible.</p>
-<p>Now Berland government decided to cut down the road maintenance cost by abandoning some roads. Obviously, they want to maintain as little roads as possible. However, they don’t want to break the entire delivery system. So BerEx and BerPS should still be able to have their paths between every pair of cities non-intersecting.</p>
-<p>What is the minimal number of roads Berland government can maintain?</p>
-<p><em>More formally, given a 2-edge connected undirected graph, what is the minimum number of edges that can be left in it so that the resulting graph is also 2-edge connected?</em></p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line contains two integers $n$ and $m$ ($3\leq n\leq14$, $n\leq m\leq \frac{n(n-1)}{2}$) — the number of cities and the number of roads between them.</p>
-<p>Each of the next 𝑚 lines contains two integers $v$ and $u$ ($1\leq v,u\leq n,v\neq u$) — the cities connected by the next road.</p>
-<p>It is guaranteed that each pair of cities has no more than one road between them. It is guaranteed that each pair of cities have at least two paths between them that don’t share a single road.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>The first line should contain a single integer $k$ — the minimum number of roads Berland government can maintain so that BerEx and BerPS are still able to have their paths between every pair of cities non-intersecting.</p>
-<p>The next $k$ lines should contain the list of roads which are being maintained. Each line of form “$v\ u$”, where $v$ and $u$ are cities connected by the next road.</p>
-<p>If there are multiple lists of minimum size, print any of them. The order of roads in the list doesn’t matter.</p>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="input1"><a href="#input1" class="headerlink" title="input1"></a>input1</h4><p>3 3<br>1 2<br>2 3<br>3 1</p>
-<h4 id="output1"><a href="#output1" class="headerlink" title="output1"></a>output1</h4><p>3<br>1 3<br>3 2<br>1 2</p>
-<h4 id="input2"><a href="#input2" class="headerlink" title="input2"></a>input2</h4><p>4 5<br>1 2<br>1 4<br>2 3<br>4 3<br>1 3</p>
-<h4 id="output2"><a href="#output2" class="headerlink" title="output2"></a>output2</h4><p>4<br>1 4<br>4 3<br>3 2<br>1 2</p>
-<h4 id="input3"><a href="#input3" class="headerlink" title="input3"></a>input3</h4><p>6 10<br>1 2<br>2 3<br>3 1<br>3 4<br>4 5<br>5 6<br>4 6<br>2 5<br>1 6<br>3 5</p>
-<h4 id="output3"><a href="#output3" class="headerlink" title="output3"></a>output3</h4><p>6<br>1 6<br>6 5<br>5 4<br>4 3<br>3 2<br>1 2</p>
-<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>Here are graphs from the examples, red edges are the maintained ones.</p>
-<p><img src="/img/cf_1155_f_1.png" alt="cf_1155_f_1.png"></p>
-<p><img src="/img/cf_1155_f_2.png" alt="cf_1155_f_1.png"></p>
-<p><img src="/img/cf_1155_f_3.png" alt="cf_1155_f_1.png"></p>
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>给你一个不超过14个节点的无向图，让你找到满足一下条件的一个子图：</p>
-<ul>
-<li>包含所有点</li>
-<li>包含尽可能少的边</li>
-<li>子图中任意两个点存在两条完全不交的路径</li>
-</ul>
-<p>让你输出一个任意符合题意的子图。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>当时没做出来，看题解才做出来的。建议先看原题解。如下：</p>
-<p>  Let’s use dynamic programming to solve this problem. We will start with a single biconnected component consisting of vertex $0$, and connect other vertices to it. So, the state of our dynamic programming will be a $mask$ of vertices that are in the same biconnected component with $0$.</p>
-<p>  How can we extend a biconnected component in such a way that some other vertices are added into it, but it is still biconnected? We will add a path (possibly cyclic) that starts in some vertex $x$ belonging to the $mask$, goes through some vertices not belonging to the $mask$, and ends in some vertex $y$ belonging to the $mask$ (possibly $x=y$). If for every triple ($x,y,addmask$) we precalculate some path that starts in $x$, goes through vertices from $addmask$ and ends in $y$ (and $addmask$ does not contain neither $x$ nor $y$), then we can solve the problem in $O(3^nn^2)$: there will be $2^n$ states, for every state we will iterate on two vertices $x$ and $y$ belonging to the $mask$, and the number of possible pairs of non-intersecting masks $mask$ and $addmask$ is $O(3^n)$.</p>
-<p>  The only thing that’s left is precalculating the paths for triples ($x,y,addmask$). That can be done with auxiliary dynamic programming $dp2[x][y][addmask]$ which will denote whether such a path exists. For every edge ($u,v$) of the original graph, $dp2[u][v][0]$ is true, and we can go from $dp2[x][y][addmask]$ to some state $dp2[x][z][addmask^{‘}]$, where $addmask^{‘}$ will contain all vertices from $addmask$ and vertex $y$ (and we should ensure that there is an edge ($y,z$) in the graph and the $addmask$ didn’t contain vertex $y$ earlier). We should also somehow be able to restore the paths from this dp, and we also should be careful not to choose the same edge twice (for example, if we start a path by edge ($x,y$), we should not use the same edge to return to $x$) — both these things can be done, for example, by storing next-to-last vertex in the path.</p>
-<p>我基本是看完题解才有想法的，和题解写的一模一样，（其实不一样，我写的比标程丑）。</p>
-<p>大体思路还是很清晰的。</p>
-<p>首先，我们可以很轻松的发现，答案一定是很多环交在了一起构成了答案对应的子图，然后对于任何一个存在很多环相交的图来说，我们可以拆成一个环和很多很多边构成的，如下图：</p>
-<p><img src="/img/edu_cf_63_f_1.png" alt="edu_cf_63_f_1.png"></p>
-<p>同样的我们可以很轻松的得到，任何一个环都可以作为拆分后唯一的环。剩下的问题就是我们怎么找到所有的边了。也即怎么找到我们需要的所有路径。我们做以下定义。</p>
-<p>我们找到一条从$a$到$b$的路径，并且其中包括$mask$对应的其他点，我们假设$dp2[a][b][mask]$表示是否存在一条从$a$到$b$的路径，并且还包含了$mask$点，例如：</p>
-<p>$dp2[1][3][1] = 1$表示存在一条$1-0-3$的路径</p>
-<p>$dp2[3][5][3] = 1$表示存在一条从$3$到$5$的路径，其中包含$0$号点和$1$号点，路径可能是$3-0-1-5$，也可能是$3-1-0-5$。</p>
-<p>对于他的转移显然比较好想，直接枚举下一个点是谁就行了。</p>
-<p>然后我们取出任意一个节点表示当前符合答案的子图的子图。因为一个点的时候显然符合答案（因为一对都没有）。然后我们在这个子图的子图中不断的添加边构成环，最后判断得到的全图是否满足答案就行了。。。。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">1</span>&lt;&lt;maxn;</span><br><span class="line"><span class="keyword">int</span> n,m,upper;</span><br><span class="line"><span class="keyword">int</span> dp[maxm|<span class="number">10</span>];<span class="comment">//记录答案是否存在，也即当前子图是否满足条件（子图中任意两个点存在两条完全不交的路径）</span></span><br><span class="line"><span class="keyword">bool</span> dp2[maxn][maxn][maxm];<span class="comment">//表示是否存在一条从i到j，包含mask对应点的路径</span></span><br><span class="line"><span class="keyword">int</span> last[maxn][maxn][maxm];<span class="comment">//用来记录i到j中上一个点是谁，用来输出路径</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; bit[maxm|<span class="number">10</span>];<span class="comment">//表示mask中对应的点的编号</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; mat[maxm|<span class="number">10</span>];<span class="comment">//存输入的图</span></span><br><span class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; con[maxm|<span class="number">10</span>];<span class="comment">//表示mask对应的两个外部点，也就是路径的起点终点</span></span><br><span class="line"><span class="keyword">int</span> addmask[maxm|<span class="number">10</span>];<span class="comment">//mask对应的外部边对应的mask</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_bit</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a) show_bit(a&gt;&gt;<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">if</span>(a&amp;<span class="number">1</span>) <span class="built_in">cout</span>&lt;&lt;<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	upper = <span class="number">1</span>&lt;&lt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>,a,b;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">		a--,b--;</span><br><span class="line">		mat[a].push_back(b);</span><br><span class="line">		mat[b].push_back(a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">memset</span>(dp,<span class="number">0x3f</span>,<span class="keyword">sizeof</span> dp);</span><br><span class="line">	<span class="built_in">memset</span>(dp2,<span class="literal">false</span>,<span class="keyword">sizeof</span> dp2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> j: mat[i])&#123;</span><br><span class="line">			dp2[i][j][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">			last[i][j][<span class="number">0</span>] = i;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> mask = <span class="number">0</span>;mask&lt;upper;mask++) <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++) <span class="keyword">if</span>(mask&amp;(<span class="number">1</span>&lt;&lt;j)) bit[mask].push_back(j);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> mask = <span class="number">0</span>;mask&lt;upper;mask++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(mask&amp;(<span class="number">1</span>&lt;&lt;i)) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(mask&amp;(<span class="number">1</span>&lt;&lt;j)) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(i==j||dp2[i][j][mask]==<span class="literal">false</span>) <span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">auto</span> z:mat[j])&#123;</span><br><span class="line">					<span class="keyword">if</span>(mask&amp;(<span class="number">1</span>&lt;&lt;z)) <span class="keyword">continue</span>;</span><br><span class="line">					<span class="keyword">if</span>(z==last[i][j][mask]) <span class="keyword">continue</span>;</span><br><span class="line">					<span class="keyword">if</span>(dp2[i][z][mask|(<span class="number">1</span>&lt;&lt;j)]==<span class="literal">false</span>)&#123;</span><br><span class="line">						last[i][z][mask|(<span class="number">1</span>&lt;&lt;j)] = j;</span><br><span class="line">						dp2[i][z][mask|(<span class="number">1</span>&lt;&lt;j)] = <span class="literal">true</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	dp[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> mask = <span class="number">0</span>;mask &lt; upper;mask++) &#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> add = mask;add;add = (add<span class="number">-1</span>)&amp;mask)&#123;</span><br><span class="line">			<span class="keyword">int</span> pre = add^mask;</span><br><span class="line">			<span class="keyword">int</span> cnt = __builtin_popcount(add)+<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(dp[pre]+cnt&gt;=dp[mask]) <span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">auto</span> x:bit[pre])&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">auto</span> y: bit[pre])&#123;</span><br><span class="line">					<span class="keyword">if</span>(dp2[x][y][add])&#123;</span><br><span class="line">						dp[mask] = dp[pre]+cnt;</span><br><span class="line">						con[mask] = make_pair(x,y);</span><br><span class="line">						addmask[mask] = add;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dp[(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>]==inf) <span class="built_in">cout</span>&lt;&lt;<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;dp[(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">int</span> cur = (<span class="number">1</span>&lt;&lt;n) - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(cur!=<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">int</span> add = addmask[cur];</span><br><span class="line">			<span class="keyword">int</span> x = con[cur].first;</span><br><span class="line">			<span class="keyword">int</span> y = con[cur].second;</span><br><span class="line">			cur^=add;</span><br><span class="line">			<span class="keyword">while</span>(add)&#123;</span><br><span class="line">				<span class="keyword">int</span> ny = last[x][y][add];</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;y+<span class="number">1</span>&lt;&lt;<span class="string">' '</span>&lt;&lt;ny+<span class="number">1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">				y = ny;</span><br><span class="line">				add^=(<span class="number">1</span>&lt;&lt;ny);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;x+<span class="number">1</span>&lt;&lt;<span class="string">' '</span>&lt;&lt;y+<span class="number">1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h1><a id="more"></a>
+<h2 id="201905"><a href="#201905" class="headerlink" title="201905"></a>201905</h2><h3 id="20190501"><a href="#20190501" class="headerlink" title="20190501"></a>20190501</h3><h4 id="20190501-09-00-AM-update"><a href="#20190501-09-00-AM-update" class="headerlink" title="20190501 09:00 AM update"></a>20190501 09:00 AM update</h4><p>今天开始我想记录下和她的所有故事。</p>
+<h4 id="20190501-06-15-PM-update"><a href="#20190501-06-15-PM-update" class="headerlink" title="20190501 06:15 PM update"></a>20190501 06:15 PM update</h4><p>今天终于见到了心仪的小姐姐了，然后在天津逛了一大圈，刚写高铁，吃了个饭，然后逛了会街，然后就去听相声，然后逛了逛他们学校，在图书馆坐了一会就这样，哈哈哈哈哈哈哈，巨开心</p>
+<h4 id="20190501-11-52-PM-update"><a href="#20190501-11-52-PM-update" class="headerlink" title="20190501 11:52 PM update"></a>20190501 11:52 PM update</h4><p>下午的时候和她一起去吃了个饭。然后我回宾馆把东西放下后就拉着她各种溜达，但是感觉她兴致不高。可能是她要考研的缘故。确实，感觉拉着一个想考研的人也挺罪恶的。但是我是真的很开心，哇，真的是只要想到和她一起，真的是压马路都巨开心<em>^_^</em></p>
+<h3 id="20190502"><a href="#20190502" class="headerlink" title="20190502"></a>20190502</h3><h4 id="20190502-00-31-AM-update"><a href="#20190502-00-31-AM-update" class="headerlink" title="20190502 00:31 AM update"></a>20190502 00:31 AM update</h4><p>君子爱玉如将帅熬鹰，我不急，对你我有无限的耐心。</p>
+<h4 id="20190502-09-56-AM-update"><a href="#20190502-09-56-AM-update" class="headerlink" title="20190502 09:56 AM update"></a>20190502 09:56 AM update</h4><p>看来你昨天是真的累了，以至于你现在才醒，我倒是挺担心的，7点半就行了，然后给你发消息没回，就知道你是累着了。哎，心疼。准备去找你的，被你拒绝了。非说你来找我，也行吧。</p>
+<p>有时候我还挺惶恐的，万一就是南柯一梦就尴尬了，不过我现在是真的开心呀呀呀呀呀呀。</p>
 
       
     </div>
@@ -480,7 +439,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CF/" rel="tag"><i class="fa fa-tag"></i> CF</a>
+            <a href="/tags/story/" rel="tag"><i class="fa fa-tag"></i> story</a>
           
         </div>
       
@@ -493,8 +452,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/19/Codeforces_Round_553/" rel="next" title="Codeforces Round 553">
-                <i class="fa fa-chevron-left"></i> Codeforces Round 553
+              <a href="/2019/04/28/Educational Codeforces Round 63/" rel="next" title="Educational Codeforces Round 63">
+                <i class="fa fa-chevron-left"></i> Educational Codeforces Round 63
               </a>
             
           </div>
@@ -502,10 +461,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/03/story/" rel="prev" title="我可以等，但你别跑">
-                我可以等，但你别跑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -667,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#F-Delivery-Oligopoly"><span class="nav-number">1.</span> <span class="nav-text">F. Delivery Oligopoly</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples"><span class="nav-number">1.4.</span> <span class="nav-text">Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#input1"><span class="nav-number">1.4.1.</span> <span class="nav-text">input1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#output1"><span class="nav-number">1.4.2.</span> <span class="nav-text">output1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#input2"><span class="nav-number">1.4.3.</span> <span class="nav-text">input2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#output2"><span class="nav-number">1.4.4.</span> <span class="nav-text">output2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#input3"><span class="nav-number">1.4.5.</span> <span class="nav-text">input3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#output3"><span class="nav-number">1.4.6.</span> <span class="nav-text">output3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note"><span class="nav-number">1.5.</span> <span class="nav-text">Note</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题意"><span class="nav-number">1.6.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析"><span class="nav-number">1.7.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.8.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2019"><span class="nav-number">1.</span> <span class="nav-text">2019</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#201905"><span class="nav-number">1.1.</span> <span class="nav-text">201905</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#20190501"><span class="nav-number">1.1.1.</span> <span class="nav-text">20190501</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#20190501-09-00-AM-update"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">20190501 09:00 AM update</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20190501-06-15-PM-update"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">20190501 06:15 PM update</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20190501-11-52-PM-update"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">20190501 11:52 PM update</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20190502"><span class="nav-number">1.1.2.</span> <span class="nav-text">20190502</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#20190502-00-31-AM-update"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">20190502 00:31 AM update</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20190502-09-56-AM-update"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">20190502 09:56 AM update</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
