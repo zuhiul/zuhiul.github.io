@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数学,PE,">
+  <meta name="keywords" content="Haskell,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="开启传送门 题目描述">
-<meta name="keywords" content="数学,PE">
+<meta name="description" content="变量和函数">
+<meta name="keywords" content="Haskell">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Project Euler 122 Efficient exponentiation">
-<meta property="og:url" content="http://zuhiul.github.io/2019/01/02/PE122/index.html">
+<meta property="og:title" content="Haskell学习笔记">
+<meta property="og:url" content="http://zuhiul.github.io/2019/05/05/haskell/index.html">
 <meta property="og:site_name" content="睡到二三更时      凡荣华皆成幻境">
-<meta property="og:description" content="开启传送门 题目描述">
+<meta property="og:description" content="变量和函数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-14T08:27:27.678Z">
+<meta property="og:updated_time" content="2019-05-05T13:34:24.482Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Project Euler 122 Efficient exponentiation">
-<meta name="twitter:description" content="开启传送门 题目描述">
+<meta name="twitter:title" content="Haskell学习笔记">
+<meta name="twitter:description" content="变量和函数">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://zuhiul.github.io/2019/01/02/PE122/">
+  <link rel="canonical" href="http://zuhiul.github.io/2019/05/05/haskell/">
 
 
 
 
 
-  <title>Project Euler 122 Efficient exponentiation | 睡到二三更时      凡荣华皆成幻境</title>
+  <title>Haskell学习笔记 | 睡到二三更时      凡荣华皆成幻境</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/01/02/PE122/">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/05/05/haskell/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zuhiul">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Project Euler 122 Efficient exponentiation</h1>
+          <h1 class="post-title" itemprop="name headline">Haskell学习笔记</h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-02T00:00:00+08:00">
-                2019-01-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-05T00:00:00+08:00">
+                2019-05-05
               </time>
             
 
@@ -355,7 +355,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  537
+                  319
                 </span>
               
 
@@ -371,7 +371,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  1
                 </span>
               
             </div>
@@ -392,21 +392,35 @@
       
 
       
-        <p><a href="https://projecteuler.net/problem=122" target="_blank" rel="noopener">开启传送门</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><a id="more"></a>
-<p>The most naive way of computing $n^{15}$ requires fourteen multiplications:</p>
-<p>$n \times n \times \dots \times n = n^{15}$</p>
-<p>But using a “binary” method you can compute it in six multiplications:</p>
-<p>\begin{eqnarray}<br>n \times n &amp;= n^2\\<br>n^2 \times n^2 &amp;= n^4\\<br>n^4 \times n^4 &amp;= n^8\\<br>n^8 \times n^4 &amp;= n^{12}\\<br>n^{12} \times n^2 &amp;= n^{14}\\<br>n^{14} \times n &amp;= n^{15}\\<br>\end{eqnarray}</p>
-<p>However it is yet possible to compute it in only five multiplications:</p>
-<p>\begin{eqnarray}<br>n \times n &amp;= n^2\\<br>n^2 \times n &amp;= n^3\\<br>n^3 \times n^3 &amp;= n^6\\<br>n^6 \times n^6 &amp;= n^{12}\\<br>n^{12} \times n^3 &amp;= n^{15}\\<br>\end{eqnarray}</p>
-<p>We shall define $m(k)$ to be the minimum number of multiplications to compute $n^k$; for example $m(15) = 5$.</p>
-<p>For $1 \leq k \leq 200$, find $\sum m(k)$.</p>
-<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>我们知道快速计算一个数的幂次有各种不同的方法,快速幂只是其中一种而且不是最快的,然后问你对于1~200的幂次来说,最少需要几次乘法操作.</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>有一个<a href="https://en.wikipedia.org/wiki/Addition_chain" target="_blank" rel="noopener">wiki</a>讲的就是这个问题,可以看一看….</p>
-<p>我们可以发现,对于所有幂次来说,我们按照最后一步操作的数来构成他的前驱,然后我们会发现他是一棵树,然后我们直接构造出这颗树出来,就是最优答案…..</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; s[<span class="number">222</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> now = <span class="number">1e8</span>,ind = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=a;i++)&#123;<span class="comment">//枚举每一个比他小的数,看是否可以作为他的前驱</span></span><br><span class="line">		<span class="keyword">if</span>(s[i].size()+<span class="number">1</span>&gt;=now) <span class="keyword">continue</span>;<span class="comment">//如果不能优化解就不继续搜索</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> x:s[i])<span class="comment">//枚举每一个前驱的子元素</span></span><br><span class="line">			<span class="keyword">if</span>(s[i].find(a-x)!=s[i].end())&#123;<span class="comment">//如果能构成a</span></span><br><span class="line">				now = s[i].size()+<span class="number">1</span>;<span class="comment">//更新解</span></span><br><span class="line">				ind = i;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i:s[ind]) s[a].insert(i);<span class="comment">//保存路径</span></span><br><span class="line">	s[a].insert(a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	s[<span class="number">1</span>].insert(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;=<span class="number">200</span>;i++) cal(i);</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=<span class="number">200</span>;i++) ans+=s[i].size()<span class="number">-1</span>;<span class="comment">//要把里面的1剪掉,因为合成1不要代价</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="变量和函数"><a href="#变量和函数" class="headerlink" title="变量和函数"></a>变量和函数</h2><a id="more"></a>
+<ul>
+<li>变量不可修改，中途修改，后续的操作实际上是另外一个变量。</li>
+<li>不显式的给类型，可能解释为不同类型，导致出错。</li>
+<li>函数定义 let functionName var1,…,varn = var1 operation var2,…,varn</li>
+<li>函数中的变量不受外部变量的影响，哪怕重名。</li>
+</ul>
+<h2 id="列表和元组"><a href="#列表和元组" class="headerlink" title="列表和元组"></a>列表和元组</h2><ul>
+<li>列表元素必须为同一类型。</li>
+<li>使用(:)cons操作符可以很容易的创建列表，但是需要注意只能适用于something:someList形式。用中括号创建。</li>
+<li>元组可以是不同元素的集合。用小括号创建。可用来支持函数多返回值。可用fst和snd取二元组第一第二元素。</li>
+<li>用元组来构成的列表，各元组类型必须相同。</li>
+</ul>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
+<li>函数可以写在文件中，然后用   <strong>:load</strong>   命令来读取文件。</li>
+<li>同一个变量不应该被创建多次，所以意味着顺序不重要。</li>
+<li>和py相同，靠缩进判别代码块，所以要注意缩进。</li>
+<li>支持重复调用，用   <strong>.</strong> 来实现，例如:<strong>(f.square)</strong> 表示先调用 <strong>square</strong> 返回结果传给 <strong>f</strong> ，再返回结果。</li>
+</ul>
+<h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><ul>
+<li>函数类型 <ul>
+<li>not :: Bool -&gt; Bool</li>
+<li>unlines :: [string] -&gt; string</li>
+<li>unwords :: [string] -&gt; string</li>
+<li>chr :: Int -&gt; Char</li>
+<li>ord :: Char -&gt; Int</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -453,9 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数学/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
-          
-            <a href="/tags/PE/" rel="tag"><i class="fa fa-tag"></i> PE</a>
+            <a href="/tags/Haskell/" rel="tag"><i class="fa fa-tag"></i> Haskell</a>
           
         </div>
       
@@ -468,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/28/PE143/" rel="next" title="Project Euler 143 Investigating the Torricelli point of a triangle">
-                <i class="fa fa-chevron-left"></i> Project Euler 143 Investigating the Torricelli point of a triangle
+              <a href="/2019/04/28/Educational Codeforces Round 63/" rel="next" title="Educational Codeforces Round 63">
+                <i class="fa fa-chevron-left"></i> Educational Codeforces Round 63
               </a>
             
           </div>
@@ -478,8 +490,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/04/PE222/" rel="prev" title="Project Euler 222 Sphere Packing">
-                Project Euler 222 Sphere Packing <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/23/story/" rel="prev" title="我可以等，但你别跑">
+                我可以等，但你别跑 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -645,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#题意"><span class="nav-number"></span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number"></span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number"></span> <span class="nav-text">代码</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量和函数"><span class="nav-number">1.</span> <span class="nav-text">变量和函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表和元组"><span class="nav-number">2.</span> <span class="nav-text">列表和元组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件"><span class="nav-number">3.</span> <span class="nav-text">文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础类型"><span class="nav-number">4.</span> <span class="nav-text">基础类型</span></a></li></ol></div>
             
 
           </div>
