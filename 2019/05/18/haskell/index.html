@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/haskell_1_1.png?raw=true">
 <meta property="og:image" content="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/haskell_1_2.png?raw=true">
 <meta property="og:image" content="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/haskell_1_3.png?raw=true">
-<meta property="og:updated_time" content="2019-05-20T06:38:20.251Z">
+<meta property="og:updated_time" content="2019-05-20T06:39:59.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haskell 学习笔记">
 <meta name="twitter:description" content="开启传送门 开始">
@@ -438,7 +438,7 @@
 <p>$Haskell$中的函数不用按照顺序定义，也就是说如果你先定义了 <strong>doubleMe</strong> 然后定义了 <strong>doubleUs</strong> 或者其他顺序，这都没有关系。</p>
 <p>现在我们准备写一个函数，它接受一个参数，如果这个参数小于或等于 $100$，会返回这个数的两倍，否则就会返回这个数本身，因为大于 $100$ 的书本身就够大了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">doubleSmallNumber x = if x &gt; 100  </span><br><span class="line">                        then x  </span><br><span class="line">                        else x*2</span><br></pre></td></tr></table></figure>
-<p><img aligh="left" src="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/haskell_1_3.png?raw=true"></p>
+<p><img align="left" src="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/haskell_1_3.png?raw=true"></p>
 <p>上面我们介绍了 $Haskell$ 中的 <strong>if</strong> 语句。你或许已经习惯了其他语言中的 <strong>if</strong> 语句。和其他语言不同的是， $Haskell$ 中必须要有 $else$ 。其他语言中你可以不使用 $else$ 当 $if$ 条件不成立的时候，但是在 $Haskell$ 中，任何表达式和函数必须有返回值。我们可以把 $if$ 语句写在一行里面，并且这样可读性更强。还有就是 $Haskell$ 中的 $if$ 语句是一个 <em>表达式</em> 。一个表达式是一段基础的代码，它返回一个值。 $5$ 是一个表达式，因为它返回 $5$ 。 $4 + 8$ 是一个表达式，$x + y$是一个表达式，因为它返回 $x$ 和 $y$ 的和。因为 $else$ 语句是必须的，所以 $if$ 语句将总是返回一些东西，这也就是我们为什么说它是一个表达式的原因。如果我们想把之前定义的函数加一，我们可以写成下面这样</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doubleSmallNumber&apos; x = (if x &gt; 100 then x else x*2) + 1</span><br></pre></td></tr></table></figure>
 <p>如果我们省略了括号，他仅仅在 $x$ 不大于 $100$ 时才会将结果加一。注意到在函数名末尾的 <strong>‘</strong> 。这个符号在 $Haskell$ 中并没有什么特殊含义。他是函数名称中的一种合法字符。我们通常用它来表示函数的严格版本（不是懒惰版本）。或者函数或者变量的轻微修改版本。因为这个符号是合法的，我们可以创建下面这样的函数。</p>
