@@ -91,7 +91,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/UPCOJ9999.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/UPCOJ9999res.png">
-<meta property="og:updated_time" content="2019-04-14T08:30:07.368Z">
+<meta property="og:updated_time" content="2019-07-12T08:29:43.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UPCOJ 9999 Cube">
 <meta name="twitter:description" content="题目描述给你一个 $ n\ast m $ 的棋盘，有一个 $ 1\ast 1\ast 2 $ 的长方体竖直放在 (1,1)上，你可以将其在棋盘上滚动，你的目标是让其竖直放在 ( n , m ) 上，问至少需要多少次操作。(放倒、竖直、翻滚)">
@@ -407,7 +407,7 @@
 <p>首先我们考虑哪种情况是 impossible ．比较好观察的是，当ｎ和ｍ足够大的时候就一定可达</p>
 <p>所以我们只用找到一个ｎ和ｍ可达的下界就行了</p>
 <p>然后就可以发现只有当ｎ和ｍ都小于３的时候会有impossible的情况(因为转不动．．．．</p>
-<p>接下来分析其他情况，首先比较好分析的是，如果n%3==1&amp;&amp;m%3==1的话，答案可以显然得到是 (n/3+m/3)\ast 2</p>
+<p>接下来分析其他情况，首先比较好分析的是，如果n%3==1&amp;&amp;m%3==1的话，答案可以显然得到是 $(n/3+m/3)\ast 2$</p>
 <p>剩下的同理搞搞就行了，大体情况见下表．</p>
 <p><img src="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/UPCOJ9999res.png" alt="avatar"></p>
 <p>比较显然的是，加的那一项和n,m％3为2的数量一致，然后就是代码啦．．．</p>
