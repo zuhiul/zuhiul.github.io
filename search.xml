@@ -11,7 +11,7 @@
   <entry>
     <title><![CDATA[Problems in Set Theory]]></title>
     <url>%2F2019%2F07%2F29%2FSet%20Theory%2F</url>
-    <content type="text"><![CDATA[$$\begin{equation}\begin{array}{l}{\text { 1. Prove Theorem } 1 \text { (show that } x \text { is in the left-hand set iff it is in the }} \ {\text { right-hand set). For example, for }(\mathrm{d})} \ {\qquad \begin{aligned} x \in(A \cup B) \cap C&amp; \Longleftrightarrow[x \in(A \cup B) \text { and } x \in C] \ &amp; \Longleftrightarrow[(x \in A \text { or } x \in B), \text { and } x \in C] \ &amp; \Longleftrightarrow[(x \in A, x \in C) \text { or }(x \in B, x \in C)] \end{aligned}}\end{array}\end{equation}$$]]></content>
+    <content type="text"><![CDATA[$$\begin{equation}\begin{array}{l}{\text { 1. Prove Theorem } 1 \text { (show that } x \text { is in the left-hand set iff it is in the }} \{\text { right-hand set). For example, for }(\mathrm{d})} \{\qquad \begin{aligned} x \in(A \cup B) \cap C&amp; \Longleftrightarrow[x \in(A \cup B) \text { and } x \in C] \&amp; \Longleftrightarrow[(x \in A \text { or } x \in B), \text { and } x \in C] \&amp; \Longleftrightarrow[(x \in A, x \in C) \text { or }(x \in B, x \in C)] \end{aligned}}\end{array}\end{equation}$$]]></content>
       <tags>
         <tag>Mathematical Analysis</tag>
       </tags>
