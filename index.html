@@ -447,6 +447,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/07/29/Set Theory/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/main_image.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/29/Set Theory/" itemprop="url">Problems in Set Theory</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-29T00:00:00+08:00">
+                2019-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  95
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>$$<br>\begin{equation}<br>\begin{array}{l}{\text { 1. Prove Theorem } 1 \text { (show that } x \text { is in the left-hand set iff it is in the }} \ {\text { right-hand set). For example, for }(\mathrm{d}) \text { , }} \ {\qquad \begin{aligned} x \in(A \cup B) \cap C &amp; \Longleftrightarrow[x \in(A \cup B) \text { and } x \in C] \ &amp; \Longleftrightarrow[(x \in A \text { or } x \in B), \text { and } x \in C] \ &amp; \Longleftrightarrow[(x \in A, x \in C) \text { or }(x \in B, x \in C)] \end{aligned}}\end{array}<br>\end{equation}<br>$$</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/07/22/The_Curse_of_Knowledge/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -878,164 +1031,6 @@
             <h3 id="对拍器"><a href="#对拍器" class="headerlink" title="对拍器"></a>对拍器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">g++ -std=c++11 my.cpp -o my</span><br><span class="line">g++ -std=c++11 data.cpp -o data</span><br><span class="line">g++ -std=c++11 ac.cpp -o ac</span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">	./data &gt; <span class="keyword">in</span></span><br><span class="line">	./my &lt; <span class="keyword">in</span> &gt; my.out</span><br><span class="line">	./ac &lt; <span class="keyword">in</span> &gt; ac.out</span><br><span class="line">	<span class="keyword">if</span> diff my.out ac.out; <span class="keyword">then</span></span><br><span class="line">		((var++))</span><br><span class="line">		<span class="built_in">echo</span> <span class="variable">$var</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span> <span class="string">"WA\n"</span></span><br><span class="line">        <span class="built_in">exit</span> 0</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/05/18/haskell/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zuhiul">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/main_image.jpg?raw=true">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/18/haskell/" itemprop="url">Haskell 学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-			
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-18T00:00:00+08:00">
-                2019-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  3.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="http://learnyouahaskell.com/starting-out#ready-set-go" target="_blank" rel="noopener">开启传送门</a></p>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/18/haskell/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -2022,7 +2017,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.6k</span>
+    <span title="Site words total count">49.6k</span>
   
 </div>
 
