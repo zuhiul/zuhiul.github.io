@@ -447,7 +447,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/08/04/20190804/">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/08/04/mac_keyboard_monitor/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zuhiul">
@@ -466,7 +466,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/04/20190804/" itemprop="url">mac下监听全局键盘输入</a></h1>
+                <a class="post-title-link" href="/2019/08/04/mac_keyboard_monitor/" itemprop="url">mac下监听全局键盘输入</a></h1>
         
 
         <div class="post-meta">
@@ -512,7 +512,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  311
+                  331
                 </span>
               
 
@@ -555,6 +555,7 @@
 <p>首先就是mac下不支持pyhook，貌似，所以只能用pynput来瞎搞。安装各种依赖就不说了。</p>
 <p>首先一个坑点就是，mac为了安全考虑，拒绝一般的程序监听键盘和鼠标等外设的输入。</p>
 <p>然后我就想办法给python权限，“系统偏好设置-&gt;安全性与隐私-&gt;完全磁盘访问权限”，给权限整上了，但是我发现一个比较尴尬的事是：依然是跑不起来。然后就各种寻求帮助。</p>
+<p>后来发现是要在sudo下运行，我试了一下，还是不行。</p>
 <p>最后才发现，需要的权限名字不叫“完全磁盘访问权限”，而是“辅助功能”，服了。我的理解是：你丫都有完全的磁盘访问权限了，还没有辅助功能？开玩笑呢？</p>
 <p>啊，我死了。</p>
 <p>这里贴上我抄的代码</p>
