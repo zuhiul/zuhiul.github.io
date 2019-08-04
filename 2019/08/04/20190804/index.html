@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="体验优化,">
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="菜鸡成长史">
-<meta property="og:type" content="website">
-<meta property="og:title" content="睡到二三更时      凡荣华皆成幻境">
-<meta property="og:url" content="http://zuhiul.github.io/tags/word/index.html">
+<meta name="description" content="因为这段时间终于狠下心来买了把键盘。然后这两天脑子里面全是如何统计键盘敲击次数，在我踩了几个坑之后，终于搞定了，这里总结一下。 首先就是mac下不支持pyhook，貌似，所以只能用pynput来瞎搞。安装各种依赖就不说了。 首先一个坑点就是，mac为了安全考虑，拒绝一般的程序监听键盘和鼠标等外设的输入。 然后我就想办法给python权限，“系统偏好设置-&amp;gt;安全性与隐私-&amp;gt;完全磁盘访问权">
+<meta name="keywords" content="体验优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac下监听全局键盘输入">
+<meta property="og:url" content="http://zuhiul.github.io/2019/08/04/20190804/index.html">
 <meta property="og:site_name" content="睡到二三更时      凡荣华皆成幻境">
-<meta property="og:description" content="菜鸡成长史">
+<meta property="og:description" content="因为这段时间终于狠下心来买了把键盘。然后这两天脑子里面全是如何统计键盘敲击次数，在我踩了几个坑之后，终于搞定了，这里总结一下。 首先就是mac下不支持pyhook，貌似，所以只能用pynput来瞎搞。安装各种依赖就不说了。 首先一个坑点就是，mac为了安全考虑，拒绝一般的程序监听键盘和鼠标等外设的输入。 然后我就想办法给python权限，“系统偏好设置-&amp;gt;安全性与隐私-&amp;gt;完全磁盘访问权">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-04T08:37:50.986Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="睡到二三更时      凡荣华皆成幻境">
-<meta name="twitter:description" content="菜鸡成长史">
+<meta name="twitter:title" content="mac下监听全局键盘输入">
+<meta name="twitter:description" content="因为这段时间终于狠下心来买了把键盘。然后这两天脑子里面全是如何统计键盘敲击次数，在我踩了几个坑之后，终于搞定了，这里总结一下。 首先就是mac下不支持pyhook，貌似，所以只能用pynput来瞎搞。安装各种依赖就不说了。 首先一个坑点就是，mac为了安全考虑，拒绝一般的程序监听键盘和鼠标等外设的输入。 然后我就想办法给python权限，“系统偏好设置-&amp;gt;安全性与隐私-&amp;gt;完全磁盘访问权">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://zuhiul.github.io/tags/word/">
+  <link rel="canonical" href="http://zuhiul.github.io/2019/08/04/20190804/">
 
 
 
 
 
-  <title>Tag: word | 睡到二三更时      凡荣华皆成幻境</title>
+  <title>mac下监听全局键盘输入 | 睡到二三更时      凡荣华皆成幻境</title>
   
 
 
@@ -145,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -271,52 +273,225 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>word<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zuhiul.github.io/2019/08/04/20190804/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zuhiul">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/main_image.jpg?raw=true">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="睡到二三更时      凡荣华皆成幻境">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/07/22/The_Curse_of_Knowledge/" itemprop="url">
-              
-                <span itemprop="name">The Curse of Knowledge</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">mac下监听全局键盘输入</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-22T00:00:00+08:00" content="2019-07-22">
-          07-22
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+			
 
-    </header>
-  </article>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-04T00:00:00+08:00">
+                2019-08-04
+              </time>
+            
 
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  311
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>因为这段时间终于狠下心来买了把键盘。然后这两天脑子里面全是如何统计键盘敲击次数，在我踩了几个坑之后，终于搞定了，这里总结一下。</p>
+<p>首先就是mac下不支持pyhook，貌似，所以只能用pynput来瞎搞。安装各种依赖就不说了。</p>
+<p>首先一个坑点就是，mac为了安全考虑，拒绝一般的程序监听键盘和鼠标等外设的输入。</p>
+<p>然后我就想办法给python权限，“系统偏好设置-&gt;安全性与隐私-&gt;完全磁盘访问权限”，给权限整上了，但是我发现一个比较尴尬的事是：依然是跑不起来。然后就各种寻求帮助。</p>
+<p>最后才发现，需要的权限名字不叫“完全磁盘访问权限”，而是“辅助功能”，服了。我的理解是：你丫都有完全的磁盘访问权限了，还没有辅助功能？开玩笑呢？</p>
+<p>啊，我死了。</p>
+<p>这里贴上我抄的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pynput <span class="keyword">import</span> keyboard</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_press</span><span class="params">(key)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'out'</span>, <span class="string">'a+'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            f.write(str(key.char) + <span class="string">'\n'</span>)</span><br><span class="line">        <span class="keyword">except</span> AttributeError:</span><br><span class="line">            f.write(str(key) + <span class="string">'\n'</span>)</span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_release</span><span class="params">(key)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Collect events until released</span></span><br><span class="line"><span class="keyword">with</span> keyboard.Listener(</span><br><span class="line">        on_press=on_press,</span><br><span class="line">        on_release=on_release) <span class="keyword">as</span> listener:</span><br><span class="line">    listener.join()</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/reward_wx.png?raw=true" alt="zuhiul WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://github.com/zuhiul/zuhiul.github.io/blob/master/img/reward_zfb.jpg?raw=true" alt="zuhiul Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/体验优化/" rel="tag"><i class="fa fa-tag"></i> 体验优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/29/Set Theory/" rel="next" title="Problems in Set Theory">
+                <i class="fa fa-chevron-left"></i> Problems in Set Theory
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/23/story/" rel="prev" title="就怕我感动了自己，却没有感动你">
+                就怕我感动了自己，却没有感动你 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -324,6 +499,13 @@
 
 
           
+
+  
+	<div id="gitalk-container"></div>
+
+  
+
+
 
         </div>
         
@@ -596,6 +778,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -636,6 +822,10 @@
 
 
 
+
+      
+      
+       
 
 
 
