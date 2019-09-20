@@ -109,8 +109,8 @@
     <url>%2F2019%2F01%2F17%2FPE276%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 Consider the triangles with integer sides $a, b$ and $c$ with $a \leq b \leq c$.An integer sided triangle $(a,b,c)$ is called primitive if $gcd(a,b,c)=1$.How many primitive integer sided triangles exist with a perimeter not exceeding $10,000,000$? 题意问你存在多少个边长是整数的三角形,并且满足三边长的gcd为1,周长不超过$1e7$. 分析有一个比较奇奇怪怪的结论 我直接把结论搬过来$\dots$ \begin{eqnarray} F(n) = \begin{cases} \lfloor\frac{(n+3)^2+24}{48}\rfloor\ \ \ \ &amp;n\ \ is\ \ odd\\ \lfloor\frac{n^2+24}{48}\rfloor\ \ \ \ &amp;n\ \ is\ \ even\ \end{cases}\end{eqnarray} 这个结论说的是,周长为$n$的边长都是整数的三角形的数量.然后我们可以预处理出所有的周长为$n$的数量出来,然后我们怎么保证gcd呢,比较好想的就是容斥,我们容斥掉所有gcd不是1的就行了,也就是说我们用周长为$2\cdot n,3\cdot n,\dots$的减去周长为$n$的就行啦啦啦 给大佬递上我奇丑无比的代码 (/ω＼) 12345678910111213141516171819#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 1e7+1;long long num[maxm];long long get(long long a)&#123; if(a&amp;1) return ((a+3)*(a+3)+24)/48; return (a*a+24)/48;&#125;void init()&#123;//预处理出每个周长对应的三角形数量,容斥得到正确的数量 for(int i = 1;i&lt;maxm;i++) num[i] = get(i); for(int i = 1;i&lt;maxm;i++) for(int j = i&lt;&lt;1;j&lt;maxm;j+=i) num[j]-=num[i];&#125;int main()&#123; init(); long long ans = 0; for(int i = 1;i&lt;maxm;i++) ans+=num[i]; cout&lt;&lt;ans&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
-        <tag>PE</tag>
         <tag>数学</tag>
+        <tag>PE</tag>
       </tags>
   </entry>
   <entry>
@@ -118,8 +118,8 @@
     <url>%2F2019%2F01%2F09%2FPE643%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 Two positive integers $a$ and $b$ are 2-friendly when $gcd(a,b)=2^t,t&gt;0$. For example, $24$ and $40$ are 2-friendly because $gcd(24,40)=8=2^3$ while $24$ and $36$ are not because $gcd(24,36)=12=2^2\cdot 3$ not a power of $2$. Let $f(n)$ be the number of pairs, $(p,q)$, of positive integers with $1\leq p&lt;q\leq n$ such that $p$ and $q$ are 2-friendly. You are given $f(10^2)=1031$ and $f(10^6)=321418433$ modulo $1000000007$ . Find $f(10^{11})$ modulo $1000000007$. 题意问你所有满足$1\leq p&lt;q\leq 1e11$,并且$gcd(p,q)==2^t$的对数 分析显然可以对于每个$2^t$单独考虑,不妨设$2^t = x$,可以得到 $$ans = \sum_{i=1}^{upper/x} \varphi(i)$$ 然后显然是各种筛法搞一下,我这里用的杜教筛,然后稍微推一推就可以得到 $$s(m) = \frac{m\ast (m+1)}{2} - \sum_{d=2}^{m} s(\lfloor \frac{m}{d} \rfloor)$$ 然后分块一下,递归搞下去就行了$\dots$ 代码给大佬递上我奇丑无比的代码 (/ω＼) 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152#include&lt;bits/stdc++.h&gt;using namespace std;const long long upper = 1e11;const int maxm = 2e7+10;const int mod = 1e9+7;int add(int a,int b)&#123;return (a+b)%mod;&#125;int mul(long long a,long long b)&#123;return (a%mod)*(b%mod)%mod;&#125;int inv(long long a)&#123; return a==1?1:mul(mod-mod/a,inv(mod%a)); &#125;int inv2 = inv(2);bool p[maxm];int pri[maxm];//质数int phi[maxm];//欧拉函数前缀和void init()&#123; phi[1] = 1; for(int i =2;i&lt;maxm;i++)&#123; if(!p[i])&#123; pri[++pri[0]] = i; phi[i] = i-1; &#125; for(int j = 1;j&lt;=pri[0]&amp;&amp;i*pri[j]&lt;maxm;j++)&#123; p[i*pri[j]] = true; if(i%pri[j]) phi[i*pri[j]] = phi[i]*(pri[j]-1); else&#123; phi[i*pri[j]] = phi[i]*pri[j]; break; &#125; &#125; &#125; for(int i = 2;i&lt;maxm;i++) phi[i] = add(phi[i],phi[i-1]);//因为只会用到前缀和,所以我们直接预处理成前缀和&#125;map&lt;long long,int&gt; mp;int solve(long long m)&#123; if(m&lt;maxm) return phi[m];//查表 if(mp[m]) return mp[m];//记忆化 int ret = mul(m,mul(m+1,inv2)); for(long long l = 2,r;l&lt;=m;l = r+1) &#123;//分块 r = m/(m/l); ret = add(ret,mod-mul(solve(m/l),r-l+1)); &#125; return mp[m] = ret;&#125;int main()&#123; init(); int ans = 0; for(long long x = 2;x&lt;=upper;x&lt;&lt;=1) &#123;//单独统计每一个2的幂 cout&lt;&lt;x&lt;&lt;endl; ans = add(ans,solve(upper/x)); ans = add(ans,mod-1); &#125; cout&lt;&lt;ans&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
-        <tag>PE</tag>
         <tag>数学</tag>
+        <tag>PE</tag>
       </tags>
   </entry>
   <entry>
@@ -127,8 +127,8 @@
     <url>%2F2019%2F01%2F04%2FPE222%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 What is the length of the shortest pipe, of internal radius $50$mm, that can fully contain $21$ balls of radii $30$mm, $31$mm, …, $50$mm? Give your answer in micrometres ($10^{-6}$ m) rounded to the nearest integer. 题意让你在一个内径$50$的圆管里塞$21$个内径分别为$31-50$的小球,问你圆管最短是多少 分析比较显然是dp 考虑dp状态:dp[i][j]表示选择小球对应的集合为j,并且用第i个小球结尾,然后我们转移的时候就直接添加一个小球,对于剩余的小球枚举一个结尾,取最优解就行了 代码给大佬递上我奇丑无比的代码 (/ω＼) 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 21;double ans[maxm][1&lt;&lt;maxm];int num[maxm+10];double cal(int a,int b)&#123;//得到两个小球的距离 int t = a+b+60; return 10*sqrt(t*2-100);&#125;int main()&#123; for(int i = 0;i&lt;maxm;i++) for(int j = 0;j&lt;(1&lt;&lt;maxm);j++) ans[i][j] = 1e8; for(int s = 0;s&lt;(1&lt;&lt;maxm);s++) for(int i = 0;i&lt;maxm;i++)&#123; if(s==0)&#123;//初值条件 ans[i][1&lt;&lt;i] = i+30; continue; &#125; if((s &gt;&gt; i &amp; 1)==1) continue; int t = s|(1&lt;&lt;i);//用S来扩展t for(int j = 0;j&lt;maxm;j++) if(s&gt;&gt;j&amp;1) ans[i][t] = min(ans[i][t],ans[j][s]+cal(i,j)); &#125; double rans = 1e8; for(int i = 0;i&lt;maxm;i++) rans = min(rans,ans[i][(1&lt;&lt;maxm)-1]+i+30); printf("%.0f\n",rans*1000); return 0;&#125;]]></content>
       <tags>
-        <tag>DP</tag>
         <tag>PE</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -136,8 +136,8 @@
     <url>%2F2019%2F01%2F02%2FPE122%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 The most naive way of computing $n^{15}$ requires fourteen multiplications: $n \times n \times \dots \times n = n^{15}$ But using a “binary” method you can compute it in six multiplications: \begin{eqnarray}n \times n &amp;= n^2\\n^2 \times n^2 &amp;= n^4\\n^4 \times n^4 &amp;= n^8\\n^8 \times n^4 &amp;= n^{12}\\n^{12} \times n^2 &amp;= n^{14}\\n^{14} \times n &amp;= n^{15}\\\end{eqnarray} However it is yet possible to compute it in only five multiplications: \begin{eqnarray}n \times n &amp;= n^2\\n^2 \times n &amp;= n^3\\n^3 \times n^3 &amp;= n^6\\n^6 \times n^6 &amp;= n^{12}\\n^{12} \times n^3 &amp;= n^{15}\\\end{eqnarray} We shall define $m(k)$ to be the minimum number of multiplications to compute $n^k$; for example $m(15) = 5$. For $1 \leq k \leq 200$, find $\sum m(k)$. 题意我们知道快速计算一个数的幂次有各种不同的方法,快速幂只是其中一种而且不是最快的,然后问你对于1~200的幂次来说,最少需要几次乘法操作. 分析有一个wiki讲的就是这个问题,可以看一看…. 我们可以发现,对于所有幂次来说,我们按照最后一步操作的数来构成他的前驱,然后我们会发现他是一棵树,然后我们直接构造出这颗树出来,就是最优答案….. 代码给大佬递上我奇丑无比的代码 (/ω＼) 12345678910111213141516171819202122232425#include&lt;bits/stdc++.h&gt;using namespace std;set&lt;int&gt; s[222];void cal(int a)&#123; int now = 1e8,ind = 0; for(int i = 1;i&lt;=a;i++)&#123;//枚举每一个比他小的数,看是否可以作为他的前驱 if(s[i].size()+1&gt;=now) continue;//如果不能优化解就不继续搜索 for(int x:s[i])//枚举每一个前驱的子元素 if(s[i].find(a-x)!=s[i].end())&#123;//如果能构成a now = s[i].size()+1;//更新解 ind = i; break; &#125; &#125; for(int i:s[ind]) s[a].insert(i);//保存路径 s[a].insert(a);&#125;int main()&#123; s[1].insert(1); for(int i = 2;i&lt;=200;i++) cal(i); int ans = 0; for(int i = 1;i&lt;=200;i++) ans+=s[i].size()-1;//要把里面的1剪掉,因为合成1不要代价 cout&lt;&lt;ans&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
-        <tag>PE</tag>
         <tag>数学</tag>
+        <tag>PE</tag>
       </tags>
   </entry>
   <entry>
@@ -145,8 +145,8 @@
     <url>%2F2018%2F12%2F28%2FPE143%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 Let ABC be a triangle with all interior angles being less than $120$ degrees. Let $X$ be any point inside the triangle and let $XA = p, XC = q$, and $XB = r$. Fermat challenged Torricelli to find the position of X such that $p + q + r$ was minimised. Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $p + q + r$. Even more remarkable, it can be shown that when the sum is minimised, $AN = BM = CO = p + q + r$ and that AN, BM and CO also intersect at T. If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $a = 399, b = 455, c = 511$ is an example of a Torricelli triangle, with $p + q + r = 784$. Find the sum of all distinct values of $p + q + r ≤ 120000$ for Torricelli triangles. 题意就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$T$就是费马点.然后你要找到所有$p+q+r$不同的所有三角形,然后把$p+q+r$求和. 分析对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$T$在园上,于是有$T$对应的角大小一定是$180-60 = 120$度,然后同理可得,三个角都是$120$度,然后我们运用余弦定理可以得到$p^2+q^2+pq=b^2$,因为我们只要$p+q+r$不同的解,所以我们不妨设$p&gt;=q&gt;=r$,因为三个角都是$120$度,所以余弦定理都成立,所以我们可以得到 \begin{eqnarray}q^2+r^2+qr &amp;= a^2\\p^2+q^2+pq &amp;= b^2\\p^2+r^2+pr &amp;= c^2\\p&gt;=q&gt;=r\\\end{eqnarray} 然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$\dots$ 代码给大佬递上我奇丑无比的代码 (/ω＼) 1234567891011121314151617181920212223242526272829#include&lt;bits/stdc++.h&gt;using namespace std;const int upper = 1.2e5;set&lt;int&gt; to[upper+10];bool ans[upper&lt;&lt;2];int main()&#123; for(long long i = 1;i&lt;=upper;i++)&#123; for(long long j = min(upper-i,i);j&gt;=1;j--)&#123; long long x = i*i+j*j+i*j; long long y = sqrt(x); if(y*y==x) to[i].insert(j); &#125; if(i%10==0) cout&lt;&lt;i&lt;&lt;'\n'; &#125; for(int i = 1;i&lt;=upper;i++)&#123; for(int j:to[i])&#123; for(int k:to[j])&#123; if(i+j+k&gt;upper) continue; if(to[i].count(k))&#123; ans[i+j+k] = true; &#125; &#125; &#125; &#125; int rans = 0; for(int i = 1;i&lt;=upper;i++) if(ans[i]) rans+=i; cout&lt;&lt;rans&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
-        <tag>PE</tag>
         <tag>数学</tag>
+        <tag>PE</tag>
       </tags>
   </entry>
   <entry>
@@ -174,15 +174,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Project Euler 463 A weird recurrence relation]]></title>
-    <url>%2F2018%2F12%2F23%2FPE463%2F</url>
-    <content type="text"><![CDATA[开启传送门 题目描述 The function $f$ is defined for all positive integers as follows: $f(1)$ = $1$ $f(3)$ = $3$ $f(2n)$ = $f(n)$ $f(4n+1)$ = $2\cdot f(2n+1)-f(n)$ $f(4n+3)$ = $3\cdot f(2n+1)-2\cdot f(n)$ The function $S(n)$ is defined as $\sum_{i=1}^{n} f(i)$. $S(8)=22$ and $S(100)=3604$. Find $S(3^{37})$. Give the last $9$ digits of your answer. 题意就是给你一个序列,问你这个序列的前缀和是多少 分析显然是推公式嘛. 根据题意我们显然可以得到 $f(4n)+f(4n+1)+f(4n+2)+f(4n+3) = 6\cdot f(2n+1) - 2\cdot f(n)$ for $n\geq 1$ 然后我们每四项加一下就可以得到下面这个公式 \begin{eqnarray}S(4n+3) &amp;=&amp; \sum_{i=1}^{4i+3} f(i)\\ &amp;=&amp; 5 + \sum_{i=4}^{4i+3} f(i)\\ &amp;=&amp; 5 + \sum_{i=1}^{n} (6\cdot f(2i+1) - 2\cdot f(i))\\ &amp;=&amp; 5 + 6\sum_{i=1}^{n} (f(2i+1)+f(2i)) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; 5 + 6\sum_{i=2}^{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; 5 - 6 + 6\sum{i=1}{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; -1 + 6\sum{i=1}{2n+1} f(i) -8\sum_{i=1}^{n} f(i)\\\end{eqnarray} 然后瞎搞就行了$\dots$ 代码给大佬递上我奇丑无比的代码 (/ω＼)123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 1e7+10;const int mod = 1e9;inline int add(long long a,long long b)&#123;return (a+b)%mod;&#125;inline int mul(long long a,long long b)&#123;return a*b%mod;&#125;int num[maxm];int sum[maxm];long long f(long long a)&#123; if(a&lt;maxm&amp;&amp;num[a]) return num[a]; if(a==0) return 0; if(a==1) return 1; if(a==3) return 3; if((a&amp;1)^1) return f(a&gt;&gt;1); else if((a&amp;3)==3) return add(mul(3,f(a&gt;&gt;1)),mod-(f(a&gt;&gt;2)&lt;&lt;1)); else return add((f(a&gt;&gt;1|1)&lt;&lt;1),mod-f(a&gt;&gt;2));&#125;long long S(long long a)&#123; if(a&lt;maxm) return sum[a]; long long ret = 0; if(a%4==3)&#123; ret = add(ret,mul(6,S(a&gt;&gt;1))); ret = add(ret,mod-mul(8,S(a&gt;&gt;2))); ret = add(ret,mod-1); &#125;else&#123; while(a%4!=3) ret = add(ret,mod-f(++a)); ret = add(ret,S(a)); &#125; return ret;&#125;int main()&#123; for(int i = 1;i&lt;maxm;i++) num[i] = f(i),sum[i] = add(sum[i-1],num[i]); long long nouse = 1; for(int i = 1;i&lt;=37;i++)&#123; nouse = (nouse&lt;&lt;2)-nouse; &#125; cout&lt;&lt;S(nouse)&lt;&lt;endl; return 0;&#125;]]></content>
-      <tags>
-        <tag>PE</tag>
-        <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[matlab]]></title>
     <url>%2F2018%2F12%2F23%2Fmatlab%2F</url>
     <content type="text"><![CDATA[系统级命令 命令名称 功能说明 clear 清楚内存中所有的或指定的变量和函数 cd 显示和改变当前工作目录 clc 擦除MATLAB工作窗口中所有显示的内容 clf 擦除MATLAB当前工作窗口中的图形 dir 列出当前或者指定目录下的子目录和文件清单 disp 在运行中显示变量或文字信息 echo 控制运行的文字命令是否显示 hold 控制当前的图形窗口对象是否被刷新 home 擦除命令窗口中的内容,并把光标移动到命令窗口 pack 收集内存碎片以扩大内存空间 quit 关闭并退出MATLAB type 显示所指定文件的全部内容 exit 退出MATLAB save 将工作区的变量存放到指定文件 load 回复保存过的变量 系统变量 变量 解释 ans 结果的缺省变量名 pi 圆周率 i,j 虚数单位 inf 无穷大 NaN not a number 矩阵函数 函数 解释 complex 将两个矩阵并成一个复矩阵 zeros(a,b) a*b全0阵 ones(a,b) a*b全1阵 eye(a,b) a*b单位矩阵 randi([a,b],m,n) m*n在a,b之间等概率随机整数矩阵 randn(a,b) 产生均值为0,方差为1的a*b的高斯分布随机阵 repmat(a,b,c) 将a矩阵铺放成bc的形式,总大小size(a)b*c size(a) 确定矩阵大小,返回[行数,列数] length(a) 确定向量元素的个数 numel(a) 确定矩阵中元素个数 find() 查找矩阵中满足条件的下标,或者行列 reshape(a,b,c) 将a变成b行c列(按列重拍) a’ 转置,复数则共轭转置 a(:) 变成一列 rot90 旋转 fliplr 左右翻转 flipud 上下翻转 diag 抽取主对角线 tril 抽取上三角 triu 抽取下三角 max 各列最大值 min 各列最小值 sort 各列递增排序 sum 各列求和 mean 各列平均值 std 各列标准差 var 各列方差 基本数学函数 函数 解释 abs(x) x中每个实数元素的绝对值,复数元素的模 sqrt(x) x中每个元素求平方根 exp(x) 指数运算 real(x) 求实部 imag(x) 求虚部 conj(x) 求共轭 angle(x) 求相位角 sin(x) 正弦 cos(x) 余弦 asin(x) 反正弦 acos(x) 反余弦 tan(x) 正切 atan(x) 反正切 log10(x) 常用对数lgx log(x) 自然对数lnx loga(b) 任意对数 mod(x,y) 求余函数 rem(x,y) 输出对应元素的余数 sign(x) 求矩阵中元素的正负号 lcm(x,y) 最小公倍数 gcd(x,y) 最大公约数 round(a) 四舍五入 fix(a) 按0的方向取整 floor(a) 向负无穷方向取整 ceil(a) 向正无穷方向取整 randperm(n) 产生一个长度为n的排列 绘图 函数 解释 plot(x,y,’option’) x横轴,y纵轴,逐点连折线绘制二维图形,参数见下表 plot(y) y为向量,以下标作为x轴,y为纵轴,绘制曲线 title(‘text’) 添加标题 xlabel(‘text’) x轴加标注 ylabel(‘text’) y轴加标记 legend(‘图例1’,’图例2’,…) 添加图例 text(x,y,’text’) 在指定位置添加文本字符串 gtext(‘text’) 用鼠标放置文本 axis([xmin xmax ymin ymax zmin zmax]) 调整坐标 hold 图形保持函数 subplot 子图分割命令 stem 离散序列 绘图参数表 符号 含义 符号 含义 y 黄 b 蓝 m 洋红 w 白 c 青 k 黑 r 红 g 绿 - 实线 – 虚线 : 点线 -. 点划线 . 点 o 圆 x 叉号 + 加号 ^ 向上的三角形 v 向下的三角形 &gt; 大于号 &lt; 小于号 s 正方形 d 菱形 p 五角星 h 六角星 * 星号 字符串函数 函数 解释 abs 字符串到ascii转换 str2mat 字符串转换成字符矩阵 setstr ascii转字符串 num2str 数值转字符串 str2num 字符串转换成数值 dec2bin 十进制数转二进制字符串 bin2dec 二进制串转十进制 int2str 将数值取整后转成字符串 upper 字符串转换成大写 lower 字符串转换成小写 sprintf 用格式控制,数字转字符串 sscanf 格式控制,字符串转数字 输入输出 函数 解释 input(‘text’) 键盘提示输入 fprintf() 格式输出]]></content>
@@ -191,12 +182,21 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Project Euler 463 A weird recurrence relation]]></title>
+    <url>%2F2018%2F12%2F23%2FPE463%2F</url>
+    <content type="text"><![CDATA[开启传送门 题目描述 The function $f$ is defined for all positive integers as follows: $f(1)$ = $1$ $f(3)$ = $3$ $f(2n)$ = $f(n)$ $f(4n+1)$ = $2\cdot f(2n+1)-f(n)$ $f(4n+3)$ = $3\cdot f(2n+1)-2\cdot f(n)$ The function $S(n)$ is defined as $\sum_{i=1}^{n} f(i)$. $S(8)=22$ and $S(100)=3604$. Find $S(3^{37})$. Give the last $9$ digits of your answer. 题意就是给你一个序列,问你这个序列的前缀和是多少 分析显然是推公式嘛. 根据题意我们显然可以得到 $f(4n)+f(4n+1)+f(4n+2)+f(4n+3) = 6\cdot f(2n+1) - 2\cdot f(n)$ for $n\geq 1$ 然后我们每四项加一下就可以得到下面这个公式 \begin{eqnarray}S(4n+3) &amp;=&amp; \sum_{i=1}^{4i+3} f(i)\\ &amp;=&amp; 5 + \sum_{i=4}^{4i+3} f(i)\\ &amp;=&amp; 5 + \sum_{i=1}^{n} (6\cdot f(2i+1) - 2\cdot f(i))\\ &amp;=&amp; 5 + 6\sum_{i=1}^{n} (f(2i+1)+f(2i)) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; 5 + 6\sum_{i=2}^{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; 5 - 6 + 6\sum{i=1}{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; -1 + 6\sum{i=1}{2n+1} f(i) -8\sum_{i=1}^{n} f(i)\\\end{eqnarray} 然后瞎搞就行了$\dots$ 代码给大佬递上我奇丑无比的代码 (/ω＼)123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 1e7+10;const int mod = 1e9;inline int add(long long a,long long b)&#123;return (a+b)%mod;&#125;inline int mul(long long a,long long b)&#123;return a*b%mod;&#125;int num[maxm];int sum[maxm];long long f(long long a)&#123; if(a&lt;maxm&amp;&amp;num[a]) return num[a]; if(a==0) return 0; if(a==1) return 1; if(a==3) return 3; if((a&amp;1)^1) return f(a&gt;&gt;1); else if((a&amp;3)==3) return add(mul(3,f(a&gt;&gt;1)),mod-(f(a&gt;&gt;2)&lt;&lt;1)); else return add((f(a&gt;&gt;1|1)&lt;&lt;1),mod-f(a&gt;&gt;2));&#125;long long S(long long a)&#123; if(a&lt;maxm) return sum[a]; long long ret = 0; if(a%4==3)&#123; ret = add(ret,mul(6,S(a&gt;&gt;1))); ret = add(ret,mod-mul(8,S(a&gt;&gt;2))); ret = add(ret,mod-1); &#125;else&#123; while(a%4!=3) ret = add(ret,mod-f(++a)); ret = add(ret,S(a)); &#125; return ret;&#125;int main()&#123; for(int i = 1;i&lt;maxm;i++) num[i] = f(i),sum[i] = add(sum[i-1],num[i]); long long nouse = 1; for(int i = 1;i&lt;=37;i++)&#123; nouse = (nouse&lt;&lt;2)-nouse; &#125; cout&lt;&lt;S(nouse)&lt;&lt;endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>数学</tag>
+        <tag>PE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Project Euler 368 A Kempner-like series]]></title>
     <url>%2F2018%2F12%2F21%2FPE368%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 The harmonic series $1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\dots$ is well known to be divergent. If we however omit from this series every term where the denominator has a $9$ in it, the series remarkably enough converges to approximately $22.9206766193$. This modified harmonic series is called the Kempner series. Let us now consider another modified harmonic series by omitting from the harmonic series every term where the denominator has $3$ or more equal consecutive digits. One can verify that out of the first $1200$ terms of the harmonic series, only $20$ terms will be omitted.These $20$ omitted terms are: $$\frac{1}{111},\frac{1}{222},\frac{1}{333},\frac{1}{444},\frac{1}{555},\frac{1}{666},\frac{1}{777},\frac{1}{888},\frac{1}{999},\frac{1}{1000},\frac{1}{1110}, \frac{1}{1111},\frac{1}{1112},\frac{1}{1113},\frac{1}{1114},\frac{1}{1115},\frac{1}{1116},\frac{1}{1117},\frac{1}{1118},\frac{1}{1119}$$ This series converges as well. Find the value the series converges to.Give your answer rounded to $10$ digits behind the decimal point. 题意就是,调和级数不是发散的嘛,然后让你删掉那些分母含有连续三个相同数字的,然后可以证明剩下的级数是收敛的,然后问你收敛于多少. 分析做法比较巧妙,下面一点点分析. 首先我们令$S_1(n,d)$表示一个包含所有这样的$n$位数的集合,集合中所有的$n$位数最后一位是$n$,并且倒数第二位不是$n$. $S_2(n,d)$表示一个包含所有这样的$n$位数的集合,集合中所有的$n$位数最后两位是$n$,并且倒数第三位不是$n$. 然后我们令 $f_1(n,d,j)$ = $\sum_{x\in S_1(n,d)} \frac{1}{x^j}$ $f_2(n,d,j)$ = $\sum_{x\in S_2(n,d)} \frac{1}{x^j}$ 然后答案显然就是 $\sum_{i=1}^{99} \frac{1}{i}+\sum_{n=3}^{\infty } \sum_{d=0}^{9} [f_1(n,d,1)+f_2(n,d,1)]$ 关键是我们怎么算$f_1(n,d,j)$和$f_2(n,d,j)$ 二者分析方法一样,这里给出$f_2(n,d,j)$怎么推出来的. 首先根据定义我们有 $f_2(n,d,j)$ = $\sum_{x\in S_2(n,d)} \frac{1}{x^j}$ 我们不妨枚举每一个$x$,然后累加就是答案,所以子问题就是如何快速计算$\frac{1}{x^j} where x \in S_2(n,d)$ 因为最后一位是$d$,所以我们不妨设$x$ = $y\ast 100+d\ast 10+d$ 然后可以得到 $$(\frac{1}{x\ast 100+d\ast 10+d})^j=\frac{1}{10^j} \cdot \frac{1}{(x\ast 10+d)^j} \cdot (\frac{1}{1+\frac{d}{x\ast 100+d\ast 10}})^j$$ 然后我们将第三个分式化简. 考虑到 $(1+a)^{-b} = \sum_{i=0}^{\infty } C_{b+i-1}^i \cdot (-a)^b$ 所以上式可以化简为 \begin{eqnarray}(\frac{1}{x\ast 100+d\ast 10+d})^j&amp;=&amp; \frac{1}{10^j} \cdot \frac{1}{(x\ast 10+d)^j} \cdot \sum_{i=0}^{\infty } C_{j+i-1}^{i}(\frac{-d}{x\ast 100+d\ast 10})^i\\&amp;=&amp; \frac{1}{10^j} \cdot \frac{1}{(x\ast 10+d)^j} \cdot \sum_{i=0}^{\infty } C_{j+i-1}^{i}(\frac{-d}{10})^i\cdot(\frac{1}{x\ast 10+d})^i\\&amp;=&amp; \frac{1}{10^j} \sum_{i=0}^{\infty } C_{j+i-1}^{i} \cdot (\frac{-d}{10})^i \cdot (\frac{1}{x\ast 10+d})^{i+j}\\\end{eqnarray} 然后我们考虑累加所有的$x$也就是原来的$f_2(n,d,j)$ 可以得到 $$f_2(n,d,j) = \frac{1}{10^j} \sum_{i=0}^{\infty } (\frac{-d}{10})^i \cdot C_{j+i-1}^{i} \cdot f_1(n-1,d,i+j)$$ 同理可以推得 $f_1(n,d,j)$ 然后就是代码如下啦啦啦$\dots$ 代码给大佬递上我奇丑无比的代码 (/ω＼)1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 40;double C[maxm*3][maxm*3];double f1[2][10][maxm+1];double f2[2][10][maxm+1];double ans = 0;void init()&#123;//预处理出组合数和前99项的答案 for(int i = 0;i&lt;maxm*3;i++) for(int j = 0;j&lt;=i;j++)&#123; if(j==0) C[i][j] = 1; else C[i][j] = C[i-1][j-1]+C[i-1][j]; &#125; for(int i = 1;i&lt;100;i++) ans+=1.0/i;&#125;int main()&#123; init(); for(int d = 0;d&lt;=9;d++)&#123;//预处理出n = 3的情况 for(int j = 1;j&lt;=maxm;j++)&#123; for(int pre = 10;pre&lt;100;pre++)&#123; int fir = pre/10; int sec = pre%10; if(fir==sec&amp;&amp;sec==d) continue; if(sec==d) f2[1][d][j]+=1.0/pow(pre*10+d,j); else f1[1][d][j]+=1.0/pow(pre*10+d,j); &#125; &#125; ans+=f1[1][d][1]+f2[1][d][1]; &#125; for(int nouse = 4;nouse&lt;=10000;nouse++)&#123;//滚动的算n&gt;=4的时候 int now = nouse&amp;1; int las = now^1; for(int d = 0;d&lt;=9;d++)&#123; for(int j = 1;j&lt;=maxm;j++)&#123; f1[now][d][j] = f2[now][d][j] = 0;//别忘了初始化 double pre = 1.0/pow(10.0,j); for(int i = 0;i&lt;=maxm;i++)&#123; if(i+j&lt;=maxm) f2[now][d][j]+=pre*C[j+i-1][i]*f1[las][d][i+j]; for(int x = 0;x&lt;10;x++)&#123; if(x==d) continue; if(i+j&lt;=maxm) f1[now][d][j]+=pre*C[j+i-1][i]*(f1[las][x][i+j]+f2[las][x][i+j]); &#125; pre*=-d/10.0; &#125; &#125; ans+=f1[now][d][1]+f2[now][d][1]; &#125; printf("%.10f\n",ans); &#125; return 0;&#125;]]></content>
       <tags>
-        <tag>PE</tag>
         <tag>数学</tag>
+        <tag>PE</tag>
       </tags>
   </entry>
   <entry>
@@ -204,8 +204,8 @@
     <url>%2F2018%2F12%2F12%2FPE492%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 Define the sequence $a_1, a_2, a_3,\dots$ as: $a_1 $=$ 1$ $a_{n+1} = 6a_n^2 + 10a_n + 3$ for $n \geq 1$. Examples: $a_3 $=$ 2359$ $a_6 $=$ 269221280981320216750489044576319$ $a_6 mod 1000000007 $=$ 203064689$ $a_{100} mod 1000000007 $=$ 456482974$ Define $B(x,y,n)$ as $\sum (a_n mod $ $p)$ for every prime $p$ such that $x \leq p \leq x+y$. Examples: $B(10^9, 10^3, 10^3)$ = $23674718882$ $B(10^9, 10^3, 10^{15})$ = $20731563854$ Find $B(10^9, 10^7, 10^{15})$. 题意给你一个二次递推序列,问你这个数列的第$10^{15}$项膜上一堆质数之后求和是多少. 分析看了大佬的题解之后才做出来的,还是太菜了$\dots$ 下面是分析. 首先我们令$b_n = 6a_n+5$ 于是有 $b_1$ = $11$ $b_{n+1} $=$ b_n^2-2$ 然后我们令 $ x + \frac{1}{x}$ = $11$ 可以显然发现 $b_n$ = $x^{2^{n-1}} + \frac{1}{x^{2^{n-1}}}$ 于是不妨设 $x$ = $\frac{11+\sqrt{117}}{2}$ $\therefore b_n$ = $(\frac{11+\sqrt{117}}{2})^{2^{n-1}} + (\frac{11-\sqrt{117}}{2})^{2^{n-1}}$ 然后我们可以直接算就行了 我们搞出递推式，然后用矩阵乘法的做法来做 我们考虑一个更一般的问题， 令$f_n = (\frac{11+\sqrt{117}}{2})^n + (\frac{11-\sqrt{117}}{2})^n$ 然后我们考虑$f_n$如何求解 首先我们假设$f_n = x\ast f_{n-1}+y\ast f_{n-2}$ $$令 (\frac{11+\sqrt{117}}{2})^{n-2} = a$$ $$令 (\frac{11-\sqrt{117}}{2})^{n-2} = b$$ 则有\begin{cases}\begin{eqnarray}f_n &amp;=&amp; a\ast (\frac{11+\sqrt{117}}{2})^2+b\ast (\frac{11-\sqrt{117}}{2})^2\\&amp;=&amp; a\ast (\frac{238+22\sqrt{117}}{4})+b\ast (\frac{238-22\sqrt{117}}{4})\\f_{n-1}&amp;=&amp;a\ast (\frac{11+\sqrt{117}}{2})+b\ast (\frac{11-\sqrt{117}}{2})\\f_{n-2}&amp;=&amp;a+b \\\end{eqnarray}\end{cases} \begin{eqnarray}&amp;\therefore&amp; a\ast (\frac{238+22\sqrt{117}}{4})+b\ast (\frac{238-22\sqrt{117}}{4})\\&amp;=&amp; x\ast a\ast (\frac{11+\sqrt{117}}{2})+x\ast b\ast (\frac{11-\sqrt{117}}{2}) + y\ast (a+b)\\\end{eqnarray} 将非根号项提出来，可以得到 $\therefore a\ast \frac{119}{2}+b\ast \frac{119}{2}$=$xa\ast \frac{11}{2}+xb\ast \frac{11}{2}+y(a+b) $ 同理将根号项提出可以得到 $a\ast \frac{11}{2}+b\ast \frac{-11}{2}$=$xa\ast \frac{1}{2}+xb\ast \frac{-1}{2} $ 然后可以解得 \begin{cases}x = 11\\y = -1\end{cases} 也就是说$f_n$ = $11\ast f_{n-1} - f_{n-2}$ 好了，我们得到了$f_n$的递推式，然后考虑原问题，也就是说 $$\left( \begin{matrix} b_{n+1}\\ b_n \end{matrix}\right)=\left( \begin{matrix} 11 &amp; -1\\ 1 &amp; 0 \end{matrix}\right)^{2^{n-1}-1}\left( \begin{matrix} b_2\\ b_1 \end{matrix}\right)=\left( \begin{matrix} 11 &amp; -1\\ 1 &amp; 0 \end{matrix}\right)^{2^{n-1}-1}\left( \begin{matrix} 119\\ 11 \end{matrix}\right)$$ $\because n$ 很大($10^{15}$) $\therefore 2^{n-1}-1$很大,以至于我们不能方便的计算 然后我们考虑降低指数 具体分析看大佬的分析,可以得到循环节可以是$(p+1)(p-1)$ 这个值我们可以接受,然后直接裸的矩阵ksm就行了$\dots$ 代码给大佬递上我奇丑无比的代码 (/ω＼) 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100#include&lt;bits/stdc++.h&gt;using namespace std;const long long n = 1e15;const long long l = 1e9;const long long r = l+1e7;long long add(long long a,long long b,long long mod)&#123; return (a+b)%mod; &#125;long long mul(long long a,long long b,long long mod)&#123; a = add(a,mod,mod); b = add(b,mod,mod); long long ret = 0; while(b)&#123; if(b&amp;1) ret = add(ret,a,mod); a = add(a,a,mod); b&gt;&gt;=1; &#125; return ret;&#125;long long qpow(long long a,long long b,long long mod)&#123; long long ret = 1; while(b)&#123; if(b&amp;1) ret = mul(ret,a,mod); a = mul(a,a,mod); b&gt;&gt;=1; &#125; return ret;&#125;bool is_prime(int a)&#123; if(a&amp;1)&#123; for(int i = 3;i*i&lt;=a;i++) if(a%i==0) return false; return true; &#125; return false;&#125;struct p&#123; int mat[2][2]; void show()&#123; for(int i = 0;i&lt;2;i++)&#123; for(int j = 0;j&lt;2;j++) cout&lt;&lt;mat[i][j]&lt;&lt;' '; cout&lt;&lt;endl; &#125; &#125;&#125;;p mul(p a,p b,long long mod)&#123; p ret; memset(ret.mat,0,sizeof ret.mat); for(int i = 0;i&lt;2;i++)&#123; for(int j =0;j&lt;2;j++)&#123; for(int k = 0;k&lt;2;k++)&#123; ret.mat[i][j] = add(ret.mat[i][j],mul(a.mat[i][k],b.mat[k][j],mod),mod); &#125; &#125; &#125; return ret;&#125;p qpow(p a,long long b,long long mod)&#123; p ret; for(int i = 0;i&lt;2;i++) for(int j = 0;j&lt;2;j++) &#123; if(i==j) ret.mat[i][j]=1; else ret.mat[i][j]=0; &#125; while(b)&#123; if(b&amp;1) ret = mul(ret,a,mod); a = mul(a,a,mod); b&gt;&gt;=1; &#125; return ret;&#125;long long solve(long long prime)&#123; const long long MOD = prime*prime-1; long long zhi = qpow(2,n-1,MOD); zhi = add(zhi,MOD-1,MOD); p base; base.mat[0][0]=11,base.mat[0][1]=-1; base.mat[1][0]=1 ,base.mat[1][1]=0; base = qpow(base,zhi,prime); long long ret1 = mul(base.mat[1][0],119,prime); long long ret2 = mul(base.mat[1][1],11,prime); return add(ret1,ret2,prime);&#125;long long inv(long long a,long long mod)&#123; if(a==1) return 1; return mul(mod-mod/a,inv(mod%a,mod),mod);&#125;int main()&#123; long long ans = 0; for(int i = l;i&lt;=r;i++)&#123; if(is_prime(i))&#123; long long bn = solve(i); long long now1 = add(bn,i-5,i); long long an = mul(now1,inv(6,i),i); ans+=an; &#125; if(i%100000==0) cout&lt;&lt;i&lt;&lt;endl; &#125; cout&lt;&lt;ans&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
-        <tag>PE</tag>
         <tag>数学</tag>
+        <tag>PE</tag>
       </tags>
   </entry>
   <entry>
@@ -221,8 +221,8 @@
     <url>%2F2018%2F12%2F08%2FPE288%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 For any prime $p$ the number $N(p,q)$ is defined by $N(p,q) = \sum_{n=0}^q T_n*p^n$with $T_n$ generated by the following random number generator: \begin{eqnarray}&amp;&amp;S_0 = 290797\\&amp;&amp;S_{n+1} = S_n^2 mod 50515093\\&amp;&amp;T_n = S_n mod p\\\end{eqnarray} Let $Nfac(p,q)$ be the factorial of $N(p,q)$.Let $NF(p,q)$ be the number of factors $p$ in $Nfac(p,q)$. You are given that $NF(3,10000) mod 3^{20}=624955285$. Find $NF(61,10^7)$ mod $61^{10}$ 题意题意说的有点麻烦，我简化一下 $T_i$是随机生成的数据，$N(p,q)=\sum_{n=0}^q T_n*p^n$ 问你$N(p,q)$的阶乘里面，质因数分解以后$p$的指数膜$p^{10}$答案是多少． 分析首先可以观察到的是，$T_i$很小，而且他是随机的，我们显然要把他存起来． 然后一个比较显然的结论是$$n!质因数分解后素因子p的数量为\lfloor \frac{n}{p} \rfloor + \lfloor \frac{n}{p^2} \rfloor + \cdots$$$$\because 最后的答案要膜 p^{10} \therefore 我们统计的时候，对于第一项，我们统计指数为 [1,10]的，第二项[2,11],然后枚举项统计答案即可$$ 代码给大佬递上我奇丑无比的代码 (/ω＼)123456789101112131415161718192021#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 1e7+1;const int pow_num = 10;long long T[maxm+100];const int p = 61;long long powp[1000];void init()&#123; powp[0] = 1; for(int i = 1;i&lt;=pow_num;i++) powp[i] = powp[i-1]*p; long long s0 = 290797; for(int i = 1;i&lt;maxm;i++) T[i] = (s0=s0*s0%50515093)%p;&#125;int main()&#123; init(); long long ans = 0; const long long mod = powp[pow_num]; for(int i = 1;i&lt;maxm;i++) for(int j = i;j&lt;=i+pow_num-1;j++) ans = (ans+(T[j]*powp[j-i]%mod))%mod; printf("%lld\n",ans); return 0;&#125;]]></content>
       <tags>
-        <tag>PE</tag>
         <tag>数学</tag>
+        <tag>PE</tag>
       </tags>
   </entry>
   <entry>
@@ -268,7 +268,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190919]]></title>
-    <url>%2F1019%2F09%2F19%2F20190919%2F</url>
+    <url>%2F1019%2F09%2F19%2Fdiary%2F20190919%2F</url>
     <content type="text"><![CDATA[今天生日啊！ 昨天交完房租，今天就灰溜溜的来上班了。生活所迫，没办法啊。 刚来就需求评审。有点累。 找奇哥借了5000。手上有20000，但是房租18000，交完房租我基本就是个废人了。 这就是成年人的世界吗？手上小几万，一天就没了。啊，我死了。 加油加油！]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -276,7 +276,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190915]]></title>
-    <url>%2F1019%2F09%2F15%2F20190915%2F</url>
+    <url>%2F1019%2F09%2F15%2Fdiary%2F20190915%2F</url>
     <content type="text"><![CDATA[今天老妈非拉着我去给我买了两条裤子，我们在路上闲聊的时候，她又扯到我的小姐姐身上了，然后她就疯狂问我关于她的各种问题。我就各种说不知道。 我是真的不知道，她家里干什么的，她家里有几个孩子，她家里有一年挣多少，她家里父母文化水平是多少。 我是真的不知道，也不关心，我现在依然觉得，我喜欢的是她，不是吗？我自认为自己的水平还算不错，无论她家里什么情况，我都欣然接受，因为我觉得你要和她在一起的时候，无论她家里怎么样，你都至少可以改变自己不是吗？ 嗯，就酱紫，要和小姐姐谈一场甜甜的恋爱。]]></content>
       <tags>
         <tag>HER</tag>
@@ -284,7 +284,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190909]]></title>
-    <url>%2F1019%2F09%2F09%2F20190909%2F</url>
+    <url>%2F1019%2F09%2F09%2Fdiary%2F20190909%2F</url>
     <content type="text"><![CDATA[这几天请假回学校玩了几天，感到很是堕落，每天的事都是今天拖明天，明天拖后天，感觉拖延症都上来了。不像以前的我。说实话这几天都不知道该干啥。当时回来之前给自己的定位是养老，但是真的养老的时候反而感觉到不适应。难道是因为真的不适合养老吗? 很多时候明明很慌，但是为什么又不想努力呢?到底说还是自己太懒了。然后实在是不想等下去了。明天处理完这边的事就准备回家了。 回家其实也没有太多事。不知道干啥。 其实我主要想说的是，我这段时间突然有点迷茫，不知道自己到底想要的是什么，很多时候我都会说想搞很多很多钱，但是我后来渐渐发现，我要的可能不是这个，因为这种想法往往禁不起后一步 推敲，比如进一步问我:搞了很多钱，然后呢?说实话我答不上来。我真的不知道自己想要的到底是什么。 我一直觉得，一个人又仔细想要的东西是一件很美好的事，他能让一个人有奋斗的目标，但是一旦你发现这个目标没有意义的时候，你就非常难受了。你会突然发现一切的努力没有了意义。 不说了，后天走的话，明天事还挺多的，先打游戏去了。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -292,7 +292,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190905]]></title>
-    <url>%2F1019%2F09%2F05%2F20190905%2F</url>
+    <url>%2F1019%2F09%2F05%2Fdiary%2F20190905%2F</url>
     <content type="text"><![CDATA[从3.6到今天刚好半年时间，不知不觉已经来北京半年了，感慨挺多的。期间发生了很多事，下面一一总结。 首先就是比赛的事，虽然是上上个月就已经决定了，但是还是很多想说的。我之前一直觉得不回学校打比赛是因为父母的缘故，后来仔细想了想，可能不止于此吧。可能更多的是自己的想法。不怪队友，真的是自己没有了当年的激情了，或许真像水先生说的那样，自己已经被温水煮青蛙了。可能几年后再来回想这件事可能会有不同的看法吧。 其次就是自己在头条这边的成长，说句公道话，我没去过别的地方，所以暂时不做对比，单说头条。首先对于一个刚毕业或者说还没毕业的人来说，头条还算是比较肝的了，但是我始终觉得这种肝对于一个没有任何工程能力的人来说是非常有意义的。其次，头条这边的环境真的很好，尤其给我最深的一点体会就是，大家都是想把某个东西做好，且不说每个人出力多少，但是所有人朝着一个方向迈进，总会有所成就不是吗？最后就是：头条的伙食真的很好，我已经胖了10斤了。俨然是一个看起来20多，实际上刚20的中年油腻大叔，哈哈哈哈。 然后就是自己的脾气，真的是好了很多，可能是因为工程能力太菜了的缘故，很多时候都是陈述自己的意见，那种强迫奇哥接受我的想法的日子，一去不复返了。哈哈哈哈哈。对不起奇哥。 还有就是挺感谢头条给我的六个月，尤其是老大。初入职的第一个老大真的是非常重要了。我眼里一个完美老大的样子，不是他技术有多牛（当然，我老大也很厉害），而是他现在的样子，是否是你追求的样子，或者说，你想成为他那样的人吗？如果你“不幸”遇到了，那真的是能爽一辈子的事。真不巧，我老大就是这样。哈哈哈哈。 然后就是见了相见的小姐姐。还是挺爽的。没怎么出门玩过的人，可能稍显木讷，感觉被嫌弃了。orz。 还有108天，等着呗，很快的。 还没答辩就溜了，实在是太累了，没时间写ppt 啊啊啊。 昨天收拾东西的时候第一次感受到了六个月时间有多长，大概就是，刚来北京的时候我穿的是羽绒服，厚外套。昨天收拾东西的时候，我一个大男人的衣服硬生生有两个箱子+一书包？]]></content>
       <tags>
         <tag>个人总结</tag>
@@ -300,7 +300,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190901]]></title>
-    <url>%2F1019%2F09%2F01%2F20190901%2F</url>
+    <url>%2F1019%2F09%2F01%2Fdiary%2F20190901%2F</url>
     <content type="text"><![CDATA[这几周实在是忙昏了头，周报都没写，实在是有点懒了。 这几周有点迷茫了，很多东西都想学，但是还是一如既往的懒，好多东西都是想学的，但是因为懒，还用了没有时间作为了借口，实在是不应该啊。 然后这周四可能要回学校养老了，实在是需要时间来整理整理自己的东西了。 每天忙忙忙也不是个事。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -308,7 +308,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190825]]></title>
-    <url>%2F1019%2F08%2F25%2F20190825%2F</url>
+    <url>%2F1019%2F08%2F25%2Fdiary%2F20190825%2F</url>
     <content type="text"><![CDATA[今天看到一个人，虽然我从来没有和他说过话，但是我对他很反感，我突然间想到一件事，为什么我会对一个从来没有交流过的人，没有任何交集的人感到反感？ 仔细的思考了一下，大概原因是我是通过了我比较信任的人的描述，而产生了我脑补自己对他印象的现象。无论这个印象是否真实，但是一旦产生几乎不可更改。导致了我后来对他产生的反感。 想明白这一点之后，突然就感觉到可怕。人言可畏啊，很多时候都不用众口铄金，很多时候听了一个人的意见，就足以产生很大的印象。感觉以后很多事情需要有更多自己的思考。记录于此，引以为戒。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -316,7 +316,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190816]]></title>
-    <url>%2F1019%2F08%2F16%2F20190816%2F</url>
+    <url>%2F1019%2F08%2F16%2Fdiary%2F20190816%2F</url>
     <content type="text"><![CDATA[昨天晚上和大哥哥打了个电话，他和我说了很多事，我突然明白一个道理，一个人的无心之失真的会对一个人造成那么大的影响。 都是自己当时太年轻了，居然会犯那么傻屌的错误，还渐渐的遗忘了，实在是罪过。最近找个时间弥补一下吧。不然真的会后悔一辈子吧。 明确未来要做的三件事 1.等待 2.事业 3.毕业 加油吧，努力成长，静待怒放。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -324,7 +324,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190812]]></title>
-    <url>%2F1019%2F08%2F12%2F20190812%2F</url>
+    <url>%2F1019%2F08%2F12%2Fdiary%2F20190812%2F</url>
     <content type="text"><![CDATA[今天在清理历史消息的时候，突然发现一个事，那就是HR，5月份的时候拉了个群，意思是这个群里都是有实力转正的，但是没有我，直到7月底的时候才把我拉进去，这样我就不开心了。 不是，我就不懂了，这个意思是我不行呗？反正很不爽，突然就不想干活了，真的想一走了之，管他什么呢。 然后就直接找老大聊了一下，老大说他知道这个事，和我解释说，老大们没有对齐标准导致的。 好吧，我勉强能接受这个解释，但是说实话，我真的略失望。反正这样做搞的人很不爽。不开心，不开心，不开心！ 就这样吧。 可能有一天，等我攒够了失望就会离开。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -332,7 +332,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190807]]></title>
-    <url>%2F1019%2F08%2F07%2F20190807%2F</url>
+    <url>%2F1019%2F08%2F07%2Fdiary%2F20190807%2F</url>
     <content type="text"><![CDATA[听说今天是七夕，所以说也是我老爸的生日。 公司这边实在是太忙了，暂时没有时间想对象的事。刚刚给爸爸打了个电话，谁知道他已经睡了。确实有点晚了。 然后就是这个月底如果转正顺利的话，可能就要考虑回家一趟了。确实是好久没有回家了。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -340,7 +340,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190803]]></title>
-    <url>%2F1019%2F08%2F03%2F20190803%2F</url>
+    <url>%2F1019%2F08%2F03%2Fdiary%2F20190803%2F</url>
     <content type="text"><![CDATA[今天刚看完了《哪吒之魔童降世》，颇有感触。 实际上最打动我的那一幕就是哪吒白化前的那一幕，哪吒的父亲，愿意和哪吒换命。一个二十好几的大老爷们真的是在影院无声的哭了。真的是挺打动我的。突然间就想到了我的父亲。我仔细的思索了一番，如果换做是我的父亲，他会怎么做，我感觉他同样不会犹豫。当时想到这个就哭了出来。为人父母真的是挺不容易的。 和哪吒一样，我从小一直很蠢。可能认识我的人都不会想到我曾经语文+数学都考不到60分。但是我小时候就是这个尿性。因为父母都是老师，同事的孩子也和我一般大。所以经常拿来做比较，因为父母很敬业，所以没有时间管教我，导致我小时候一直很差，不难想到父母因为我而失望过多少次。但是他们有放弃过我吗？没有，他们总是很有耐心的教育我。 再后来，我开始渐渐明白人事。也就是那个叛逆的年纪，开始不懂事。总是有意无意的气父母，着实很不该。现在回想起来，真的是很后悔当初的所作所为。可能在父母眼里，我永远是一个长不大的孩子吧。 想起来上周给家里打了个电话，我能明显感觉到母亲接到电话时那种欣喜的语气，反而让我感觉甚为羞愧。实在是想象不到，父母这个角色忍受了多少不该忍受的东西。那种不求回报的给予，真的很让人感到敬佩。 其实我一直以来都算不上听话，想起来上次我母亲用个软件，弄了半天还是没有弄好，给我整着急了，我就很不耐烦了。后来有一天我母亲和我说，让我对她有点耐心，毕竟他们渐渐的老了，不像以前那样灵光了。就像他们小时候对我一样，多给他们一些耐心。听完这个之后，我就很难受了。我一直觉得我已经长大很多了，但是实际上呢？还是动不动就惹父母生气，实在是罪过。 再回想一下，我是真的对父母的耐心很差了，他们也确实老了，而我呢？正处于上升期，很多时候都不太愿意听父母的建议。很多时候希望自己能拿主意，甚至很抵触父母的建议。但是大多数时候会发现他们的建议是对的，他们毕竟经历的比我们多多了。但是还是碍于面子，自己做决定了，现在回想一下还是真傻。在父母面前是最不用面子的。他们何曾求过我有一天能大富大贵呢？他们无非就是祈祷我能多回家看看罢了。然而这个愿望我在后面不知道还有多少日子的日子里，还能圆他们几次愿望呢？ 上次回家还是过年吧。总说自己忙忙忙，但是自己是真的忙吗？每天还有一个小时的时间用来打游戏，哪能算得上真忙呢？无非就是觉得他们很烦罢了吧？现在想想着实不该啊。为什么总是有这种幼稚、无聊的想法呢？ 不早了，先睡了。明天给家里打个电话吧。就这样，晚安。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -348,7 +348,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190714]]></title>
-    <url>%2F1019%2F07%2F14%2F20190714%2F</url>
+    <url>%2F1019%2F07%2F14%2Fdiary%2F20190714%2F</url>
     <content type="text"><![CDATA[昨天晚上给家里打了个电话，说了关于回学校继续比赛的事，实在是没想到家里人的反应会那么大，母亲的意思是，坚决反对我回学校打比赛。导致我昨天晚上想了很久关于是否回学校的事。 然后我回想了一下当时我们三个人讨论的事情，毫无疑问，我是主张不回去打比赛的，那么为什么让我动摇了呢？是因为他们两个都要回去吗？我一向自诩为遵从内心，自由生长。为何此刻就一直摇摆不定？ 我现在无非担心的两件事就是：我没有回去，他们打金了；我回去了，结果和去年一样。 毫无疑问，我其实更担心后者。 昨天问了一下奇哥，关于金牌和sp的把握，分别是75%和80%，其实在我心里分别是50%,60%，说真的，我不知道从那一刻开始，对很多东西不抱有希望了，很多时候都没有当初入学的那种激情了。正是这种激情的缺失，导致我一度不想回学校打比赛。奇哥的意思是，为什么不去尝试更多可能？可能我回学校发现那种激情又回来了？我对这种想法持怀疑态度。我感觉还是过早接触了不该接触的东西，导致我现在心思已经完全不在这上面了。就像淌过的时间之水，一去不返了。 然后奇哥说，如果我不回去，他还是有可能会去打比赛。我仔细思考了一下母亲说的，我是学校最厉害的人吗？虽然我一度这么觉得，但是结果是显然的——我不是。那么在三个人六个月没训练的情况下，他们完全足够和任何人进行磨合，而且结果不会太差。如此说来，我不回去其实没有我想的那么愧疚。哎，这糟心事。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -356,7 +356,7 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190702]]></title>
-    <url>%2F1019%2F07%2F02%2F20190702%2F</url>
+    <url>%2F1019%2F07%2F02%2Fdiary%2F20190702%2F</url>
     <content type="text"><![CDATA[今天上午已知在忙学校的事，真的被学校的事折磨死了，带我们小学期的老师感觉还不好说话。 我就不懂了，为什么每次好不容易被工作搞的有一点激情了，紧接着就被学校的破事消耗殆尽，甚至搞的身心俱疲。 学校那些死板的规定，天知道是哪一天定下来的，这么长时间没有被修改过了，恐怕已经被无数人诟病了，为什么就不能修改一下呢？我至今任不明白，学校到底是在培养什么样的人？从前的我一直以为是对社会有用的人，后来想想恐怕不是。为什么社会都承认的人，在学校还因为一些傻屌规定频频受阻？教育的病态性已经不容多说了，一直很好奇这种涉及到国家未来的事会一拖再拖？现在还提不出一个有效的方案？算了，无力吐槽了，毕竟这么多年来，都是我这样无病呻吟，没有权力导致碌碌无为的人，毕业了之后就没精力去改变什么了，说到底我也是作恶者罢了。]]></content>
       <tags>
         <tag>日常吐槽</tag>
@@ -364,16 +364,16 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190626]]></title>
-    <url>%2F1019%2F06%2F26%2F20190626%2F</url>
-    <content type="text"><![CDATA[今天早上5.30就起了，好久都没有起这么早过了。 除了周五的最后一个考试，这学期就算是结束了。 这两天因为天天在学校玩，所以有很多时间想一些自己的事。这里索性总结一下吧。 首先就是大学的日子，仔细想想，自己的大学貌似从大二毕业就已经死掉了。或者说从大一下半学期就已经死掉了。已经记不清自己逃了多少课，每次考试都是划水划过去的。大三上逃的课比上的都多。大三下直接就出来工作了。整个大学除了舍友和少数几个朋友，其他人真的只是点头之交。这其实和我刚入大学的想法还是很不一样的。曾经的我不是没有想过做一个学霸，但是出于种种原因，渐渐放弃了这个想法，不是天资不够，实在是努力不够，或者说努力的方向不一样。当时还是太喜欢打比赛了。说到底还是太想证明自己了。回头想了想，当时应该是因为高考成绩太差了，所以对成绩失望了，想找到一个方向，告诉自己我还行，不是那么差，所以找了一条人迹罕至的路。现在回头想想，没有后悔和失落，也没有欣喜和狂欢，只有默默的努力和玩乐。直到后来在这条路上渐行渐远的时候，我已经开始迷失了。其实大三上还是太颓废了，很多该学的东西都没有学好。现在就是各种踩坑啊啊啊啊。 还有就是工作的事，今天得知比我晚来的实习生要走了，问了一下，他的想法是在这边学不到什么东西，而且时间实在是太紧了，让他抽不出时间来学习。这个问题其实我上个月就已经意识到了，然后找15级几个学长问了下，他们的意见是，大部分互联网公司都一个逼样，所以不用太过忧愁，毕竟是没有去过其他公司，所以暂时不知道具体现象是什么样。暂时就先留在这里吧，转正再说。 然后就是考研的问题，现在时间上已经不足6个月了，我算是彻底放弃了，这个时间太不凑巧了，时间卡的太不好了，很多事都需要在这六个月里面完成，所以显然是来不及了。而且当时想考医学研究生显然是一时心血来潮，毕竟想和小姐姐再玩两年。后来想想还是算了，惹人厌烦。总给人一种逼宫的感觉，而且自己水平实在是不太够，虽然舍友每天都奶我，说我考必中，其实我知道无非是大家平时开玩笑之类的话罢了。随着年龄的增大，越来越不会嫉妒别人，因为我清楚的知道，每个人的努力和回报成正比，没有人能随随便便成功。虽然我不否认有些天才，但是没有不用付出的天才，不是吗？ 最后就是比赛了。因为和工作冲突的缘故，公司这边说是要8月底才能转正。但是如果9月才开始训练的话，三个月可能还是来不及，很可能还是和去年一个水平，那么我觉得浪费这三个月时间没有任何意义了。暂时还是没想好，看队友想法吧。我的话，自我感觉已经没有了大一刷题的激情了，还是老了，再也刷不动夜了，很多问题甚至是不想深究了，甚至是轻易的放过去了，导致大二结束到现在反而是水平跌落很多了。 算了不说了，继续搬砖去了。]]></content>
+    <url>%2F1019%2F06%2F26%2Fdiary%2F20190802%2F</url>
+    <content type="text"><![CDATA[今天终于是周五了，这周不知道为什么感觉特别的累，真的是由身到心的累。没有原因的那种。而且我感觉这周应该是7月最摸鱼的一周了，但是还是感觉很忙的感觉。 然后昨天写了一下周报，看了一下我写的东西，看起来是挺多的，但是仔细想想其实都是杂货，没什么技术含量，主要就是各方沟通吧。 其实应该在每个技术宅的眼里，默默写完自己的代码，然后run的很健壮，应该是一件很爽的事吧。]]></content>
       <tags>
         <tag>日常吐槽</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190626]]></title>
-    <url>%2F1019%2F06%2F26%2F20190802%2F</url>
-    <content type="text"><![CDATA[今天终于是周五了，这周不知道为什么感觉特别的累，真的是由身到心的累。没有原因的那种。而且我感觉这周应该是7月最摸鱼的一周了，但是还是感觉很忙的感觉。 然后昨天写了一下周报，看了一下我写的东西，看起来是挺多的，但是仔细想想其实都是杂货，没什么技术含量，主要就是各方沟通吧。 其实应该在每个技术宅的眼里，默默写完自己的代码，然后run的很健壮，应该是一件很爽的事吧。]]></content>
+    <url>%2F1019%2F06%2F26%2Fdiary%2F20190626%2F</url>
+    <content type="text"><![CDATA[今天早上5.30就起了，好久都没有起这么早过了。 除了周五的最后一个考试，这学期就算是结束了。 这两天因为天天在学校玩，所以有很多时间想一些自己的事。这里索性总结一下吧。 首先就是大学的日子，仔细想想，自己的大学貌似从大二毕业就已经死掉了。或者说从大一下半学期就已经死掉了。已经记不清自己逃了多少课，每次考试都是划水划过去的。大三上逃的课比上的都多。大三下直接就出来工作了。整个大学除了舍友和少数几个朋友，其他人真的只是点头之交。这其实和我刚入大学的想法还是很不一样的。曾经的我不是没有想过做一个学霸，但是出于种种原因，渐渐放弃了这个想法，不是天资不够，实在是努力不够，或者说努力的方向不一样。当时还是太喜欢打比赛了。说到底还是太想证明自己了。回头想了想，当时应该是因为高考成绩太差了，所以对成绩失望了，想找到一个方向，告诉自己我还行，不是那么差，所以找了一条人迹罕至的路。现在回头想想，没有后悔和失落，也没有欣喜和狂欢，只有默默的努力和玩乐。直到后来在这条路上渐行渐远的时候，我已经开始迷失了。其实大三上还是太颓废了，很多该学的东西都没有学好。现在就是各种踩坑啊啊啊啊。 还有就是工作的事，今天得知比我晚来的实习生要走了，问了一下，他的想法是在这边学不到什么东西，而且时间实在是太紧了，让他抽不出时间来学习。这个问题其实我上个月就已经意识到了，然后找15级几个学长问了下，他们的意见是，大部分互联网公司都一个逼样，所以不用太过忧愁，毕竟是没有去过其他公司，所以暂时不知道具体现象是什么样。暂时就先留在这里吧，转正再说。 然后就是考研的问题，现在时间上已经不足6个月了，我算是彻底放弃了，这个时间太不凑巧了，时间卡的太不好了，很多事都需要在这六个月里面完成，所以显然是来不及了。而且当时想考医学研究生显然是一时心血来潮，毕竟想和小姐姐再玩两年。后来想想还是算了，惹人厌烦。总给人一种逼宫的感觉，而且自己水平实在是不太够，虽然舍友每天都奶我，说我考必中，其实我知道无非是大家平时开玩笑之类的话罢了。随着年龄的增大，越来越不会嫉妒别人，因为我清楚的知道，每个人的努力和回报成正比，没有人能随随便便成功。虽然我不否认有些天才，但是没有不用付出的天才，不是吗？ 最后就是比赛了。因为和工作冲突的缘故，公司这边说是要8月底才能转正。但是如果9月才开始训练的话，三个月可能还是来不及，很可能还是和去年一个水平，那么我觉得浪费这三个月时间没有任何意义了。暂时还是没想好，看队友想法吧。我的话，自我感觉已经没有了大一刷题的激情了，还是老了，再也刷不动夜了，很多问题甚至是不想深究了，甚至是轻易的放过去了，导致大二结束到现在反而是水平跌落很多了。 算了不说了，继续搬砖去了。]]></content>
       <tags>
         <tag>日常吐槽</tag>
       </tags>
