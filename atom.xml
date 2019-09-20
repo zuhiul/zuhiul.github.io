@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zuhiul.github.io/"/>
-  <updated>2019-09-16T09:53:09.691Z</updated>
+  <updated>2019-09-20T06:57:34.909Z</updated>
   <id>http://zuhiul.github.io/</id>
   
   <author>
@@ -17,9 +17,29 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Codeforces 1187 E</title>
+    <link href="http://zuhiul.github.io/2019/09/20/CF/CF_1187_E/"/>
+    <id>http://zuhiul.github.io/2019/09/20/CF/CF_1187_E/</id>
+    <published>2019-09-19T16:00:00.000Z</published>
+    <updated>2019-09-20T06:57:34.909Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="E-Tree-Painting"><a href="#E-Tree-Painting" class="headerlink" title="E. Tree Painting"></a>E. Tree Painting</h2><p><a href="http://codeforces.com/problemset/problem/1187/E" target="_blank" rel="noopener">开启传送门</a></p><a id="more"></a><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are given a tree (an undirected connected acyclic graph) consisting of $n$ vertices. You are playing a game on this tree.</p><p>Initially all vertices are white. On the first turn of the game you choose one vertex and paint it black. Then on each turn you choose a white vertex adjacent (connected by an edge) to <strong>any</strong> black vertex and paint it black.</p><p>Each time when you choose a vertex (even during the first turn), you gain the number of points equal to the size of the connected component consisting only of white vertices that contains the chosen vertex. The game ends when all vertices are painted black.</p><p>Let’s see the following example:</p><p><img src="http://codeforces.com/predownloaded/ad/4f/ad4fad5ce28ee4d1715321cbdee7db39ee67260c.png" alt=""></p><p>Vertices $1$ and $4$ are painted black already. If you choose the vertex $2$, you will gain $4$ points for the connected component consisting of vertices $2,3,5$ and $6$. If you choose the vertex $9$, you will gain $3$ points for the connected component consisting of vertices $7,8$ and $9$.</p><p>Your task is to maximize the number of points you gain.</p><h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line contains an integer $n$ — the number of vertices in the tree ($2≤n≤2⋅10^5$).</p><p>Each of the next $n−1$ lines describes an edge of the tree. Edge $i$ is denoted by two integers $u_i$ and $v_i$, the indices of vertices it connects ($1≤u_i,v_i≤n$, $u_i\neq v_i$).</p><p>It is guaranteed that the given edges form a tree.</p><h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>Print one integer — the maximum number of points you gain if you will play optimally.</p><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="input1"><a href="#input1" class="headerlink" title="input1"></a>input1</h4><p>9</p><p>1 2</p><p>2 3</p><p>2 5</p><p>2 6</p><p>1 4</p><p>4 9</p><p>9 7</p><p>9 8</p><h4 id="output1"><a href="#output1" class="headerlink" title="output1"></a>output1</h4><p>36</p><h4 id="input2"><a href="#input2" class="headerlink" title="input2"></a>input2</h4><p>5</p><p>1 2</p><p>1 3</p><p>2 4</p><p>2 5</p><h4 id="output2"><a href="#output2" class="headerlink" title="output2"></a>output2</h4><p>14</p><h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>The first example tree is shown in the problem statement.</p><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>zuhiul认识很多妹子（不超过$2\cdot 10^5$个），妹子之间是个树形关系。他决定每天聊一个妹子，但是他是个强迫症，第一天他可以随便聊任何一个妹子，但是之后每一天，他只能聊和之前聊过的妹子有关系的妹子。每次聊一个妹子之前，他会数一下这个妹子所在的未聊过的连通块的大小，当然，连通块越大他越开心（连通块为 $n$ ，他会得到 $n$ 开心度），现在问你，他聊完所有妹子后，开心度求和后为多少。</p><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>如果我们强制第一次聊编号为 $1$ 的妹子， 我们考虑怎么统计答案。</p><p>一个很直观的想法是，我们可以一次dfs出所有子树的大小，然后对于每棵子树大小求和就是答案。</p><p>那么现在问题就转化成了，如何对于每个根求答案。</p><p>显然换根可解，但是如何统计换根后的答案呢？</p><p>我们考虑一下，我们以 $1$ 为根的时候怎么算的答案呢？</p><p>每棵子树的大小求和。但是我们可以换个角度看问题，我们不看子树的贡献，我们考虑每个节点的贡献，可以显然的发现，每个节点的贡献就是每个节点到 $1$ 的距离。</p><p>所以换根就很直观了。我们定义 $ans[i]$ 表示以 $i$ 为根的答案，$cnt[i]$ 表示以 $1$ 为根的时候，$i$ 子树的大小。所以换根相对于当前节点的父亲的代价就是 $i$ 子树深度-1，其他节点深度+1。所以当前节点相对于父亲的答案是，减少了 $cnt[i]$，增加了 $n-cnt[i]$。也即</p><p>$$ans[ind] = ans[pre] - cnt[ind] + (n-cnt[ind]) $$</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; mat[maxm];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> size[maxm];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans[maxm];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> ind = <span class="number">1</span>, <span class="keyword">int</span> pre = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">size[ind] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> i:mat[ind]) &#123;</span><br><span class="line"><span class="keyword">if</span>(i==pre) <span class="keyword">continue</span>;</span><br><span class="line">dfs(i, ind);</span><br><span class="line">size[ind] += size[i];</span><br><span class="line">&#125;</span><br><span class="line">ans[<span class="number">1</span>] += size[ind];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> ind, <span class="keyword">int</span> pre)</span> </span>&#123;</span><br><span class="line">ans[ind] = ans[pre] - size[ind] + (n-size[ind]);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> i:mat[ind]) &#123;</span><br><span class="line"><span class="keyword">if</span>(i==pre) <span class="keyword">continue</span>;</span><br><span class="line">dfs2(i, ind);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, from, to;i&lt;n;i++) &#123;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;from,&amp;to);</span><br><span class="line">mat[from].push_back(to);</span><br><span class="line">mat[to].push_back(from);</span><br><span class="line">&#125;</span><br><span class="line">dfs();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> i:mat[<span class="number">1</span>]) dfs2(i, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> rans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++) rans = max(rans, ans[i]);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, rans);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;E-Tree-Painting&quot;&gt;&lt;a href=&quot;#E-Tree-Painting&quot; class=&quot;headerlink&quot; title=&quot;E. Tree Painting&quot;&gt;&lt;/a&gt;E. Tree Painting&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://codeforces.com/problemset/problem/1187/E&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="CF" scheme="http://zuhiul.github.io/tags/CF/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Codeforces 1215 E</title>
-    <link href="http://zuhiul.github.io/2019/09/16/CF_1215_E/"/>
-    <id>http://zuhiul.github.io/2019/09/16/CF_1215_E/</id>
+    <link href="http://zuhiul.github.io/2019/09/16/CF/CF_1215_E/"/>
+    <id>http://zuhiul.github.io/2019/09/16/CF/CF_1215_E/</id>
     <published>2019-09-15T16:00:00.000Z</published>
     <updated>2019-09-16T09:53:09.691Z</updated>
     
@@ -38,8 +58,8 @@
   
   <entry>
     <title>Codeforces 761 E</title>
-    <link href="http://zuhiul.github.io/2019/09/14/CF_761_E/"/>
-    <id>http://zuhiul.github.io/2019/09/14/CF_761_E/</id>
+    <link href="http://zuhiul.github.io/2019/09/14/CF/CF_761_E/"/>
+    <id>http://zuhiul.github.io/2019/09/14/CF/CF_761_E/</id>
     <published>2019-09-13T16:00:00.000Z</published>
     <updated>2019-09-16T09:33:15.732Z</updated>
     
@@ -176,8 +196,8 @@
   
   <entry>
     <title>Educational Codeforces Round 63</title>
-    <link href="http://zuhiul.github.io/2019/04/28/Educational%20Codeforces%20Round%2063/"/>
-    <id>http://zuhiul.github.io/2019/04/28/Educational Codeforces Round 63/</id>
+    <link href="http://zuhiul.github.io/2019/04/28/CF/Educational%20Codeforces%20Round%2063/"/>
+    <id>http://zuhiul.github.io/2019/04/28/CF/Educational Codeforces Round 63/</id>
     <published>2019-04-27T16:00:00.000Z</published>
     <updated>2019-04-29T06:37:03.889Z</updated>
     
@@ -196,8 +216,8 @@
   
   <entry>
     <title>Codeforces Round 553</title>
-    <link href="http://zuhiul.github.io/2019/04/19/Codeforces_Round_553/"/>
-    <id>http://zuhiul.github.io/2019/04/19/Codeforces_Round_553/</id>
+    <link href="http://zuhiul.github.io/2019/04/19/CF/Codeforces_Round_553/"/>
+    <id>http://zuhiul.github.io/2019/04/19/CF/Codeforces_Round_553/</id>
     <published>2019-04-18T16:00:00.000Z</published>
     <updated>2019-04-19T10:51:16.175Z</updated>
     
@@ -216,8 +236,8 @@
   
   <entry>
     <title>Codeforces Round 552</title>
-    <link href="http://zuhiul.github.io/2019/04/17/Codeforces_Round_552/"/>
-    <id>http://zuhiul.github.io/2019/04/17/Codeforces_Round_552/</id>
+    <link href="http://zuhiul.github.io/2019/04/17/CF/Codeforces_Round_552/"/>
+    <id>http://zuhiul.github.io/2019/04/17/CF/Codeforces_Round_552/</id>
     <published>2019-04-16T16:00:00.000Z</published>
     <updated>2019-07-22T09:58:56.440Z</updated>
     
@@ -236,8 +256,8 @@
   
   <entry>
     <title>Codeforces Round 551</title>
-    <link href="http://zuhiul.github.io/2019/04/14/Codeforces_Round_551/"/>
-    <id>http://zuhiul.github.io/2019/04/14/Codeforces_Round_551/</id>
+    <link href="http://zuhiul.github.io/2019/04/14/CF/Codeforces_Round_551/"/>
+    <id>http://zuhiul.github.io/2019/04/14/CF/Codeforces_Round_551/</id>
     <published>2019-04-13T16:00:00.000Z</published>
     <updated>2019-07-22T09:58:57.206Z</updated>
     
@@ -296,8 +316,8 @@
   
   <entry>
     <title>Project Euler 276 Primitive Triangles</title>
-    <link href="http://zuhiul.github.io/2019/01/17/PE276/"/>
-    <id>http://zuhiul.github.io/2019/01/17/PE276/</id>
+    <link href="http://zuhiul.github.io/2019/01/17/PE/PE276/"/>
+    <id>http://zuhiul.github.io/2019/01/17/PE/PE276/</id>
     <published>2019-01-16T16:00:00.000Z</published>
     <updated>2019-04-14T08:29:20.624Z</updated>
     
@@ -319,8 +339,8 @@
   
   <entry>
     <title>Project Euler 643 2-Friendly</title>
-    <link href="http://zuhiul.github.io/2019/01/09/PE643/"/>
-    <id>http://zuhiul.github.io/2019/01/09/PE643/</id>
+    <link href="http://zuhiul.github.io/2019/01/09/PE/PE643/"/>
+    <id>http://zuhiul.github.io/2019/01/09/PE/PE643/</id>
     <published>2019-01-08T16:00:00.000Z</published>
     <updated>2019-06-03T13:23:25.798Z</updated>
     
@@ -342,8 +362,8 @@
   
   <entry>
     <title>Project Euler 222 Sphere Packing</title>
-    <link href="http://zuhiul.github.io/2019/01/04/PE222/"/>
-    <id>http://zuhiul.github.io/2019/01/04/PE222/</id>
+    <link href="http://zuhiul.github.io/2019/01/04/PE/PE222/"/>
+    <id>http://zuhiul.github.io/2019/01/04/PE/PE222/</id>
     <published>2019-01-03T16:00:00.000Z</published>
     <updated>2019-04-14T08:29:12.064Z</updated>
     
@@ -365,8 +385,8 @@
   
   <entry>
     <title>Project Euler 122 Efficient exponentiation</title>
-    <link href="http://zuhiul.github.io/2019/01/02/PE122/"/>
-    <id>http://zuhiul.github.io/2019/01/02/PE122/</id>
+    <link href="http://zuhiul.github.io/2019/01/02/PE/PE122/"/>
+    <id>http://zuhiul.github.io/2019/01/02/PE/PE122/</id>
     <published>2019-01-01T16:00:00.000Z</published>
     <updated>2019-04-14T08:27:27.678Z</updated>
     
@@ -375,29 +395,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=122&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;
-    
-    </summary>
-    
-    
-      <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
-    
-      <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Project Euler 143 Investigating the Torricelli point of a triangle</title>
-    <link href="http://zuhiul.github.io/2018/12/28/PE143/"/>
-    <id>http://zuhiul.github.io/2018/12/28/PE143/</id>
-    <published>2018-12-27T16:00:00.000Z</published>
-    <updated>2019-06-26T12:28:25.369Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=143" target="_blank" rel="noopener">开启传送门</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><a id="more"></a><p>Let ABC be a triangle with all interior angles being less than $120$ degrees. Let $X$ be any point inside the triangle and let $XA = p, XC = q$, and $XB = r$.</p><p>Fermat challenged Torricelli to find the position of X such that $p + q + r$ was minimised.</p><p>Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $p + q + r$. Even more remarkable, it can be shown that when the sum is minimised, $AN = BM = CO = p + q + r$ and that AN, BM and CO also intersect at T.</p><p><img src="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/PE143.gif" alt="avatar"></p><p>If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $a = 399, b = 455, c = 511$ is an example of a Torricelli triangle, with $p + q + r = 784$.</p><p>Find the sum of all distinct values of $p + q + r ≤ 120000$ for Torricelli triangles.</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$T$就是费马点.然后你要找到所有$p+q+r$不同的所有三角形,然后把$p+q+r$求和.</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$T$在园上,于是有$T$对应的角大小一定是$180-60 = 120$度,然后同理可得,三个角都是$120$度,然后我们运用余弦定理可以得到$p^2+q^2+pq=b^2$,因为我们只要$p+q+r$不同的解,所以我们不妨设$p&gt;=q&gt;=r$,因为三个角都是$120$度,所以余弦定理都成立,所以我们可以得到</p><p>\begin{eqnarray}<br>q^2+r^2+qr &amp;= a^2\\<br>p^2+q^2+pq &amp;= b^2\\<br>p^2+r^2+pr &amp;= c^2\\<br>p&gt;=q&gt;=r\\<br>\end{eqnarray}</p><p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$\dots$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line"><span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line"><span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=143&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;
     
     </summary>
@@ -431,22 +428,25 @@
   </entry>
   
   <entry>
-    <title>IC(answer.chepter2)</title>
-    <link href="http://zuhiul.github.io/2018/12/24/IC_chepter2/"/>
-    <id>http://zuhiul.github.io/2018/12/24/IC_chepter2/</id>
-    <published>2018-12-23T16:00:00.000Z</published>
-    <updated>2019-04-14T08:28:50.217Z</updated>
+    <title>Project Euler 143 Investigating the Torricelli point of a triangle</title>
+    <link href="http://zuhiul.github.io/2018/12/28/PE/PE143/"/>
+    <id>http://zuhiul.github.io/2018/12/28/PE/PE143/</id>
+    <published>2018-12-27T16:00:00.000Z</published>
+    <updated>2019-06-26T12:28:25.369Z</updated>
     
-    <content type="html"><![CDATA[<p>作者自己辛苦原创,如有错误or转载or其他用途请联系qq:669415029,谢谢<br><a id="more"></a></p><p>1.$\emptyset$ : $4^5 = 1024$.$\lbrace a\rbrace$ : $5\times 4\times 4\times 4 = 320$.$\lbrace b\rbrace$ : $5\times 5\times 5\times 2 = 250$.$\lbrace a,b\rbrace$ : $4\times 4\times 4\times 2 = 128$</p><p>2.$(13!)^4 = 1503561738404723998944447273369600000000$.</p><p>3.<br>$$<br>\left(<br>    \begin{matrix}<br>        52\\<br>        5<br>    \end{matrix}<br>\right)<br>=2598960<br>$$</p><p>4.(a) $5\times 3\times 7\times 2 = 210$<br>(b) $620 = 2^2+3^1+5^1+7^1$,$3\times 2\times 2\times 2 = 24$<br>(c) $10^{10} = 2^{10} 5^{10}$,$11\times 11 = 121$</p><p>5.因为$10 = 2\times 5$,所以我们只用统计$2,5$的数量就行了,然后我们可以发现,$2$的数量显然多于$5$的数量,所以我们只用统计$5$的个数就是答案.下面给出一个通用的代码</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(a) ret+=a/=<span class="number">5</span>;</span><br><span class="line"><span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>6.小数据暴力,大数据模拟</p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=143" target="_blank" rel="noopener">开启传送门</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><a id="more"></a><p>Let ABC be a triangle with all interior angles being less than $120$ degrees. Let $X$ be any point inside the triangle and let $XA = p, XC = q$, and $XB = r$.</p><p>Fermat challenged Torricelli to find the position of X such that $p + q + r$ was minimised.</p><p>Torricelli was able to prove that if equilateral triangles AOB, BNC and AMC are constructed on each side of triangle ABC, the circumscribed circles of AOB, BNC, and AMC will intersect at a single point, T, inside the triangle. Moreover he proved that T, called the Torricelli/Fermat point, minimises $p + q + r$. Even more remarkable, it can be shown that when the sum is minimised, $AN = BM = CO = p + q + r$ and that AN, BM and CO also intersect at T.</p><p><img src="https://raw.githubusercontent.com/zuhiul/just-for-fun/master/ForBlog/img/PE143.gif" alt="avatar"></p><p>If the sum is minimised and a, b, c, p, q and r are all positive integers we shall call triangle ABC a Torricelli triangle. For example, $a = 399, b = 455, c = 511$ is an example of a Torricelli triangle, with $p + q + r = 784$.</p><p>Find the sum of all distinct values of $p + q + r ≤ 120000$ for Torricelli triangles.</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就是三个角都小于120度的三角形存在费马点,然后让你找到所有这样的三角形,使得图上对应的六条边都是整数,其中$T$就是费马点.然后你要找到所有$p+q+r$不同的所有三角形,然后把$p+q+r$求和.</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于每一个圆来说,因为里面的三角形是对边三角形,然后因为$T$在园上,于是有$T$对应的角大小一定是$180-60 = 120$度,然后同理可得,三个角都是$120$度,然后我们运用余弦定理可以得到$p^2+q^2+pq=b^2$,因为我们只要$p+q+r$不同的解,所以我们不妨设$p&gt;=q&gt;=r$,因为三个角都是$120$度,所以余弦定理都成立,所以我们可以得到</p><p>\begin{eqnarray}<br>q^2+r^2+qr &amp;= a^2\\<br>p^2+q^2+pq &amp;= b^2\\<br>p^2+r^2+pr &amp;= c^2\\<br>p&gt;=q&gt;=r\\<br>\end{eqnarray}</p><p>然后我们对于每对关系,可以显然发现都应该是类似的,然后我们可以存下来每个关系,然后暴搜就行了,emmmmmm$\dots$</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> upper = <span class="number">1.2e5</span>;</span><br><span class="line"><span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; to[upper+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> ans[upper&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> j = min(upper-i,i);j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> x = i*i+j*j+i*j;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> y = <span class="built_in">sqrt</span>(x);</span><br><span class="line"><span class="keyword">if</span>(y*y==x) to[i].insert(j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(i%<span class="number">10</span>==<span class="number">0</span>) <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++)&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j:to[i])&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k:to[j])&#123;</span><br><span class="line"><span class="keyword">if</span>(i+j+k&gt;upper) <span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span>(to[i].count(k))&#123;</span><br><span class="line">ans[i+j+k] = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> rans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=upper;i++) <span class="keyword">if</span>(ans[i]) rans+=i;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;rans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;作者自己辛苦原创,如有错误or转载or其他用途请联系qq:669415029,谢谢&lt;br&gt;
+      &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=143&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;
     
     </summary>
     
     
-      <category term="IC" scheme="http://zuhiul.github.io/tags/IC/"/>
+      <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
     
   </entry>
   
