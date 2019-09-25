@@ -90,7 +90,7 @@
 <meta property="og:description" content="I. Noise Level开启传送门">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://codeforces.com/predownloaded/5a/7c/5a7cae99652db48cf802c68f3c82351b4084d138.png">
-<meta property="og:updated_time" content="2019-09-23T14:01:13.645Z">
+<meta property="og:updated_time" content="2019-09-25T06:53:27.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces 847 I">
 <meta name="twitter:description" content="I. Noise Level开启传送门">
@@ -357,7 +357,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.1k
+                  345
                 </span>
               
 
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  2
                 </span>
               
             </div>
@@ -407,38 +407,10 @@
 <p><img src="http://codeforces.com/predownloaded/5a/7c/5a7cae99652db48cf802c68f3c82351b4084d138.png" alt=""></p>
 <center><font size="1">The values in the cells of the table on the right show the total noise level in the respective quarters for q = 100, the first term in each sum is the noise from the quarter ‘A’, the second — the noise from the quarter ‘B’.</font></center>
 
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line contains an integer $n$ — the number of vertices in the tree ($2≤n≤2⋅10^5$).</p>
-<p>Each of the next $n−1$ lines describes an edge of the tree. Edge $i$ is denoted by two integers $u_i$ and $v_i$, the indices of vertices it connects ($1≤u_i,v_i≤n$, $u_i\neq v_i$).</p>
-<p>It is guaranteed that the given edges form a tree.</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>Print one integer — the maximum number of points you gain if you will play optimally.</p>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="input1"><a href="#input1" class="headerlink" title="input1"></a>input1</h4><p>9</p>
-<p>1 2</p>
-<p>2 3</p>
-<p>2 5</p>
-<p>2 6</p>
-<p>1 4</p>
-<p>4 9</p>
-<p>9 7</p>
-<p>9 8</p>
-<h4 id="output1"><a href="#output1" class="headerlink" title="output1"></a>output1</h4><p>36</p>
-<h4 id="input2"><a href="#input2" class="headerlink" title="input2"></a>input2</h4><p>5</p>
-<p>1 2</p>
-<p>1 3</p>
-<p>2 4</p>
-<p>2 5</p>
-<h4 id="output2"><a href="#output2" class="headerlink" title="output2"></a>output2</h4><p>14</p>
-<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>The first example tree is shown in the problem statement.</p>
-<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>zuhiul认识很多妹子（不超过$2\cdot 10^5$个），妹子之间是个树形关系。他决定每天聊一个妹子，但是他是个强迫症，第一天他可以随便聊任何一个妹子，但是之后每一天，他只能聊和之前聊过的妹子有关系的妹子。每次聊一个妹子之前，他会数一下这个妹子所在的未聊过的连通块的大小，当然，连通块越大他越开心（连通块为 $n$ ，他会得到 $n$ 开心度），现在问你，他聊完所有妹子后，开心度求和后为多少。</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>如果我们强制第一次聊编号为 $1$ 的妹子， 我们考虑怎么统计答案。</p>
-<p>一个很直观的想法是，我们可以一次dfs出所有子树的大小，然后对于每棵子树大小求和就是答案。</p>
-<p>那么现在问题就转化成了，如何对于每个根求答案。</p>
-<p>显然换根可解，但是如何统计换根后的答案呢？</p>
-<p>我们考虑一下，我们以 $1$ 为根的时候怎么算的答案呢？</p>
-<p>每棵子树的大小求和。但是我们可以换个角度看问题，我们不看子树的贡献，我们考虑每个节点的贡献，可以显然的发现，每个节点的贡献就是每个节点到 $1$ 的距离。</p>
-<p>所以换根就很直观了。我们定义 $ans[i]$ 表示以 $i$ 为根的答案，$cnt[i]$ 表示以 $1$ 为根的时候，$i$ 子树的大小。所以换根相对于当前节点的父亲的代价就是 $i$ 子树深度-1，其他节点深度+1。所以当前节点相对于父亲的答案是，减少了 $cnt[i]$，增加了 $n-cnt[i]$。也即</p>
-<p>$$ans[ind] = ans[pre] - cnt[ind] + (n-cnt[ind]) $$</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; mat[maxm];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> size[maxm];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans[maxm];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> ind = <span class="number">1</span>, <span class="keyword">int</span> pre = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">	size[ind] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> i:mat[ind]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(i==pre) <span class="keyword">continue</span>;</span><br><span class="line">		dfs(i, ind);</span><br><span class="line">		size[ind] += size[i];</span><br><span class="line">	&#125;</span><br><span class="line">	ans[<span class="number">1</span>] += size[ind];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> ind, <span class="keyword">int</span> pre)</span> </span>&#123;</span><br><span class="line">	ans[ind] = ans[pre] - size[ind] + (n-size[ind]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> i:mat[ind]) &#123;</span><br><span class="line">		<span class="keyword">if</span>(i==pre) <span class="keyword">continue</span>;</span><br><span class="line">		dfs2(i, ind);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, from, to;i&lt;n;i++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;from,&amp;to);</span><br><span class="line">		mat[from].push_back(to);</span><br><span class="line">		mat[to].push_back(from);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> i:mat[<span class="number">1</span>]) dfs2(i, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> rans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=n;i++) rans = max(rans, ans[i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, rans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="input1"><a href="#input1" class="headerlink" title="input1"></a>input1</h4><h4 id="output1"><a href="#output1" class="headerlink" title="output1"></a>output1</h4><h4 id="input2"><a href="#input2" class="headerlink" title="input2"></a>input2</h4><h4 id="output2"><a href="#output2" class="headerlink" title="output2"></a>output2</h4><h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>.</p>
+<h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
+<pre><code class="cpp">
+</code></pre>
 
       
     </div>
@@ -720,7 +692,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">58.1k</span>
+    <span title="Site words total count">57.3k</span>
   
 </div>
 
