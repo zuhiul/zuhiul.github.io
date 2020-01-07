@@ -199,20 +199,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[matlab]]></title>
+    <url>%2F2018%2F12%2F23%2Fknowledge%2Fmatlab%2F</url>
+    <content type="text"><![CDATA[系统级命令 命令名称 功能说明 clear 清楚内存中所有的或指定的变量和函数 cd 显示和改变当前工作目录 clc 擦除MATLAB工作窗口中所有显示的内容 clf 擦除MATLAB当前工作窗口中的图形 dir 列出当前或者指定目录下的子目录和文件清单 disp 在运行中显示变量或文字信息 echo 控制运行的文字命令是否显示 hold 控制当前的图形窗口对象是否被刷新 home 擦除命令窗口中的内容,并把光标移动到命令窗口 pack 收集内存碎片以扩大内存空间 quit 关闭并退出MATLAB type 显示所指定文件的全部内容 exit 退出MATLAB save 将工作区的变量存放到指定文件 load 回复保存过的变量 系统变量 变量 解释 ans 结果的缺省变量名 pi 圆周率 i,j 虚数单位 inf 无穷大 NaN not a number 矩阵函数 函数 解释 complex 将两个矩阵并成一个复矩阵 zeros(a,b) a*b全0阵 ones(a,b) a*b全1阵 eye(a,b) a*b单位矩阵 randi([a,b],m,n) m*n在a,b之间等概率随机整数矩阵 randn(a,b) 产生均值为0,方差为1的a*b的高斯分布随机阵 repmat(a,b,c) 将a矩阵铺放成bc的形式,总大小size(a)b*c size(a) 确定矩阵大小,返回[行数,列数] length(a) 确定向量元素的个数 numel(a) 确定矩阵中元素个数 find() 查找矩阵中满足条件的下标,或者行列 reshape(a,b,c) 将a变成b行c列(按列重拍) a’ 转置,复数则共轭转置 a(:) 变成一列 rot90 旋转 fliplr 左右翻转 flipud 上下翻转 diag 抽取主对角线 tril 抽取上三角 triu 抽取下三角 max 各列最大值 min 各列最小值 sort 各列递增排序 sum 各列求和 mean 各列平均值 std 各列标准差 var 各列方差 基本数学函数 函数 解释 abs(x) x中每个实数元素的绝对值,复数元素的模 sqrt(x) x中每个元素求平方根 exp(x) 指数运算 real(x) 求实部 imag(x) 求虚部 conj(x) 求共轭 angle(x) 求相位角 sin(x) 正弦 cos(x) 余弦 asin(x) 反正弦 acos(x) 反余弦 tan(x) 正切 atan(x) 反正切 log10(x) 常用对数lgx log(x) 自然对数lnx loga(b) 任意对数 mod(x,y) 求余函数 rem(x,y) 输出对应元素的余数 sign(x) 求矩阵中元素的正负号 lcm(x,y) 最小公倍数 gcd(x,y) 最大公约数 round(a) 四舍五入 fix(a) 按0的方向取整 floor(a) 向负无穷方向取整 ceil(a) 向正无穷方向取整 randperm(n) 产生一个长度为n的排列 绘图 函数 解释 plot(x,y,’option’) x横轴,y纵轴,逐点连折线绘制二维图形,参数见下表 plot(y) y为向量,以下标作为x轴,y为纵轴,绘制曲线 title(‘text’) 添加标题 xlabel(‘text’) x轴加标注 ylabel(‘text’) y轴加标记 legend(‘图例1’,’图例2’,…) 添加图例 text(x,y,’text’) 在指定位置添加文本字符串 gtext(‘text’) 用鼠标放置文本 axis([xmin xmax ymin ymax zmin zmax]) 调整坐标 hold 图形保持函数 subplot 子图分割命令 stem 离散序列 绘图参数表 符号 含义 符号 含义 y 黄 b 蓝 m 洋红 w 白 c 青 k 黑 r 红 g 绿 - 实线 – 虚线 : 点线 -. 点划线 . 点 o 圆 x 叉号 + 加号 ^ 向上的三角形 v 向下的三角形 &gt; 大于号 &lt; 小于号 s 正方形 d 菱形 p 五角星 h 六角星 * 星号 字符串函数 函数 解释 abs 字符串到ascii转换 str2mat 字符串转换成字符矩阵 setstr ascii转字符串 num2str 数值转字符串 str2num 字符串转换成数值 dec2bin 十进制数转二进制字符串 bin2dec 二进制串转十进制 int2str 将数值取整后转成字符串 upper 字符串转换成大写 lower 字符串转换成小写 sprintf 用格式控制,数字转字符串 sscanf 格式控制,字符串转数字 输入输出 函数 解释 input(‘text’) 键盘提示输入 fprintf() 格式输出]]></content>
+      <tags>
+        <tag>live</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Project Euler 463 A weird recurrence relation]]></title>
     <url>%2F2018%2F12%2F23%2FPE%2FPE463%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 The function $f$ is defined for all positive integers as follows: $f(1)$ = $1$ $f(3)$ = $3$ $f(2n)$ = $f(n)$ $f(4n+1)$ = $2\cdot f(2n+1)-f(n)$ $f(4n+3)$ = $3\cdot f(2n+1)-2\cdot f(n)$ The function $S(n)$ is defined as $\sum_{i=1}^{n} f(i)$. $S(8)=22$ and $S(100)=3604$. Find $S(3^{37})$. Give the last $9$ digits of your answer. 题意就是给你一个序列,问你这个序列的前缀和是多少 分析显然是推公式嘛. 根据题意我们显然可以得到 $f(4n)+f(4n+1)+f(4n+2)+f(4n+3) = 6\cdot f(2n+1) - 2\cdot f(n)$ for $n\geq 1$ 然后我们每四项加一下就可以得到下面这个公式 \begin{eqnarray}S(4n+3) &amp;=&amp; \sum_{i=1}^{4i+3} f(i)\\ &amp;=&amp; 5 + \sum_{i=4}^{4i+3} f(i)\\ &amp;=&amp; 5 + \sum_{i=1}^{n} (6\cdot f(2i+1) - 2\cdot f(i))\\ &amp;=&amp; 5 + 6\sum_{i=1}^{n} (f(2i+1)+f(2i)) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; 5 + 6\sum_{i=2}^{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; 5 - 6 + 6\sum{i=1}{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; -1 + 6\sum{i=1}{2n+1} f(i) -8\sum_{i=1}^{n} f(i)\\\end{eqnarray} 然后瞎搞就行了$\dots$ 代码给大佬递上我奇丑无比的代码 (/ω＼)123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 1e7+10;const int mod = 1e9;inline int add(long long a,long long b)&#123;return (a+b)%mod;&#125;inline int mul(long long a,long long b)&#123;return a*b%mod;&#125;int num[maxm];int sum[maxm];long long f(long long a)&#123; if(a&lt;maxm&amp;&amp;num[a]) return num[a]; if(a==0) return 0; if(a==1) return 1; if(a==3) return 3; if((a&amp;1)^1) return f(a&gt;&gt;1); else if((a&amp;3)==3) return add(mul(3,f(a&gt;&gt;1)),mod-(f(a&gt;&gt;2)&lt;&lt;1)); else return add((f(a&gt;&gt;1|1)&lt;&lt;1),mod-f(a&gt;&gt;2));&#125;long long S(long long a)&#123; if(a&lt;maxm) return sum[a]; long long ret = 0; if(a%4==3)&#123; ret = add(ret,mul(6,S(a&gt;&gt;1))); ret = add(ret,mod-mul(8,S(a&gt;&gt;2))); ret = add(ret,mod-1); &#125;else&#123; while(a%4!=3) ret = add(ret,mod-f(++a)); ret = add(ret,S(a)); &#125; return ret;&#125;int main()&#123; for(int i = 1;i&lt;maxm;i++) num[i] = f(i),sum[i] = add(sum[i-1],num[i]); long long nouse = 1; for(int i = 1;i&lt;=37;i++)&#123; nouse = (nouse&lt;&lt;2)-nouse; &#125; cout&lt;&lt;S(nouse)&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
         <tag>数学</tag>
         <tag>PE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[matlab]]></title>
-    <url>%2F2018%2F12%2F23%2Fknowledge%2Fmatlab%2F</url>
-    <content type="text"><![CDATA[系统级命令 命令名称 功能说明 clear 清楚内存中所有的或指定的变量和函数 cd 显示和改变当前工作目录 clc 擦除MATLAB工作窗口中所有显示的内容 clf 擦除MATLAB当前工作窗口中的图形 dir 列出当前或者指定目录下的子目录和文件清单 disp 在运行中显示变量或文字信息 echo 控制运行的文字命令是否显示 hold 控制当前的图形窗口对象是否被刷新 home 擦除命令窗口中的内容,并把光标移动到命令窗口 pack 收集内存碎片以扩大内存空间 quit 关闭并退出MATLAB type 显示所指定文件的全部内容 exit 退出MATLAB save 将工作区的变量存放到指定文件 load 回复保存过的变量 系统变量 变量 解释 ans 结果的缺省变量名 pi 圆周率 i,j 虚数单位 inf 无穷大 NaN not a number 矩阵函数 函数 解释 complex 将两个矩阵并成一个复矩阵 zeros(a,b) a*b全0阵 ones(a,b) a*b全1阵 eye(a,b) a*b单位矩阵 randi([a,b],m,n) m*n在a,b之间等概率随机整数矩阵 randn(a,b) 产生均值为0,方差为1的a*b的高斯分布随机阵 repmat(a,b,c) 将a矩阵铺放成bc的形式,总大小size(a)b*c size(a) 确定矩阵大小,返回[行数,列数] length(a) 确定向量元素的个数 numel(a) 确定矩阵中元素个数 find() 查找矩阵中满足条件的下标,或者行列 reshape(a,b,c) 将a变成b行c列(按列重拍) a’ 转置,复数则共轭转置 a(:) 变成一列 rot90 旋转 fliplr 左右翻转 flipud 上下翻转 diag 抽取主对角线 tril 抽取上三角 triu 抽取下三角 max 各列最大值 min 各列最小值 sort 各列递增排序 sum 各列求和 mean 各列平均值 std 各列标准差 var 各列方差 基本数学函数 函数 解释 abs(x) x中每个实数元素的绝对值,复数元素的模 sqrt(x) x中每个元素求平方根 exp(x) 指数运算 real(x) 求实部 imag(x) 求虚部 conj(x) 求共轭 angle(x) 求相位角 sin(x) 正弦 cos(x) 余弦 asin(x) 反正弦 acos(x) 反余弦 tan(x) 正切 atan(x) 反正切 log10(x) 常用对数lgx log(x) 自然对数lnx loga(b) 任意对数 mod(x,y) 求余函数 rem(x,y) 输出对应元素的余数 sign(x) 求矩阵中元素的正负号 lcm(x,y) 最小公倍数 gcd(x,y) 最大公约数 round(a) 四舍五入 fix(a) 按0的方向取整 floor(a) 向负无穷方向取整 ceil(a) 向正无穷方向取整 randperm(n) 产生一个长度为n的排列 绘图 函数 解释 plot(x,y,’option’) x横轴,y纵轴,逐点连折线绘制二维图形,参数见下表 plot(y) y为向量,以下标作为x轴,y为纵轴,绘制曲线 title(‘text’) 添加标题 xlabel(‘text’) x轴加标注 ylabel(‘text’) y轴加标记 legend(‘图例1’,’图例2’,…) 添加图例 text(x,y,’text’) 在指定位置添加文本字符串 gtext(‘text’) 用鼠标放置文本 axis([xmin xmax ymin ymax zmin zmax]) 调整坐标 hold 图形保持函数 subplot 子图分割命令 stem 离散序列 绘图参数表 符号 含义 符号 含义 y 黄 b 蓝 m 洋红 w 白 c 青 k 黑 r 红 g 绿 - 实线 – 虚线 : 点线 -. 点划线 . 点 o 圆 x 叉号 + 加号 ^ 向上的三角形 v 向下的三角形 &gt; 大于号 &lt; 小于号 s 正方形 d 菱形 p 五角星 h 六角星 * 星号 字符串函数 函数 解释 abs 字符串到ascii转换 str2mat 字符串转换成字符矩阵 setstr ascii转字符串 num2str 数值转字符串 str2num 字符串转换成数值 dec2bin 十进制数转二进制字符串 bin2dec 二进制串转十进制 int2str 将数值取整后转成字符串 upper 字符串转换成大写 lower 字符串转换成小写 sprintf 用格式控制,数字转字符串 sscanf 格式控制,字符串转数字 输入输出 函数 解释 input(‘text’) 键盘提示输入 fprintf() 格式输出]]></content>
-      <tags>
-        <tag>live</tag>
       </tags>
   </entry>
   <entry>
@@ -302,7 +302,7 @@
   <entry>
     <title><![CDATA[日常吐槽20200107]]></title>
     <url>%2F1020%2F01%2F07%2Fdiary%2F2020%2F01%2F20190107%2F</url>
-    <content type="text"><![CDATA[10:52 AM今天需求算是delay了，现在算是明白了一个道理，任何需求，优先解决外部依赖，我们自己的业务总是可以解决的问题，但是外部依赖，不提前解决，不可能预估需要多少时间。]]></content>
+    <content type="text"><![CDATA[10:52今天需求算是delay了，现在算是明白了一个道理，任何需求，优先解决外部依赖，我们自己的业务总是可以解决的问题，但是外部依赖，不提前解决，不可能预估需要多少时间。 12:59刚刚讲到做梦的事了。 想起来这几天，天天晚上做梦。可能是一直在想一些有的没的吧。 昨天晚上做梦梦到打游戏？？？游戏还挺好玩的？？？我起码玩过500+手游，居然对这个有感觉？？？这游戏居然还是黑白的？？？]]></content>
       <tags>
         <tag>日常吐槽</tag>
       </tags>
@@ -581,16 +581,16 @@
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190626]]></title>
-    <url>%2F1019%2F06%2F26%2Fdiary%2F2019%2F08%2F20190802%2F</url>
-    <content type="text"><![CDATA[今天终于是周五了，这周不知道为什么感觉特别的累，真的是由身到心的累。没有原因的那种。而且我感觉这周应该是7月最摸鱼的一周了，但是还是感觉很忙的感觉。 然后昨天写了一下周报，看了一下我写的东西，看起来是挺多的，但是仔细想想其实都是杂货，没什么技术含量，主要就是各方沟通吧。 其实应该在每个技术宅的眼里，默默写完自己的代码，然后run的很健壮，应该是一件很爽的事吧。]]></content>
+    <url>%2F1019%2F06%2F26%2Fdiary%2F2019%2F06%2F20190626%2F</url>
+    <content type="text"><![CDATA[今天早上5.30就起了，好久都没有起这么早过了。 除了周五的最后一个考试，这学期就算是结束了。 这两天因为天天在学校玩，所以有很多时间想一些自己的事。这里索性总结一下吧。 首先就是大学的日子，仔细想想，自己的大学貌似从大二毕业就已经死掉了。或者说从大一下半学期就已经死掉了。已经记不清自己逃了多少课，每次考试都是划水划过去的。大三上逃的课比上的都多。大三下直接就出来工作了。整个大学除了舍友和少数几个朋友，其他人真的只是点头之交。这其实和我刚入大学的想法还是很不一样的。曾经的我不是没有想过做一个学霸，但是出于种种原因，渐渐放弃了这个想法，不是天资不够，实在是努力不够，或者说努力的方向不一样。当时还是太喜欢打比赛了。说到底还是太想证明自己了。回头想了想，当时应该是因为高考成绩太差了，所以对成绩失望了，想找到一个方向，告诉自己我还行，不是那么差，所以找了一条人迹罕至的路。现在回头想想，没有后悔和失落，也没有欣喜和狂欢，只有默默的努力和玩乐。直到后来在这条路上渐行渐远的时候，我已经开始迷失了。其实大三上还是太颓废了，很多该学的东西都没有学好。现在就是各种踩坑啊啊啊啊。 还有就是工作的事，今天得知比我晚来的实习生要走了，问了一下，他的想法是在这边学不到什么东西，而且时间实在是太紧了，让他抽不出时间来学习。这个问题其实我上个月就已经意识到了，然后找15级几个学长问了下，他们的意见是，大部分互联网公司都一个逼样，所以不用太过忧愁，毕竟是没有去过其他公司，所以暂时不知道具体现象是什么样。暂时就先留在这里吧，转正再说。 然后就是考研的问题，现在时间上已经不足6个月了，我算是彻底放弃了，这个时间太不凑巧了，时间卡的太不好了，很多事都需要在这六个月里面完成，所以显然是来不及了。而且当时想考医学研究生显然是一时心血来潮，毕竟想和小姐姐再玩两年。后来想想还是算了，惹人厌烦。总给人一种逼宫的感觉，而且自己水平实在是不太够，虽然舍友每天都奶我，说我考必中，其实我知道无非是大家平时开玩笑之类的话罢了。随着年龄的增大，越来越不会嫉妒别人，因为我清楚的知道，每个人的努力和回报成正比，没有人能随随便便成功。虽然我不否认有些天才，但是没有不用付出的天才，不是吗？ 最后就是比赛了。因为和工作冲突的缘故，公司这边说是要8月底才能转正。但是如果9月才开始训练的话，三个月可能还是来不及，很可能还是和去年一个水平，那么我觉得浪费这三个月时间没有任何意义了。暂时还是没想好，看队友想法吧。我的话，自我感觉已经没有了大一刷题的激情了，还是老了，再也刷不动夜了，很多问题甚至是不想深究了，甚至是轻易的放过去了，导致大二结束到现在反而是水平跌落很多了。 算了不说了，继续搬砖去了。]]></content>
       <tags>
         <tag>日常吐槽</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[日常吐槽20190626]]></title>
-    <url>%2F1019%2F06%2F26%2Fdiary%2F2019%2F06%2F20190626%2F</url>
-    <content type="text"><![CDATA[今天早上5.30就起了，好久都没有起这么早过了。 除了周五的最后一个考试，这学期就算是结束了。 这两天因为天天在学校玩，所以有很多时间想一些自己的事。这里索性总结一下吧。 首先就是大学的日子，仔细想想，自己的大学貌似从大二毕业就已经死掉了。或者说从大一下半学期就已经死掉了。已经记不清自己逃了多少课，每次考试都是划水划过去的。大三上逃的课比上的都多。大三下直接就出来工作了。整个大学除了舍友和少数几个朋友，其他人真的只是点头之交。这其实和我刚入大学的想法还是很不一样的。曾经的我不是没有想过做一个学霸，但是出于种种原因，渐渐放弃了这个想法，不是天资不够，实在是努力不够，或者说努力的方向不一样。当时还是太喜欢打比赛了。说到底还是太想证明自己了。回头想了想，当时应该是因为高考成绩太差了，所以对成绩失望了，想找到一个方向，告诉自己我还行，不是那么差，所以找了一条人迹罕至的路。现在回头想想，没有后悔和失落，也没有欣喜和狂欢，只有默默的努力和玩乐。直到后来在这条路上渐行渐远的时候，我已经开始迷失了。其实大三上还是太颓废了，很多该学的东西都没有学好。现在就是各种踩坑啊啊啊啊。 还有就是工作的事，今天得知比我晚来的实习生要走了，问了一下，他的想法是在这边学不到什么东西，而且时间实在是太紧了，让他抽不出时间来学习。这个问题其实我上个月就已经意识到了，然后找15级几个学长问了下，他们的意见是，大部分互联网公司都一个逼样，所以不用太过忧愁，毕竟是没有去过其他公司，所以暂时不知道具体现象是什么样。暂时就先留在这里吧，转正再说。 然后就是考研的问题，现在时间上已经不足6个月了，我算是彻底放弃了，这个时间太不凑巧了，时间卡的太不好了，很多事都需要在这六个月里面完成，所以显然是来不及了。而且当时想考医学研究生显然是一时心血来潮，毕竟想和小姐姐再玩两年。后来想想还是算了，惹人厌烦。总给人一种逼宫的感觉，而且自己水平实在是不太够，虽然舍友每天都奶我，说我考必中，其实我知道无非是大家平时开玩笑之类的话罢了。随着年龄的增大，越来越不会嫉妒别人，因为我清楚的知道，每个人的努力和回报成正比，没有人能随随便便成功。虽然我不否认有些天才，但是没有不用付出的天才，不是吗？ 最后就是比赛了。因为和工作冲突的缘故，公司这边说是要8月底才能转正。但是如果9月才开始训练的话，三个月可能还是来不及，很可能还是和去年一个水平，那么我觉得浪费这三个月时间没有任何意义了。暂时还是没想好，看队友想法吧。我的话，自我感觉已经没有了大一刷题的激情了，还是老了，再也刷不动夜了，很多问题甚至是不想深究了，甚至是轻易的放过去了，导致大二结束到现在反而是水平跌落很多了。 算了不说了，继续搬砖去了。]]></content>
+    <url>%2F1019%2F06%2F26%2Fdiary%2F2019%2F08%2F20190802%2F</url>
+    <content type="text"><![CDATA[今天终于是周五了，这周不知道为什么感觉特别的累，真的是由身到心的累。没有原因的那种。而且我感觉这周应该是7月最摸鱼的一周了，但是还是感觉很忙的感觉。 然后昨天写了一下周报，看了一下我写的东西，看起来是挺多的，但是仔细想想其实都是杂货，没什么技术含量，主要就是各方沟通吧。 其实应该在每个技术宅的眼里，默默写完自己的代码，然后run的很健壮，应该是一件很爽的事吧。]]></content>
       <tags>
         <tag>日常吐槽</tag>
       </tags>
