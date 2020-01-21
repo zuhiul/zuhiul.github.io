@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="PE,数学,">
+  <meta name="keywords" content="数学,PE,">
 
 
 
@@ -82,14 +82,14 @@
 
 
 <meta name="description" content="开启传送门 题目描述">
-<meta name="keywords" content="PE,数学">
+<meta name="keywords" content="数学,PE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Project Euler 643 2-Friendly">
 <meta property="og:url" content="http://zuhiul.github.io/2019/01/09/PE/PE643/index.html">
 <meta property="og:site_name" content="睡到二三更时      凡荣华皆成幻境">
 <meta property="og:description" content="开启传送门 题目描述">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-03T13:23:25.798Z">
+<meta property="og:updated_time" content="2020-01-21T02:31:55.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler 643 2-Friendly">
 <meta name="twitter:description" content="开启传送门 题目描述">
@@ -365,7 +365,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  594
+                  708
                 </span>
               
 
@@ -381,7 +381,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  4
                 </span>
               
             </div>
@@ -409,9 +409,15 @@
 <p>Find $f(10^{11})$ modulo $1000000007$.</p>
 <h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>问你所有满足$1\leq p&lt;q\leq 1e11$,并且$gcd(p,q)==2^t$的对数</p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>显然可以对于每个$2^t$单独考虑,不妨设$2^t = x$,可以得到</p>
-<p>$$<br>ans = \sum_{i=1}^{upper/x} \varphi(i)<br>$$</p>
-<p>然后显然是各种筛法搞一下,我这里用的杜教筛,然后稍微推一推就可以得到</p>
-<p>$$<br>s(m) = \frac{m\ast (m+1)}{2} - \sum_{d=2}^{m} s(\lfloor \frac{m}{d} \rfloor)<br>$$</p>
+<p>$$<br>ans = \sum_{x = 2的幂}^{upper}\sum_{i=1}^{upper/x} \varphi(i)<br>$$</p>
+<p>显然有 ： $\varphi(i) \star I = id$ 。我们记 $S(n) = \sum_{i=1}^{n} \varphi(i)$ 。</p>
+<p>对于上述卷积式，两边求和有：</p>
+<p>$$<br>\sum_{i=1}^{n} id(i) = \sum_{i=1}^{n} \sum_{d|i} I(d) \cdot \varphi(\frac{i}{d})<br>$$</p>
+<p>$$<br>\sum_{i=1}^{n} id(i) = \sum_{d=1}^{n} I(d) \sum_{i=1}^{\lfloor \frac{n}{d} \rfloor} \varphi(i)<br>$$</p>
+<p>$$<br>\sum_{i=1}^{n}id(i) = \sum_{d = 1}^{n}I(d)\cdot S(\lfloor\frac{n}{d}\rfloor)<br>$$</p>
+<p>$$<br>\sum_{i=1}^{n}  id(i) = I(1)\cdot S(n) + \sum_{d=2}^{n}I(d)\cdot S(\lfloor\frac{n}{d}\rfloor)<br>$$</p>
+<p>$$<br>\frac{n\cdot(n+1)}{2} = S(n) + \sum_{d=2}^{n}I(d)\cdot S(\lfloor\frac{n}{d}\rfloor)<br>$$</p>
+<p>$$<br>S(n) = \frac{n\cdot(n+1)}{2} - \sum_{d=2}^{n}I(d)\cdot S(\lfloor\frac{n}{d}\rfloor)<br>$$</p>
 <p>然后分块一下,递归搞下去就行了$\dots$</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> upper = <span class="number">1e11</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxm = <span class="number">2e7</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod = <span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> (a+b)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mul</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;<span class="keyword">return</span> (a%mod)*(b%mod)%mod;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inv</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123; <span class="keyword">return</span> a==<span class="number">1</span>?<span class="number">1</span>:mul(mod-mod/a,inv(mod%a)); &#125;</span><br><span class="line"><span class="keyword">int</span> inv2 = inv(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">bool</span> p[maxm];</span><br><span class="line"><span class="keyword">int</span> pri[maxm];<span class="comment">//质数</span></span><br><span class="line"><span class="keyword">int</span> phi[maxm];<span class="comment">//欧拉函数前缀和</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	phi[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">2</span>;i&lt;maxm;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!p[i])&#123;</span><br><span class="line">			pri[++pri[<span class="number">0</span>]] = i;</span><br><span class="line">			phi[i] = i<span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=pri[<span class="number">0</span>]&amp;&amp;i*pri[j]&lt;maxm;j++)&#123;</span><br><span class="line">			p[i*pri[j]] = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%pri[j]) phi[i*pri[j]] = phi[i]*(pri[j]<span class="number">-1</span>);</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				phi[i*pri[j]] = phi[i]*pri[j];</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;maxm;i++) phi[i] = add(phi[i],phi[i<span class="number">-1</span>]);<span class="comment">//因为只会用到前缀和,所以我们直接预处理成前缀和</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>,<span class="keyword">int</span>&gt; mp;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> m)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(m&lt;maxm) <span class="keyword">return</span> phi[m];<span class="comment">//查表</span></span><br><span class="line">	<span class="keyword">if</span>(mp[m]) <span class="keyword">return</span> mp[m];<span class="comment">//记忆化</span></span><br><span class="line">	<span class="keyword">int</span> ret = mul(m,mul(m+<span class="number">1</span>,inv2));</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> l = <span class="number">2</span>,r;l&lt;=m;l = r+<span class="number">1</span>) &#123;<span class="comment">//分块</span></span><br><span class="line">		r = m/(m/l);</span><br><span class="line">		ret = add(ret,mod-mul(solve(m/l),r-l+<span class="number">1</span>));</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> mp[m] = ret;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> x = <span class="number">2</span>;x&lt;=upper;x&lt;&lt;=<span class="number">1</span>) &#123;<span class="comment">//单独统计每一个2的幂</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		ans = add(ans,solve(upper/x));</span><br><span class="line">		ans = add(ans,mod<span class="number">-1</span>);</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -461,9 +467,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PE/" rel="tag"><i class="fa fa-tag"></i> PE</a>
-          
             <a href="/tags/数学/" rel="tag"><i class="fa fa-tag"></i> 数学</a>
+          
+            <a href="/tags/PE/" rel="tag"><i class="fa fa-tag"></i> PE</a>
           
         </div>
       
@@ -702,7 +708,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">72.3k</span>
+    <span title="Site words total count">72.5k</span>
   
 </div>
 
