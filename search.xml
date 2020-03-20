@@ -235,20 +235,20 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[matlab]]></title>
-    <url>%2F2018%2F12%2F23%2Fknowledge%2Fmatlab%2F</url>
-    <content type="text"><![CDATA[系统级命令 命令名称 功能说明 clear 清楚内存中所有的或指定的变量和函数 cd 显示和改变当前工作目录 clc 擦除MATLAB工作窗口中所有显示的内容 clf 擦除MATLAB当前工作窗口中的图形 dir 列出当前或者指定目录下的子目录和文件清单 disp 在运行中显示变量或文字信息 echo 控制运行的文字命令是否显示 hold 控制当前的图形窗口对象是否被刷新 home 擦除命令窗口中的内容,并把光标移动到命令窗口 pack 收集内存碎片以扩大内存空间 quit 关闭并退出MATLAB type 显示所指定文件的全部内容 exit 退出MATLAB save 将工作区的变量存放到指定文件 load 回复保存过的变量 系统变量 变量 解释 ans 结果的缺省变量名 pi 圆周率 i,j 虚数单位 inf 无穷大 NaN not a number 矩阵函数 函数 解释 complex 将两个矩阵并成一个复矩阵 zeros(a,b) a*b全0阵 ones(a,b) a*b全1阵 eye(a,b) a*b单位矩阵 randi([a,b],m,n) m*n在a,b之间等概率随机整数矩阵 randn(a,b) 产生均值为0,方差为1的a*b的高斯分布随机阵 repmat(a,b,c) 将a矩阵铺放成bc的形式,总大小size(a)b*c size(a) 确定矩阵大小,返回[行数,列数] length(a) 确定向量元素的个数 numel(a) 确定矩阵中元素个数 find() 查找矩阵中满足条件的下标,或者行列 reshape(a,b,c) 将a变成b行c列(按列重拍) a’ 转置,复数则共轭转置 a(:) 变成一列 rot90 旋转 fliplr 左右翻转 flipud 上下翻转 diag 抽取主对角线 tril 抽取上三角 triu 抽取下三角 max 各列最大值 min 各列最小值 sort 各列递增排序 sum 各列求和 mean 各列平均值 std 各列标准差 var 各列方差 基本数学函数 函数 解释 abs(x) x中每个实数元素的绝对值,复数元素的模 sqrt(x) x中每个元素求平方根 exp(x) 指数运算 real(x) 求实部 imag(x) 求虚部 conj(x) 求共轭 angle(x) 求相位角 sin(x) 正弦 cos(x) 余弦 asin(x) 反正弦 acos(x) 反余弦 tan(x) 正切 atan(x) 反正切 log10(x) 常用对数lgx log(x) 自然对数lnx loga(b) 任意对数 mod(x,y) 求余函数 rem(x,y) 输出对应元素的余数 sign(x) 求矩阵中元素的正负号 lcm(x,y) 最小公倍数 gcd(x,y) 最大公约数 round(a) 四舍五入 fix(a) 按0的方向取整 floor(a) 向负无穷方向取整 ceil(a) 向正无穷方向取整 randperm(n) 产生一个长度为n的排列 绘图 函数 解释 plot(x,y,’option’) x横轴,y纵轴,逐点连折线绘制二维图形,参数见下表 plot(y) y为向量,以下标作为x轴,y为纵轴,绘制曲线 title(‘text’) 添加标题 xlabel(‘text’) x轴加标注 ylabel(‘text’) y轴加标记 legend(‘图例1’,’图例2’,…) 添加图例 text(x,y,’text’) 在指定位置添加文本字符串 gtext(‘text’) 用鼠标放置文本 axis([xmin xmax ymin ymax zmin zmax]) 调整坐标 hold 图形保持函数 subplot 子图分割命令 stem 离散序列 绘图参数表 符号 含义 符号 含义 y 黄 b 蓝 m 洋红 w 白 c 青 k 黑 r 红 g 绿 - 实线 – 虚线 : 点线 -. 点划线 . 点 o 圆 x 叉号 + 加号 ^ 向上的三角形 v 向下的三角形 &gt; 大于号 &lt; 小于号 s 正方形 d 菱形 p 五角星 h 六角星 * 星号 字符串函数 函数 解释 abs 字符串到ascii转换 str2mat 字符串转换成字符矩阵 setstr ascii转字符串 num2str 数值转字符串 str2num 字符串转换成数值 dec2bin 十进制数转二进制字符串 bin2dec 二进制串转十进制 int2str 将数值取整后转成字符串 upper 字符串转换成大写 lower 字符串转换成小写 sprintf 用格式控制,数字转字符串 sscanf 格式控制,字符串转数字 输入输出 函数 解释 input(‘text’) 键盘提示输入 fprintf() 格式输出]]></content>
-      <tags>
-        <tag>live</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Project Euler 463 A weird recurrence relation]]></title>
     <url>%2F2018%2F12%2F23%2FPE%2FPE463%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 The function $f$ is defined for all positive integers as follows: $f(1)$ = $1$ $f(3)$ = $3$ $f(2n)$ = $f(n)$ $f(4n+1)$ = $2\cdot f(2n+1)-f(n)$ $f(4n+3)$ = $3\cdot f(2n+1)-2\cdot f(n)$ The function $S(n)$ is defined as $\sum_{i=1}^{n} f(i)$. $S(8)=22$ and $S(100)=3604$. Find $S(3^{37})$. Give the last $9$ digits of your answer. 题意就是给你一个序列,问你这个序列的前缀和是多少 分析显然是推公式嘛. 根据题意我们显然可以得到 $f(4n)+f(4n+1)+f(4n+2)+f(4n+3) = 6\cdot f(2n+1) - 2\cdot f(n)$ for $n\geq 1$ 然后我们每四项加一下就可以得到下面这个公式 \begin{eqnarray}S(4n+3) &amp;=&amp; \sum_{i=1}^{4i+3} f(i)\\ &amp;=&amp; 5 + \sum_{i=4}^{4i+3} f(i)\\ &amp;=&amp; 5 + \sum_{i=1}^{n} (6\cdot f(2i+1) - 2\cdot f(i))\\ &amp;=&amp; 5 + 6\sum_{i=1}^{n} (f(2i+1)+f(2i)) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; 5 + 6\sum_{i=2}^{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; 5 - 6 + 6\sum{i=1}{2n+1} f(i) - 8\sum_{i=1}^{n} f(i)\\ &amp;=&amp; -1 + 6\sum{i=1}{2n+1} f(i) -8\sum_{i=1}^{n} f(i)\\\end{eqnarray} 然后瞎搞就行了$\dots$ 代码给大佬递上我奇丑无比的代码 (/ω＼)123456789101112131415161718192021222324252627282930313233343536373839#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 1e7+10;const int mod = 1e9;inline int add(long long a,long long b)&#123;return (a+b)%mod;&#125;inline int mul(long long a,long long b)&#123;return a*b%mod;&#125;int num[maxm];int sum[maxm];long long f(long long a)&#123; if(a&lt;maxm&amp;&amp;num[a]) return num[a]; if(a==0) return 0; if(a==1) return 1; if(a==3) return 3; if((a&amp;1)^1) return f(a&gt;&gt;1); else if((a&amp;3)==3) return add(mul(3,f(a&gt;&gt;1)),mod-(f(a&gt;&gt;2)&lt;&lt;1)); else return add((f(a&gt;&gt;1|1)&lt;&lt;1),mod-f(a&gt;&gt;2));&#125;long long S(long long a)&#123; if(a&lt;maxm) return sum[a]; long long ret = 0; if(a%4==3)&#123; ret = add(ret,mul(6,S(a&gt;&gt;1))); ret = add(ret,mod-mul(8,S(a&gt;&gt;2))); ret = add(ret,mod-1); &#125;else&#123; while(a%4!=3) ret = add(ret,mod-f(++a)); ret = add(ret,S(a)); &#125; return ret;&#125;int main()&#123; for(int i = 1;i&lt;maxm;i++) num[i] = f(i),sum[i] = add(sum[i-1],num[i]); long long nouse = 1; for(int i = 1;i&lt;=37;i++)&#123; nouse = (nouse&lt;&lt;2)-nouse; &#125; cout&lt;&lt;S(nouse)&lt;&lt;endl; return 0;&#125;]]></content>
       <tags>
         <tag>数学</tag>
         <tag>PE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[matlab]]></title>
+    <url>%2F2018%2F12%2F23%2Fknowledge%2Fmatlab%2F</url>
+    <content type="text"><![CDATA[系统级命令 命令名称 功能说明 clear 清楚内存中所有的或指定的变量和函数 cd 显示和改变当前工作目录 clc 擦除MATLAB工作窗口中所有显示的内容 clf 擦除MATLAB当前工作窗口中的图形 dir 列出当前或者指定目录下的子目录和文件清单 disp 在运行中显示变量或文字信息 echo 控制运行的文字命令是否显示 hold 控制当前的图形窗口对象是否被刷新 home 擦除命令窗口中的内容,并把光标移动到命令窗口 pack 收集内存碎片以扩大内存空间 quit 关闭并退出MATLAB type 显示所指定文件的全部内容 exit 退出MATLAB save 将工作区的变量存放到指定文件 load 回复保存过的变量 系统变量 变量 解释 ans 结果的缺省变量名 pi 圆周率 i,j 虚数单位 inf 无穷大 NaN not a number 矩阵函数 函数 解释 complex 将两个矩阵并成一个复矩阵 zeros(a,b) a*b全0阵 ones(a,b) a*b全1阵 eye(a,b) a*b单位矩阵 randi([a,b],m,n) m*n在a,b之间等概率随机整数矩阵 randn(a,b) 产生均值为0,方差为1的a*b的高斯分布随机阵 repmat(a,b,c) 将a矩阵铺放成bc的形式,总大小size(a)b*c size(a) 确定矩阵大小,返回[行数,列数] length(a) 确定向量元素的个数 numel(a) 确定矩阵中元素个数 find() 查找矩阵中满足条件的下标,或者行列 reshape(a,b,c) 将a变成b行c列(按列重拍) a’ 转置,复数则共轭转置 a(:) 变成一列 rot90 旋转 fliplr 左右翻转 flipud 上下翻转 diag 抽取主对角线 tril 抽取上三角 triu 抽取下三角 max 各列最大值 min 各列最小值 sort 各列递增排序 sum 各列求和 mean 各列平均值 std 各列标准差 var 各列方差 基本数学函数 函数 解释 abs(x) x中每个实数元素的绝对值,复数元素的模 sqrt(x) x中每个元素求平方根 exp(x) 指数运算 real(x) 求实部 imag(x) 求虚部 conj(x) 求共轭 angle(x) 求相位角 sin(x) 正弦 cos(x) 余弦 asin(x) 反正弦 acos(x) 反余弦 tan(x) 正切 atan(x) 反正切 log10(x) 常用对数lgx log(x) 自然对数lnx loga(b) 任意对数 mod(x,y) 求余函数 rem(x,y) 输出对应元素的余数 sign(x) 求矩阵中元素的正负号 lcm(x,y) 最小公倍数 gcd(x,y) 最大公约数 round(a) 四舍五入 fix(a) 按0的方向取整 floor(a) 向负无穷方向取整 ceil(a) 向正无穷方向取整 randperm(n) 产生一个长度为n的排列 绘图 函数 解释 plot(x,y,’option’) x横轴,y纵轴,逐点连折线绘制二维图形,参数见下表 plot(y) y为向量,以下标作为x轴,y为纵轴,绘制曲线 title(‘text’) 添加标题 xlabel(‘text’) x轴加标注 ylabel(‘text’) y轴加标记 legend(‘图例1’,’图例2’,…) 添加图例 text(x,y,’text’) 在指定位置添加文本字符串 gtext(‘text’) 用鼠标放置文本 axis([xmin xmax ymin ymax zmin zmax]) 调整坐标 hold 图形保持函数 subplot 子图分割命令 stem 离散序列 绘图参数表 符号 含义 符号 含义 y 黄 b 蓝 m 洋红 w 白 c 青 k 黑 r 红 g 绿 - 实线 – 虚线 : 点线 -. 点划线 . 点 o 圆 x 叉号 + 加号 ^ 向上的三角形 v 向下的三角形 &gt; 大于号 &lt; 小于号 s 正方形 d 菱形 p 五角星 h 六角星 * 星号 字符串函数 函数 解释 abs 字符串到ascii转换 str2mat 字符串转换成字符矩阵 setstr ascii转字符串 num2str 数值转字符串 str2num 字符串转换成数值 dec2bin 十进制数转二进制字符串 bin2dec 二进制串转十进制 int2str 将数值取整后转成字符串 upper 字符串转换成大写 lower 字符串转换成小写 sprintf 用格式控制,数字转字符串 sscanf 格式控制,字符串转数字 输入输出 函数 解释 input(‘text’) 键盘提示输入 fprintf() 格式输出]]></content>
+      <tags>
+        <tag>live</tag>
       </tags>
   </entry>
   <entry>
@@ -278,21 +278,21 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Project Euler 303 Multiples with small digits]]></title>
-    <url>%2F2018%2F12%2F08%2FPE%2FPE303%2F</url>
-    <content type="text"><![CDATA[开启传送门 题目描述 For a positive integer $n$, define $f(n)$ as the least positive multiple of $n$ that, written in base $10$, uses only digits $≤ 2$. Thus $f(2)=2, f(3)=12, f(7)=21, f(42)=210, f(89)=1121222$. Also,$ \sum_{n=1}^{100} \frac{f(n)}{n} = 11363107 $ Find $ \sum_{n=1}^{10000} \frac{f(n)}{n}. $ 题意问你对于每个数字来说，找到他的一个最小整数倍，使得最小整数倍在十进制下每位都小于3 分析很显然，考的是搜索，如何高效搜索． 最简单的想法就是枚举倍数，然后逐个判断是否合法，然后你会发现所有$999$的倍数都Ｔ飞了 然后考虑剪枝，因为可以显然得到，有些倍数一定无效，比如： $5来说，5\ast 1 = 5,5\ast 11 = 55,5\ast 21 = 105 \dots$ 可以显然发现，对于$5$来说，以$1$结尾的倍数显然都不合理，因为他们的最后一位一定是$5$，可以直接判断掉． 然后你就就基本可以过掉大部分数据，但是还是有一个比较头疼，那就是$9999$. 因为他对应的答案贼大，暴力搜索基本都GG．然后我们换一个思路． 那就是我们直接暴力枚举所有的那些看起来长的像$3$进制的十进制数． 然后我们就直接存储所有的这样的数字，然后枚举？ 那么显然内存不够，那怎么办呢？ dfs? 还是Ｔ飞，所以我们还要在此基础上剪枝． 首先我们可以构造出一种做法就是，每次搜索的时候得到的都是之前没出现过的最小的这类数字． 然后我们维护一个mod数组，表示当前这个mod正确的情况下，最小的这类数字是多少 然后答案显然就是mod[0]啦……. 代码给大佬递上我奇丑无比的代码 (/ω＼) 123456789101112131415161718192021222324252627#include&lt;bits/stdc++.h&gt;#define ll unsigned long longusing namespace std;ll vis[10000+100];ll cal(int a)&#123; queue&lt;ll&gt; que; que.push(1),que.push(2); memset(vis,0,sizeof vis); vis[1] = 1; vis[2] = 2; while(true)&#123; ll now = que.front(); que.pop(); if(now%a==0) return now/a; for(int i = 0;i&lt;3;i++)&#123; ll buf = now*10+i; ll buff = buf%a; if(vis[buff]) continue; vis[buff] = buf; que.push(buf); &#125; &#125;&#125;int main()&#123; ll ans = 0; for(int i = 1;i&lt;=10000;i++) ans+=cal(i); cout&lt;&lt;ans&lt;&lt;endl; return 0;&#125;]]></content>
-      <tags>
-        <tag>PE</tag>
-        <tag>搜索</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Project Euler 288 An enormous factorial]]></title>
     <url>%2F2018%2F12%2F08%2FPE%2FPE288%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 For any prime $p$ the number $N(p,q)$ is defined by $N(p,q) = \sum_{n=0}^q T_n*p^n$with $T_n$ generated by the following random number generator: \begin{eqnarray}&amp;&amp;S_0 = 290797\\&amp;&amp;S_{n+1} = S_n^2 mod 50515093\\&amp;&amp;T_n = S_n mod p\\\end{eqnarray} Let $Nfac(p,q)$ be the factorial of $N(p,q)$.Let $NF(p,q)$ be the number of factors $p$ in $Nfac(p,q)$. You are given that $NF(3,10000) mod 3^{20}=624955285$. Find $NF(61,10^7)$ mod $61^{10}$ 题意题意说的有点麻烦，我简化一下 $T_i$是随机生成的数据，$N(p,q)=\sum_{n=0}^q T_n*p^n$ 问你$N(p,q)$的阶乘里面，质因数分解以后$p$的指数膜$p^{10}$答案是多少． 分析首先可以观察到的是，$T_i$很小，而且他是随机的，我们显然要把他存起来． 然后一个比较显然的结论是$$n!质因数分解后素因子p的数量为\lfloor \frac{n}{p} \rfloor + \lfloor \frac{n}{p^2} \rfloor + \cdots$$$$\because 最后的答案要膜 p^{10} \therefore 我们统计的时候，对于第一项，我们统计指数为 [1,10]的，第二项[2,11],然后枚举项统计答案即可$$ 代码给大佬递上我奇丑无比的代码 (/ω＼)123456789101112131415161718192021#include&lt;bits/stdc++.h&gt;using namespace std;const int maxm = 1e7+1;const int pow_num = 10;long long T[maxm+100];const int p = 61;long long powp[1000];void init()&#123; powp[0] = 1; for(int i = 1;i&lt;=pow_num;i++) powp[i] = powp[i-1]*p; long long s0 = 290797; for(int i = 1;i&lt;maxm;i++) T[i] = (s0=s0*s0%50515093)%p;&#125;int main()&#123; init(); long long ans = 0; const long long mod = powp[pow_num]; for(int i = 1;i&lt;maxm;i++) for(int j = i;j&lt;=i+pow_num-1;j++) ans = (ans+(T[j]*powp[j-i]%mod))%mod; printf("%lld\n",ans); return 0;&#125;]]></content>
       <tags>
         <tag>数学</tag>
         <tag>PE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Project Euler 303 Multiples with small digits]]></title>
+    <url>%2F2018%2F12%2F08%2FPE%2FPE303%2F</url>
+    <content type="text"><![CDATA[开启传送门 题目描述 For a positive integer $n$, define $f(n)$ as the least positive multiple of $n$ that, written in base $10$, uses only digits $≤ 2$. Thus $f(2)=2, f(3)=12, f(7)=21, f(42)=210, f(89)=1121222$. Also,$ \sum_{n=1}^{100} \frac{f(n)}{n} = 11363107 $ Find $ \sum_{n=1}^{10000} \frac{f(n)}{n}. $ 题意问你对于每个数字来说，找到他的一个最小整数倍，使得最小整数倍在十进制下每位都小于3 分析很显然，考的是搜索，如何高效搜索． 最简单的想法就是枚举倍数，然后逐个判断是否合法，然后你会发现所有$999$的倍数都Ｔ飞了 然后考虑剪枝，因为可以显然得到，有些倍数一定无效，比如： $5来说，5\ast 1 = 5,5\ast 11 = 55,5\ast 21 = 105 \dots$ 可以显然发现，对于$5$来说，以$1$结尾的倍数显然都不合理，因为他们的最后一位一定是$5$，可以直接判断掉． 然后你就就基本可以过掉大部分数据，但是还是有一个比较头疼，那就是$9999$. 因为他对应的答案贼大，暴力搜索基本都GG．然后我们换一个思路． 那就是我们直接暴力枚举所有的那些看起来长的像$3$进制的十进制数． 然后我们就直接存储所有的这样的数字，然后枚举？ 那么显然内存不够，那怎么办呢？ dfs? 还是Ｔ飞，所以我们还要在此基础上剪枝． 首先我们可以构造出一种做法就是，每次搜索的时候得到的都是之前没出现过的最小的这类数字． 然后我们维护一个mod数组，表示当前这个mod正确的情况下，最小的这类数字是多少 然后答案显然就是mod[0]啦……. 代码给大佬递上我奇丑无比的代码 (/ω＼) 123456789101112131415161718192021222324252627#include&lt;bits/stdc++.h&gt;#define ll unsigned long longusing namespace std;ll vis[10000+100];ll cal(int a)&#123; queue&lt;ll&gt; que; que.push(1),que.push(2); memset(vis,0,sizeof vis); vis[1] = 1; vis[2] = 2; while(true)&#123; ll now = que.front(); que.pop(); if(now%a==0) return now/a; for(int i = 0;i&lt;3;i++)&#123; ll buf = now*10+i; ll buff = buf%a; if(vis[buff]) continue; vis[buff] = buf; que.push(buf); &#125; &#125;&#125;int main()&#123; ll ans = 0; for(int i = 1;i&lt;=10000;i++) ans+=cal(i); cout&lt;&lt;ans&lt;&lt;endl; return 0;&#125;]]></content>
+      <tags>
+        <tag>PE</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -333,6 +333,14 @@
     <content type="text"><![CDATA[因为爱情]]></content>
       <tags>
         <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日常吐槽20200320]]></title>
+    <url>%2F1020%2F03%2F20%2Fdiary%2F2020%2F03%2F20200320%2F</url>
+    <content type="text"><![CDATA[20:20大学那几年是我为数不多不用关心今天星期几的日子。]]></content>
+      <tags>
+        <tag>日常吐槽</tag>
       </tags>
   </entry>
   <entry>
