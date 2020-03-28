@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Project Euler 405 A rectangular tiling]]></title>
+    <url>%2F2020%2F03%2F26%2FPE%2FPE405_todo%2FPE405%2F</url>
+    <content type="text"><![CDATA[开启传送门 题目描述 We wish to tile a rectangle whose length is twice its width.Let $T(0)$ be the tiling consisting of a single rectangle.For $n &gt; 0$, let $T(n)$ be obtained from $T(n-1)$ by replacing all tiles in the following manner: The following animation demonstrates the tilings $T(n)$ for $n$ from $0$ to $5$: Let $f(n)$ be the number of points where four tiles meet in $T(n)$.For example, $f(1) = 0$, $f(4) = 82$ and $f(10^9)$ mod $17^7 = 126897180$. Find $f(10^k)$ for $k = 10^{18}$, give your answer modulo $17^7$. 题意就和上面的动图一样，让你数出当 $n = 10^{10^{18}}$ 的时候，有多少个四岔点。 分析吐槽一句，这个题的数据范围有点大也有点小。因为大，所以第一时间就想到了欧拉降幂，这样数据范围就很小了。所以这题才40%难度。 比较容易想到的就是答案分为三部分。 一拆为四，那么显然有一部分答案为 $4*f(n-1)$. 然后就考虑四块之间的部分，首先是两个躺着的，不妨设答案为 $a(n)$ 最后就是左边，右边和中间的交叉点，不妨设答案为 $b(n)$ 所以答案就可以表示为 $f(n) = 4f(n-1) + a(n-1) + 4b(n-1) $ 。 如下图所示（以$n=3$为例）： 剩下的问题就是考虑怎么计算 $a(n)$ 和 $b(n)$ 。还是以上面的例子为例。我们有 所以我们有： $f(n) = 4f(n-1) + a(n-1) + 4b(n-1)$ $a(n) = a(n-1) + 2*a(n-2) + 2$ $b(n) = b(n-1) + 2*b(n-2) + 1$ 其中边界条件是 $a(1) = 0,\ \ a(2) = 2$ $b(1) = 0,\ \ b(2) = 1$ 于是可以转成快速幂的方式，如下： 至于题目中的数据范围，显然是需要欧拉降幂来搞。 代码给大佬递上我奇丑无比的代码 (/ω＼) 12]]></content>
+      <tags>
+        <tag>数学</tag>
+        <tag>PE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Project Euler 704 Factors of Two in Binomial Coefficients]]></title>
     <url>%2F2020%2F03%2F18%2FPE%2FPE704%2FPE704%2F</url>
     <content type="text"><![CDATA[开启传送门 题目描述 Define $g(n,m)$ to be the largest integer k such that $2^k$ divides $(_m^n)$. For example, $(_5^{12})=792=2^3⋅3^2⋅11$, hence $g(12,5)=3$. Then define $F(n)=max{g(n,m):0\leq m\leq n}$. $F(10)=3$ and $F(100)=6$. Let $S(N) = \sum_{n=1}^N F(n)$. You are given that $S(100)=389$ and $S(107)=203222840$. Find $S(10^{16})$. 题意定义 $g(n,m)$ 表示组合数 $C_n^m$ 唯一分解后，素因子 $2$ 的指数。 定义 $F(n)$ 为 $max{g(n,m):0\leq m\leq n}$ 定义 $S(n)$ 为 $\sum_{n=1}^N F(n)$ 求 $S(10^{16})$ 分析打个表可以很容易得到 $F(n)$ 对应的 $m$ 的关系为：$n+1-upperbit(n+1) = m$ 其中 $upperbit(x)$ 表示 $x$ 二进制下的最高位。 然后就是分块随便搞一搞就行了。 代码给大佬递上我奇丑无比的代码 (/ω＼) 123456789101112131415161718192021222324252627282930313233343536373839404142434445#include&lt;bits/stdc++.h&gt;using namespace std;const long long upper = 1e16;//const long long upper = 1e7;long long cal(long long a) &#123; // 1! * 2! * ... * a! 有多少个2&#123;&#123;&#123; long long ans = 0; long long buf = a; long long len = 1; while (a &gt;&gt; 1) &#123; a &gt;&gt;= 1; len &lt;&lt;= 1; long long x = buf - (len - 1); // 1..1 2..2 3..3 long long pre = x / len; ans += pre * (pre + 1) / 2 * len; if (x % len) &#123; ans += (pre + 1) * (x % len); &#125; &#125; return ans;&#125;/*&#125;&#125;&#125;*/long long cal2(long long a) &#123; // a! 有多少个2&#123;&#123;&#123; long long ans = 0; while (a) &#123; a &gt;&gt;= 1; ans += a; &#125; return ans;&#125;/*&#125;&#125;&#125;*/int main() &#123; long long n = 0; long long ans = cal(upper); long long base; for (base = 2; n + base &lt;= upper; base &lt;&lt;= 1) &#123; n += base; ans -= cal(base - 1); ans -= cal2(n - base + 1) * base; &#125; ans -= cal(upper - n - 1); ans -= cal2(n + 1) * (upper - n); cout &lt;&lt; ans &lt;&lt; endl; return 0;&#125; 123456789101112131415161718192021222324252627282930313233343536373839404142434445package mainimport "fmt"const ( upper = int64(10000 * 10000 * 10000 * 10000))func cal(a int64) int64 &#123; ans := int64(0) buf := int64(a) len := int64(1) for ; a/2 &gt; 0; &#123; a &gt;&gt;= 1 len &lt;&lt;= 1 x := buf - (len - 1) pre := x / len ans += pre * (pre + 1) / 2 * len ans += (pre + 1) * (x % len) &#125; return ans&#125;func cal2(a int64) int64 &#123; ans := int64(0) for ; a &gt; 0; &#123; a &gt;&gt;= 1 ans += a &#125; return ans&#125;func main() &#123; n := int64(0) ans := cal(upper) base := int64(2) for ; n+base &lt;= upper; base &lt;&lt;= 1 &#123; n += base ans -= cal(base - 1) ans -= cal2(n-base+1) * base &#125; ans -= cal(upper - n - 1) ans -= cal2(n+1) * (upper - n) fmt.Printf("%d", ans)&#125;]]></content>
@@ -333,6 +342,14 @@
     <content type="text"><![CDATA[因为爱情]]></content>
       <tags>
         <tag>music</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[日常吐槽20200329]]></title>
+    <url>%2F1020%2F03%2F29%2Fdiary%2F2020%2F03%2F20200329%2F</url>
+    <content type="text"><![CDATA[00:36嗯，有一点难过，我以为我会难受到不能自已，还好没有哈。 挺好的，当断不断，不断则乱。是该继续心无旁骛的努力了。 怪只怪自己有能力喜欢别人，没能力让别人喜欢自己。 诀别了哈，这应该是我为数不多的能称得上“青春”的东西了。 为什么你们都能习惯孤独？我挺怕孤独的。 给一个挚友打了个电话，我能感受到他是在劝解我，但是莫名的听不进去？ 不说了，再说就矫情了，生活还得继续不是？ 真想自己是太阳啊，这样无论是不是开心，第二天都能照常升起不是？]]></content>
+      <tags>
+        <tag>日常吐槽</tag>
       </tags>
   </entry>
   <entry>

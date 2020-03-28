@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zuhiul.github.io/"/>
-  <updated>2020-03-18T08:15:44.545Z</updated>
+  <updated>2020-03-28T12:29:50.765Z</updated>
   <id>http://zuhiul.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Project Euler 405 A rectangular tiling</title>
+    <link href="http://zuhiul.github.io/2020/03/26/PE/PE405_todo/PE405/"/>
+    <id>http://zuhiul.github.io/2020/03/26/PE/PE405_todo/PE405/</id>
+    <published>2020-03-25T16:00:00.000Z</published>
+    <updated>2020-03-28T12:29:50.765Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=405" target="_blank" rel="noopener">开启传送门</a></p><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><a id="more"></a><p>We wish to tile a rectangle whose length is twice its width.<br>Let $T(0)$ be the tiling consisting of a single rectangle.<br>For $n &gt; 0$, let $T(n)$ be obtained from $T(n-1)$ by replacing all tiles in the following manner:</p><p><img src="./PE405_1.png" alt=""></p><p>The following animation demonstrates the tilings $T(n)$ for $n$ from $0$ to $5$:</p><p><img src="./PE405_2.gif" alt=""></p><p>Let $f(n)$ be the number of points where four tiles meet in $T(n)$.<br>For example, $f(1) = 0$, $f(4) = 82$ and $f(10^9)$ mod $17^7 = 126897180$.</p><p>Find $f(10^k)$ for $k = 10^{18}$, give your answer modulo $17^7$.</p><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>就和上面的动图一样，让你数出当 $n = 10^{10^{18}}$ 的时候，有多少个四岔点。</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>吐槽一句，这个题的数据范围有点大也有点小。因为大，所以第一时间就想到了欧拉降幂，这样数据范围就很小了。所以这题才40%难度。</p><p>比较容易想到的就是答案分为三部分。</p><ul><li>一拆为四，那么显然有一部分答案为 $4*f(n-1)$.</li><li>然后就考虑四块之间的部分，首先是两个躺着的，不妨设答案为 $a(n)$</li><li>最后就是左边，右边和中间的交叉点，不妨设答案为 $b(n)$</li></ul><p>所以答案就可以表示为 $f(n) = 4<em>f(n-1) + a(n-1) + 4</em>b(n-1) $  。 如下图所示（以$n=3$为例）：</p><p><img src="./PE405_3.png" alt=""></p><p><img src="./PE405_4.png" alt=""></p><p><img src="./PE405_5.png" alt=""></p><p>剩下的问题就是考虑怎么计算 $a(n)$ 和 $b(n)$ 。还是以上面的例子为例。我们有</p><p><img src="./PE405_6.png" alt=""></p><p><img src="./PE405_7.png" alt=""></p><p>所以我们有：</p><ul><li>$f(n) = 4<em>f(n-1) + a(n-1) + 4</em>b(n-1)$</li><li>$a(n) = a(n-1) + 2*a(n-2) + 2$</li><li>$b(n) = b(n-1) + 2*b(n-2) + 1$</li></ul><p>其中边界条件是</p><ul><li>$a(1) = 0,\ \ a(2) = 2$</li><li>$b(1) = 0,\ \ b(2) = 1$</li></ul><p>于是可以转成快速幂的方式，如下：</p><p><img src="./PE405_8.png" alt=""></p><p>至于题目中的数据范围，显然是需要欧拉降幂来搞。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>给大佬递上我奇丑无比的代码　(<em>/ω＼</em>)</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://projecteuler.net/problem=405&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;开启传送门&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="数学" scheme="http://zuhiul.github.io/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+      <category term="PE" scheme="http://zuhiul.github.io/tags/PE/"/>
+    
+  </entry>
   
   <entry>
     <title>Project Euler 704 Factors of Two in Binomial Coefficients</title>
@@ -426,26 +449,6 @@
     
     
       <category term="CF" scheme="http://zuhiul.github.io/tags/CF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>factorio</title>
-    <link href="http://zuhiul.github.io/2019/03/31/factorio/"/>
-    <id>http://zuhiul.github.io/2019/03/31/factorio/</id>
-    <published>2019-03-30T16:00:00.000Z</published>
-    <updated>2019-05-23T10:29:28.234Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="level-1"><a href="#level-1" class="headerlink" title="level 1"></a>level 1</h3><a id="more"></a><p><img src="../img/chepter1.jpg" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;level-1&quot;&gt;&lt;a href=&quot;#level-1&quot; class=&quot;headerlink&quot; title=&quot;level 1&quot;&gt;&lt;/a&gt;level 1&lt;/h3&gt;
-    
-    </summary>
-    
-    
-      <category term="factorio" scheme="http://zuhiul.github.io/tags/factorio/"/>
     
   </entry>
   
